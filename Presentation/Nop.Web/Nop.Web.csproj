@@ -1,0 +1,197 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Copyright>Copyright © Nop Solutions, Ltd</Copyright>
+    <Company>Nop Solutions, Ltd</Company>
+    <Authors>Nop Solutions, Ltd</Authors>
+    <Version>4.1.0.0</Version>
+    <Description>Nop.Web is also an MVC web application project, a presentation layer for public store and admin area.</Description>
+    <PackageLicenseUrl>http://www.nopcommerce.com/licensev3.aspx</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.nopcommerce.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\Nop.Data\Nop.Data.csproj" />
+    <ProjectReference Include="..\..\Libraries\Nop.Services\Nop.Services.csproj" />
+    <ProjectReference Include="..\Nop.Web.Framework\Nop.Web.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- We copy the entire \App_Data directory. But we ignore JSON files and data protection keys  -->
+    <Content Include="App_Data\**" CopyToPublishDirectory="PreserveNewest" Exclude="App_Data\*.json" />
+    <Content Update="App_Data\*.json" CopyToPublishDirectory="Never" />
+    <Content Update="App_Data\DataProtectionKeys\*.xml" CopyToPublishDirectory="Never" />
+
+    <Compile Remove="Plugins\**" />
+    <EmbeddedResource Remove="Plugins\**" />
+    <None Remove="Plugins\**" />
+
+    <!-- We copy the entire \Plugins and \Themes directories.
+	    But we ignore cshtml and JSON files to avoid "Duplicate 'Content' items were included" error during publishing.
+	    We also can use "CheckForDuplicateItemsContinueOnError" as per https://github.com/dotnet/sdk/blob/master/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.Sdk.DefaultItems.targets -->
+    <Content Include="Plugins\**" CopyToPublishDirectory="PreserveNewest" Exclude="Plugins\**\*.config;Plugins\**\*.cshtml;Plugins\**\*.json" />
+    <Content Include="Themes\**" CopyToPublishDirectory="PreserveNewest" Exclude="Themes\**\*.config;Themes\**\*.cshtml;Themes\**\*.json" />
+
+    <!-- We copy the \Logs directory -->
+    <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <None Remove="Themes\Emporio\Content\css\styles.rtl.css" />
+    <None Remove="Themes\Universe\Content\css\Custome.css" />
+    <None Remove="Themes\Universe\Content\img\basket_512x512.png" />
+    <None Remove="Themes\Universe\Content\img\empty.png" />
+    <None Remove="Themes\Universe\Content\owl\assets\ajax-loader.gif" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.carousel.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.carousel.min.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.default.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.default.min.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.green.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.green.min.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.video.play.png" />
+    <None Remove="Themes\Universe\Content\owl\LICENSE" />
+    <None Remove="Themes\Universe\Content\owl\owl.carousel.js" />
+    <None Remove="Themes\Universe\Content\owl\owl.carousel.min.js" />
+    <None Remove="Themes\Universe\Content\owl\README.md" />
+    <None Remove="Themes\Universe\Content\scripts\jquery.steps.js" />
+    <None Remove="Themes\Universe\Content\scripts\jquery.steps.min.js" />
+    <None Include="Themes\Emporio\Views\Boards\ActiveDiscussions.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\Forum.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\ForumGroup.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\Search.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\Topic.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\TopicMove.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\_CreateUpdatePost.cshtml" />
+    <None Include="Themes\Emporio\Views\Boards\_CreateUpdateTopic.cshtml" />
+    <None Include="Themes\Emporio\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\Emporio\Views\Catalog\_CatalogSelectors.cshtml" />
+    <None Include="Themes\Emporio\Views\Checkout\BillingAddress.cshtml" />
+    <None Include="Themes\Emporio\Views\Checkout\OnePageCheckout.cshtml" />
+    <None Include="Themes\Emporio\Views\Checkout\OpcBillingAddress.cshtml" />
+    <None Include="Themes\Emporio\Views\Common\ContactUs.cshtml" />
+    <None Include="Themes\Emporio\Views\Customer\Info.cshtml" />
+    <None Include="Themes\Emporio\Views\Customer\Register.cshtml" />
+    <None Include="Themes\Emporio\Views\Home\Index.cshtml" />
+    <None Include="Themes\Emporio\Views\Product\ProductTemplate.Grouped.cshtml" />
+    <None Include="Themes\Emporio\Views\Product\ProductTemplate.Simple.cshtml" />
+    <None Include="Themes\Emporio\Views\Product\_ProductAttributes.cshtml" />
+    <None Include="Themes\Emporio\Views\Product\_ProductDetailsPictures.cshtml" />
+    <None Include="Themes\Emporio\Views\ReturnRequest\ReturnRequest.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\Footer\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\HeaderLinks\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\HomepageBestSellers\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\HomepageCategories\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\HomepageNews\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\HomePagePolls\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\HomepageProducts\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\LanguageSelector\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\OrderSummary\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\ProductsAlsoPurchased\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\RelatedProducts\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\Head.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_CategoryLine.Navigation.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_ColumnsTwo.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_CreateOrUpdateAddress.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_Header.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_ProductBox.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_Root.cshtml" />
+    <None Include="Themes\Emporio\Views\Shared\_Root.Head.cshtml" />
+    <None Include="Themes\Emporio\Views\_ViewImports.cshtml" />
+    <None Include="Themes\Universe\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\Universe\Views\Catalog\_CatalogSelectors.cshtml" />
+    <None Include="Themes\Universe\Views\Customer\Info.cshtml" />
+    <None Include="Themes\Universe\Views\Customer\Login.cshtml" />
+    <None Include="Themes\Universe\Views\Customer\Register.cshtml" />
+    <None Include="Themes\Universe\Views\Home\Index.cshtml" />
+    <None Include="Themes\Universe\Views\Order\Details.cshtml" />
+    <None Include="Themes\Universe\Views\Order\ShipmentDetails.cshtml" />
+    <None Include="Themes\Universe\Views\Product\CompareProducts.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductEmailAFriend.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductReviews.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductTemplate.Grouped.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductTemplate.Simple.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\AdminHeaderLinks\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\Footer\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\HeaderLinks\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\Logo\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\OrderSummary\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\SearchBox\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Head.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_CategoryLine.TopMenu.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_ColumnsTwo.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_Header.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_OldInternetExplorerWarning.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_OrderReviewData.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_ProductBox.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_Root.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_Root.Head.cshtml" />
+    <None Include="Themes\Universe\Views\_ViewImports.cshtml" />
+
+    <None Update="Areas\Admin\sitemap.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\Universe\Content\bootstrapt\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Telegram.Bot" Version="14.11.0" />
+  </ItemGroup>
+
+  <!-- This target execute after "Build" target.
+    We use it to clean up folder with plugins from unnecessary and obsolete libraries. -->
+  <Target Name="NopTarget" AfterTargets="Build">
+    <ItemGroup>
+      <!-- Get plugin description files to get plugin paths -->
+      <PluginsDescription Include="$(MSBuildProjectDirectory)\Plugins\**\plugin.json;" />      
+      <!-- Get paths for all plugins -->
+      <PluginsFolders Include="@(PluginsDescription->'%(relativedir)')" />
+
+      <!-- Get all the libraries from the shadow copy folder to remove them,
+        because depending on the settings, this may not happen when the application is starting,
+        but this can lead to unpredictable results during debugging of the project. -->
+      <ShadowCopiesLibraries Include="$(MSBuildProjectDirectory)\Plugins\bin\*.*" Exclude="$(MSBuildProjectDirectory)\Plugins\bin\placeholder.txt" />
+    </ItemGroup>
+    <PropertyGroup>
+      <PluginsFolders>@(PluginsFolders)</PluginsFolders>
+    </PropertyGroup>
+    <!-- Delete libraries from the shadow copy folder -->
+    <Delete Files="@(ShadowCopiesLibraries)" />
+    <!-- When .NET Core builds a project, it copies all referenced libraries to the output folder.
+      For plugins it creates too many unnecessary files that just take up space.
+      At the moment you can't disable this behavior. That's why we have to manually delete all unnecessary libraries from plugin output directories. -->
+    <MSBuild Projects="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" Properties="PluginPath=$(PluginsFolders)" Targets="NopClear" />
+  </Target>
+  
+  <PropertyGroup> 
+    <!--The common language runtime (CLR) supports two types of garbage collection:
+      workstation garbage collection, which is available on all systems, and server garbage collection,
+      which is available on multiprocessor systems.
+      
+      For single-processor computers, the default workstation garbage collection should be the fastest option.
+      Either workstation or server can be used for two-processor computers.
+      Server garbage collection should be the fastest option for more than two processors.
+      
+      More details about GC you can see here: https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals-->
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <!--In workstation or server garbage collection, you can enable concurrent garbage collection,
+      which enables threads to run concurrently with a dedicated thread that performs the garbage
+      collection for most of the duration of the collection.
+      
+      Concurrent garbage collection enables interactive applications to be more responsive by
+      minimizing pauses for a collection. Managed threads can continue to run most of the time while
+      the concurrent garbage collection thread is running. This results in shorter pauses while
+      a garbage collection is occurring.
+      
+      To improve performance when several processes are running, disable concurrent garbage collection.
+      
+      More details here: https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals#concurrent-garbage-collection-->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+  </PropertyGroup>
+
+</Project>
