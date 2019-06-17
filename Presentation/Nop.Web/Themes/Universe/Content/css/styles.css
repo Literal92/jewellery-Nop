@@ -694,7 +694,7 @@ tr > td > span.footable-toggle {
 
 .header-upper {
 	background: #222;
-	padding: 10px;
+	/*padding: 10px;*/
 	font-size: 0;
 }
 .header-upper:after { 

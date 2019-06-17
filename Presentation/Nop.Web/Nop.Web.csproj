@@ -38,105 +38,10 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
-    <None Remove="Themes\Emporio\Content\css\styles.rtl.css" />
-    <None Remove="Themes\Universe\Content\css\Custome.css" />
-    <None Remove="Themes\Universe\Content\img\basket_512x512.png" />
-    <None Remove="Themes\Universe\Content\img\empty.png" />
-    <None Remove="Themes\Universe\Content\owl\assets\ajax-loader.gif" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.carousel.css" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.carousel.min.css" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.default.css" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.default.min.css" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.green.css" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.green.min.css" />
-    <None Remove="Themes\Universe\Content\owl\assets\owl.video.play.png" />
-    <None Remove="Themes\Universe\Content\owl\LICENSE" />
-    <None Remove="Themes\Universe\Content\owl\owl.carousel.js" />
-    <None Remove="Themes\Universe\Content\owl\owl.carousel.min.js" />
-    <None Remove="Themes\Universe\Content\owl\README.md" />
-    <None Remove="Themes\Universe\Content\scripts\jquery.steps.js" />
-    <None Remove="Themes\Universe\Content\scripts\jquery.steps.min.js" />
-    <None Include="Themes\Emporio\Views\Boards\ActiveDiscussions.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\Forum.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\ForumGroup.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\Search.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\Topic.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\TopicMove.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\_CreateUpdatePost.cshtml" />
-    <None Include="Themes\Emporio\Views\Boards\_CreateUpdateTopic.cshtml" />
-    <None Include="Themes\Emporio\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
-    <None Include="Themes\Emporio\Views\Catalog\_CatalogSelectors.cshtml" />
-    <None Include="Themes\Emporio\Views\Checkout\BillingAddress.cshtml" />
-    <None Include="Themes\Emporio\Views\Checkout\OnePageCheckout.cshtml" />
-    <None Include="Themes\Emporio\Views\Checkout\OpcBillingAddress.cshtml" />
-    <None Include="Themes\Emporio\Views\Common\ContactUs.cshtml" />
-    <None Include="Themes\Emporio\Views\Customer\Info.cshtml" />
-    <None Include="Themes\Emporio\Views\Customer\Register.cshtml" />
-    <None Include="Themes\Emporio\Views\Home\Index.cshtml" />
-    <None Include="Themes\Emporio\Views\Product\ProductTemplate.Grouped.cshtml" />
-    <None Include="Themes\Emporio\Views\Product\ProductTemplate.Simple.cshtml" />
-    <None Include="Themes\Emporio\Views\Product\_ProductAttributes.cshtml" />
-    <None Include="Themes\Emporio\Views\Product\_ProductDetailsPictures.cshtml" />
-    <None Include="Themes\Emporio\Views\ReturnRequest\ReturnRequest.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\Footer\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\HeaderLinks\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\HomepageBestSellers\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\HomepageCategories\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\HomepageNews\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\HomePagePolls\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\HomepageProducts\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\LanguageSelector\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\OrderSummary\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\ProductsAlsoPurchased\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\RelatedProducts\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Components\TopMenu\Default.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\Head.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_CategoryLine.Navigation.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_ColumnsTwo.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_CreateOrUpdateAddress.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_Header.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_ProductBox.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_Root.cshtml" />
-    <None Include="Themes\Emporio\Views\Shared\_Root.Head.cshtml" />
-    <None Include="Themes\Emporio\Views\_ViewImports.cshtml" />
-    <None Include="Themes\Universe\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
-    <None Include="Themes\Universe\Views\Catalog\_CatalogSelectors.cshtml" />
-    <None Include="Themes\Universe\Views\Customer\Info.cshtml" />
-    <None Include="Themes\Universe\Views\Customer\Login.cshtml" />
-    <None Include="Themes\Universe\Views\Customer\Register.cshtml" />
-    <None Include="Themes\Universe\Views\Home\Index.cshtml" />
-    <None Include="Themes\Universe\Views\Order\Details.cshtml" />
-    <None Include="Themes\Universe\Views\Order\ShipmentDetails.cshtml" />
-    <None Include="Themes\Universe\Views\Product\CompareProducts.cshtml" />
-    <None Include="Themes\Universe\Views\Product\ProductEmailAFriend.cshtml" />
-    <None Include="Themes\Universe\Views\Product\ProductReviews.cshtml" />
-    <None Include="Themes\Universe\Views\Product\ProductTemplate.Grouped.cshtml" />
-    <None Include="Themes\Universe\Views\Product\ProductTemplate.Simple.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\AdminHeaderLinks\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\Footer\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\HeaderLinks\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\Logo\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\OrderSummary\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\SearchBox\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Components\TopMenu\Default.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\Head.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_CategoryLine.TopMenu.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_ColumnsTwo.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_Header.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_OldInternetExplorerWarning.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_OrderReviewData.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_ProductBox.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_Root.cshtml" />
-    <None Include="Themes\Universe\Views\Shared\_Root.Head.cshtml" />
-    <None Include="Themes\Universe\Views\_ViewImports.cshtml" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Themes\Universe\Content\bootstrapt\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -16,31 +16,70 @@
         </div>
     </div>
 
-    <div class="header-lower" style="padding:0">
-        <div class="center">
-            <div class="header-logo text-center col-md-2">
-                @await Component.InvokeAsync("Logo")
-            </div>
-            @if (!String.IsNullOrEmpty(taxTypeSelectorHtml.ToHtmlString()) ||
-             !String.IsNullOrEmpty(currencySelectorHtml.ToHtmlString()) ||
-             !String.IsNullOrEmpty(languageSelectorHtml.ToHtmlString()))
-            {
-                <div class="header-selectors-wrapper">
-                    <div class="header-selectors">
-                        @taxTypeSelectorHtml
-                        @currencySelectorHtml
-                        @languageSelectorHtml
-                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+    <div class="top-middle-section" @*style="padding:0" *@>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row pad-top-bottom25 head-top-sec">
+                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                            <figure class="logo-box" style="float:left">
+                                @await Component.InvokeAsync("Logo")
+                            </figure>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="select-box">
+                                <div class="language-box2 top ">
+                                    <p><a href="/wishlist"><i class="fa fa-heart" aria-hidden="true"></i>My Wishlist</a></p>
+                                </div>
+                                @if (!String.IsNullOrEmpty(taxTypeSelectorHtml.ToHtmlString()) ||
+                            !String.IsNullOrEmpty(currencySelectorHtml.ToHtmlString()) ||
+                            !String.IsNullOrEmpty(languageSelectorHtml.ToHtmlString()))
+                                {
+                                    <div class="language-box2 ">
+                                        @languageSelectorHtml
+
+                                    </div>
+                                    <div class="language-box1">
+
+                                        @*@taxTypeSelectorHtml*@
+                                        @currencySelectorHtml
+                                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+                                    </div>
+
+                                }
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            }
-            <div class="search-box store-search-box text-right col-md-9">
-                @await Component.InvokeAsync("SearchBox")
             </div>
-            <div class="header-links-wrapper" style="padding:10px 0 0 0 ">
-                @await Component.InvokeAsync("HeaderLinks")
-            </div>
+            @*<div class="header-logo text-center col-md-2">
+                    @await Component.InvokeAsync("Logo")
+                </div>*@
+            @*@if (!String.IsNullOrEmpty(taxTypeSelectorHtml.ToHtmlString()) ||
+                 !String.IsNullOrEmpty(currencySelectorHtml.ToHtmlString()) ||
+                 !String.IsNullOrEmpty(languageSelectorHtml.ToHtmlString()))
+                {
+                    <div class="header-selectors-wrapper">
+                        <div class="header-selectors">
+                            @taxTypeSelectorHtml
+                            @currencySelectorHtml
+                            @languageSelectorHtml
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+                        </div>
+                    </div>
+                }*@
+            @*<div class="search-box store-search-box text-right col-md-9">
+                    @await Component.InvokeAsync("SearchBox")
+                </div>
+                <div class="header-links-wrapper" style="padding:10px 0 0 0 ">
+                    @await Component.InvokeAsync("HeaderLinks")
+                </div>*@
+
         </div>
     </div>
+
+
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
 </div>

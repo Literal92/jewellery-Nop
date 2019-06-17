@@ -45,6 +45,98 @@
         </div>
     </div>
     <div class="header-menu">
+        <!--//==mega menu start==//-->
+        <div id="main-menu" class="wa-main-menu">
+            <!-- Menu -->
+            <div class="wathemes-menu relative">
+                <!-- navbar -->
+                <div class="navbar navbar-default navbar-bg-dark" role="navigation">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="navbar-header pad-top15 pad-bottom15">
+                                    <!-- Button For Responsive toggle -->
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <div class="icons-section boxx pull-right">
+                                        <ul>
+                                            <li class="hidden-sm hidden-md hidden-lg hover-mini-cart">
+                                                <a href="#" class="mini-cart-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                                <div class="mini-card-section">
+                                                    <div class="mini-cart-product-box pad-top20">
+                                                        <div class="cart-img-box">
+                                                            <figure>
+                                                                <img src="assets/img/all/mini-cart-img1.jpg" alt="">
+                                                            </figure>
+                                                        </div>
+                                                        <div class="cart-price-box">
+                                                            <h5><a href="product-detail.html">Designer Jewellery</a></h5>
+                                                            <p>$100x1</p>
+                                                        </div>
+                                                        <div class="cancle-box">
+                                                            <a href="#">x</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mini-cart-product-box pad-top20">
+                                                        <div class="cart-img-box">
+                                                            <figure>
+                                                                <img src="assets/img/all/mini-cart-img1.jpg" alt="">
+                                                            </figure>
+                                                        </div>
+                                                        <div class="cart-price-box">
+                                                            <h5><a href="product-detail.html">Designer Jewellery</a></h5>
+                                                            <p>$100x1</p>
+                                                        </div>
+                                                        <div class="cancle-box">
+                                                            <a href="#">x</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="price-text-sec pull-right pad-top10">
+                                                        <p>Total $200
+                                                        <p>
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                    <div class="price-button-box pad-top10 pad-bottom20 pull-right">
+                                                        <a href="cart.html" class="itg-button">View cart</a>
+                                                        <a href="checkout.html" class="itg-button pull-right ">Checkout</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a class="navbar-brand hidden-sm hidden-md hidden-lg logo-second" href="index.html">
+                                        <img class="site_logo" alt="Site Logo" src="assets/img/menu-logo.png">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-9 hidden-xs">
+                                <div class="icons-section pad-top20 pull-right">
+                                    <ul>
+                                        <li class="search-box1 hidden-xs">
+                                            @await Component.InvokeAsync("SearchBox")
+                                            @*<input class="search" type="search" placeholder="Search" />*@
+                                            @*<div class="icon search-box store-search-box text-right">
+                                                <a href="#" class="mini-cart-icon"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            </div>*@
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- container -->
+                </div>
+                <!-- navbar -->
+            </div>
+            <!--  Menu -->
+        </div>
+        <!--//==mega menu end==//-->
         <div class="close-menu">
             <span>@*T("SevenSpikes.Themes.Common.CloseMenu")*@   </span>
         </div>
@@ -60,7 +152,8 @@
             @menu
         }
     </div>
-    @if (isHomePage) {
+    @if (isHomePage)
+    {
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageTop })
     }
     <div class="master-wrapper-content">
@@ -81,5 +174,6 @@
 
     @await Component.InvokeAsync("Footer")
 </div>
+
 @await Component.InvokeAsync("EuCookieLaw")
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

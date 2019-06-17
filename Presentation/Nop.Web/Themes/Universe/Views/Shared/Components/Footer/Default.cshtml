@@ -127,15 +127,16 @@
                 @if (!Model.HidePoweredByNopCommerce)
                 {
                     <div class="footer-powered-by">
-                        Powered by <a href="https://www.nopcommerce.com/">nopCommerce</a>
+                        &#9400 @DateTime.Now.Year <a href="http://www.faradatagroup.com/">Faradata</a>
                     </div>
                 }
-                <div class="footer-designed-by">
-                    Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
-                </div>
+                @*<div class="footer-designed-by">
+            Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
+        </div>*@
+                @await Component.InvokeAsync("SocialButtons")
+
             </div>
             @await Component.InvokeAsync("StoreThemeSelector")
-            @await Component.InvokeAsync("SocialButtons")
         </div>
     </div>
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.Footer })

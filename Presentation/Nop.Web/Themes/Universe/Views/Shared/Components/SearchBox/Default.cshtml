@@ -1,9 +1,16 @@
 ﻿@model SearchBoxModel
 @using System.Text.Encodings.Web
 <form asp-route="ProductSearch" method="get" id="small-search-box-form">
-    <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="@T("Search.SearchBox.Tooltip")" aria-label="@T("Search.SearchBox.Text.Label")" />
+    @*<input class="search" type="search" placeholder="Search" />*@
+    <input type="search" class="search" id="small-searchterms" autocomplete="off" name="q" placeholder="@T("Search.SearchBox.Tooltip")" aria-label="@T("Search.SearchBox.Text.Label")" />
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton })
-    <input type="submit" class="button-1 search-box-button" value=" " /> @*value="@T("Search.Button")"*@
+    @*<input type="submit" class="button-1 search-box-button" value=" " />*@ @*value="@T("Search.Button")"*@
+    <div class="icon search-box store-search-box text-right ">
+        <a class="mini-cart-icon"><i class="fa fa-search" aria-hidden="true"></i>
+                                           <input type="submit" value=" " />
+        </a>
+        
+    </div>
     @if (Model.SearchTermMinimumLength > 0)
     {
         <script asp-location="Footer">
