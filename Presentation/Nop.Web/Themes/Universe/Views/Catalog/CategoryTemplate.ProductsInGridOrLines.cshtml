@@ -23,7 +23,583 @@
 
     var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
 }
+<div class="pad-bottom80 pad-top80 blog-griad">
+    <div class="container">
+        <div class="row">
+            <!--//==blog section Start==//-->
+            <section>
+                <div class="products-section">
+                    <div class="container">
+                        <div class="row">
+                            <div id="collectiongrid">
+                                <div class="col-md-12 col-sm-8 col-xs-12 pull-right">
+                                    <div class="row">
+                                        <div class="page-tool">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <div class="page-tool-box padT5">
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-9 col-sm-12 col-xs-12 marB10 padT5">
+                                                            @if (Model.DisplayCategoryBreadcrumb)
+                                                            {
+                                                                <div class="breadcrumb-box">
+                                                                    <ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+                                                                        <li>
+                                                                            <a class="sab-heading-breadcrumb box-z" href="@Url.RouteUrl("HomePage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                                                                            @*<span class="delimiter">@breadcrumbDelimiter</span>*@
+                                                                        </li>
+                                                                        @{ int position = 1; }
+                                                                        @foreach (var cat in Model.CategoryBreadcrumb)
+                                                                        {
+                                                                            var isLastCategory = cat.Id == Model.Id;
+                                                                            <li class="heading-wa box-z activ" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                                                                @if (isLastCategory)
+                                                                                {
+                                                                                    <strong class="current-item" itemprop="name">@cat.Name</strong>
+                                                                                    <span itemprop="item" itemscope itemtype="http://schema.org/Thing">
+                                                                                        <link itemprop="url" href="@Url.RouteUrl("Category", new {SeName = cat.SeName})" />
+                                                                                    </span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <a class="sab-heading-breadcrumb box-z" href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name" itemprop="item">
+                                                                                        <span itemprop="name">@cat.Name</span>
+                                                                                    </a>
+                                                                                    @*<span class="delimiter">@breadcrumbDelimiter</span>*@
+                                                                                }
+                                                                                <meta itemprop="position" content="@position" />
+                                                                            </li>
+                                                                            position++;
+                                                                        }
+                                                                    </ul>
+                                                                </div>
+                                                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model })
+                                                            }
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-8 col-xs-12 billing-box select sow-page-secton responsive-top1 box ">
 
+                                                            <span>Show </span>
+                                                            <select>
+                                                                <option value="volvo">1</option>
+                                                                <option value="volvo">2</option>
+                                                                <option value="volvo">3</option>
+                                                                <option value="volvo">4</option>
+                                                                <option value="volvo">5</option>
+                                                                <option value="volvo">6</option>
+                                                                <option value="volvo">7</option>
+                                                                <option value="volvo">8</option>
+                                                                <option value="volvo">9</option>
+                                                                <option value="volvo">10</option>
+                                                            </select>
+                                                            <span>per page</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12 marB10 padT5 responsive-top1 tool-bar-boxs">
+                                                <div class="page-tool-box page-tool-box-right billing-box select sow-page-secton drop-box-sec boxx">
+                                                    <span>Sort by </span>
+                                                    <select>
+                                                        <option value="Daufalt">Daufalt</option>
+                                                        <option value="Name">Name</option>
+                                                        <option value="Price">Price</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="productsgriads" class="products mar-top30">
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <figure class="itg-hover-style2">
+                                                    <img src="assets/img/Products/Products1.png" alt="">
+                                                    <div class="products-boxes">
+                                                        <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                    </div>
+                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                        <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                        <div class="star-box-section text-left">
+                                                            <p>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                            </p>
+                                                        </div>
+                                                        <p>100.00$</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 responsive-top">
+                                                <figure class="itg-hover-style2">
+                                                    <img src="assets/img/Products/Products2.png" alt="">
+                                                    <div class="products-boxes">
+                                                        <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                    </div>
+                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                        <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                        <div class="star-box-section text-left">
+                                                            <p>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                            </p>
+                                                        </div>
+                                                        <p>100.00$</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 responsive-top Categorie-top">
+                                                <figure class="itg-hover-style2">
+                                                    <img src="assets/img/Products/Products3.png" alt="">
+                                                    <div class="products-boxes">
+                                                        <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                    </div>
+                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                        <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                        <div class="star-box-section text-left">
+                                                            <p>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                            </p>
+                                                        </div>
+                                                        <p>100.00$</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 pad-top30">
+                                                <figure class="itg-hover-style2">
+                                                    <img src="assets/img/Products/Products5.png" alt="">
+                                                    <div class="products-boxes">
+                                                        <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                    </div>
+                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                        <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                        <div class="star-box-section text-left">
+                                                            <p>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                            </p>
+                                                        </div>
+                                                        <p>100.00$</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 pad-top30">
+                                                <figure class="itg-hover-style2">
+                                                    <img src="assets/img/Products/Products6.png" alt="">
+                                                    <div class="products-boxes">
+                                                        <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                    </div>
+                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                        <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                        <div class="star-box-section text-left">
+                                                            <p>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                            </p>
+                                                        </div>
+                                                        <p>100.00$</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 pad-top30">
+                                                <figure class="itg-hover-style2">
+                                                    <img src="assets/img/Products/Products7.png" alt="">
+                                                    <div class="products-boxes">
+                                                        <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                    </div>
+                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                        <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                        <div class="star-box-section text-left">
+                                                            <p>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                            </p>
+                                                        </div>
+                                                        <p>100.00$</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                            <div class=" pad-top30 second-rows">
+                                                <div class="products">
+                                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products1.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                            <figcaption class=" figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section text-left">
+                                                                    <p>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12 responsive-top">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products2.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                            <figcaption class=" figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section text-left">
+                                                                    <p>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12 responsive-top Categorie-top">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products3.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                            <figcaption class=" figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section text-left">
+                                                                    <p>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12 pad-top30">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products5.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                            <figcaption class=" figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section text-left">
+                                                                    <p>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12 pad-top30">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products6.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                            <figcaption class=" figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section text-left">
+                                                                    <p>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 col-xs-12 pad-top30">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products7.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                            <figcaption class=" figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section text-left">
+                                                                    <p>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="pagination-box text-right mar-top30">
+                                                    <a href="#"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+                                                    <a href="#"><span>1</span></a>
+                                                    <a href="#"><span>2</span></a>
+                                                    <a href="#"><span>3</span></a>
+                                                    <a href="#"><span>4</span></a>
+                                                    <a href="#"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div id="productslist" class="products list box mar-top30">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products1.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                        <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                            <div class="star-box-section left text-left">
+                                                                <p>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>100.00$</p>
+                                                            <div class="per-box">
+                                                                <p>
+                                                                    Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+                                                                    sagittis sem nibh id elit. Duis sed odio sit amet.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products2.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                        <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                            <div class="star-box-section left text-left">
+                                                                <p>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>100.00$</p>
+                                                            <div class="per-box">
+                                                                <p>
+                                                                    Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+                                                                    sagittis sem nibh id elit. Duis sed odio sit amet.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products3.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                        <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                            <div class="star-box-section left text-left">
+                                                                <p>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>100.00$</p>
+                                                            <div class="per-box">
+                                                                <p>
+                                                                    Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+                                                                    sagittis sem nibh id elit. Duis sed odio sit amet.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products4.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                        <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                            <div class="star-box-section left text-left">
+                                                                <p>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>100.00$</p>
+                                                            <div class="per-box">
+                                                                <p>
+                                                                    Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+                                                                    sagittis sem nibh id elit. Duis sed odio sit amet.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products5.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                        <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                            <div class="star-box-section left text-left">
+                                                                <p>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>100.00$</p>
+                                                            <div class="per-box">
+                                                                <p>
+                                                                    Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+                                                                    sagittis sem nibh id elit. Duis sed odio sit amet.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <figure class="itg-hover-style2">
+                                                            <img src="assets/img/Products/Products6.png" alt="">
+                                                            <div class="products-boxes">
+                                                                <a data-toggle="modal" data-target="#myModal" href="default.htm" class="itg-button">Quick View</a>
+                                                            </div>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                        <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                            <div class="star-box-section left text-left">
+                                                                <p>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>100.00$</p>
+                                                            <div class="per-box">
+                                                                <p>
+                                                                    Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+                                                                    sagittis sem nibh id elit. Duis sed odio sit amet.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="col-md-12 text-center">
+                                                <div class="pagination-box text-right mar-top30">
+                                                    <a href="#"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+                                                    <a href="#"><span>1</span></a>
+                                                    <a href="#"><span>2</span></a>
+                                                    <a href="#"><span>3</span></a>
+                                                    <a href="#"><span>4</span></a>
+                                                    <a href="#"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--//==blog section End==//-->
+        </div>
+    </div>
+</div>
 <div class="page category-page">
     <div class="page-title">
         <h1>@Model.Name</h1>

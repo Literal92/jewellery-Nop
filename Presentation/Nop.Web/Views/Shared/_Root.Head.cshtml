@@ -31,6 +31,20 @@
     //jQuery is the only js file in the head. if we decide to move it to the footer, then ensure that all inline scripts (with jQuery usage) with are also moved to the footer
     //the issue that it's not possible in some cases (e.g. "Edit address", when Ajax request is made on one-page checkout)
     Html.AppendScriptParts(ResourceLocation.Head, "~/lib/jquery/jquery-3.3.1.min.js");
+    <!--//jewellery footer link//-->
+    Html.AppendScriptParts(ResourceLocation.Head, $"../Themes/Universe/Content/assets/js/jquery.min.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/js/bootstrap.min.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/owl-carousel-slider/js/owl.carousel.min.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/menu-menu/js/hover-dropdown-menu.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/fancyBox/js/jquery.fancybox.pack.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/fancyBox/js/jquery.fancybox-media.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/vertical-slider/js/jquery.bxslider.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/acordian/js/jquery-ui.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/menu-menu/js/jquery.hover-dropdown-menu-addon.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/plugin/switcher/js/switcher.js");
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    Html.AppendScriptParts(ResourceLocation.Footer, $"../Themes/Universe/Content/assets/js/main.js");
+
     //X-UA-Compatible tag
     if (commonSettings.RenderXuaCompatible)
     {

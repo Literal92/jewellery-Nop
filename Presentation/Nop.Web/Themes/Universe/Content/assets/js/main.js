@@ -106,16 +106,18 @@ $(window).load(function() {
 
 function owlCarouselInit() {
 
-    var nextNav = '<i class="fa fa-long-arrow-right" aria-hidden="true"></i>';
-    var prevNav = '<i class="fa fa-long-arrow-left" aria-hidden="true"></i>';
-
+    //var nextNav = '<i class="fa fa-long-arrow-right" aria-hidden="true"></i>';
+    //var prevNav = '<i class="fa fa-long-arrow-left" aria-hidden="true"></i>';
+    var nextNav = $('.homeLikeNextBtn');
+    var prevNav = $('.homeLikePrevBtn');
 
     $('#main-slider').owlCarousel({
         loop: true,
         margin: 0,
         nav: true,
         dots: false,
-        autoplay: true,
+        //autoplay: true,
+        rtl:true,
         navText: [prevNav, nextNav],
         responsive: {
             0: {
@@ -151,13 +153,16 @@ function owlCarouselInit() {
         }
     });
 
+    var nextNavp = $('.BtnNextBtn');
+    var prevNavp = $('.BtnPrevBtn');
 
     $('#product-items-slider').owlCarousel({
         loop: true,
         margin: 0,
         nav: true,
+        rtl:true,
         autoplay: true,
-        navText: [prevNav, nextNav],
+        navText: [prevNavp, nextNavp],
         dots: false,
         responsive: {
             0: {

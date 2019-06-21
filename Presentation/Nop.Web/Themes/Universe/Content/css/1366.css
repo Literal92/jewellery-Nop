@@ -5,7 +5,7 @@
 
 	.master-column-wrapper {
 		min-width: 1280px;
-		max-width: 1600px;
+		max-width: 100%;
 	}
 
 	/* HEADER */

@@ -33,10 +33,12 @@ body {
 
 .header-menu a {
     text-decoration: none !important;
+    font-size:16px;
 }
 
     .header-menu a:hover {
         text-decoration: none !important;
+        color:#fff;
     }
 
 .header-menu {
@@ -249,7 +251,7 @@ input[type="button"], input[type="submit"], button, .button-1, .button-2 {
         width: 100%;
         border-radius: 0 !important;
         padding: 15px !important;
-        background: #44c34f !important;
+        background: #ca0f80 !important;
     }
 
 .mini-shopping-cart .count {

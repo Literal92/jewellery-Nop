@@ -6,10 +6,14 @@
     //Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/nivo-slider.css");
     //Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/themes/custom/custom.css");
 
-    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.NivoSlider/Content/owl/owl.carousel.js");
+    //Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.NivoSlider/Content/owl/owl.carousel.js");
+    //Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/assets/js/bootstrap.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/assets/js/main.js");
+    //Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/assets/js/jquery.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/assets/plugin/owl-carousel-slider/js/owl.carousel.min.js");
     Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/owl/assets/owl.carousel.min.css");
     Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/owl/assets/owl.theme.default.min.css");
-    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/Css/Style.css");
+    Html.AddCssFileParts("~/Themes/Universe/Content/assets/css/style.css");
 }
 
 @{
@@ -72,43 +76,167 @@
 
 @*@await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide5)*@
 }
-
-<div class="row col-md-12" style="margin:0;padding:0">
-    <div class="owl-carousel FaraSlider" id="FaraSlider" style="border-radius:5px;padding:0;margin: 0 0 10px 0;overflow:hidden;height: 300px;" dir="ltr">
+<section class="slider-section">
+    <div id="main-slider" class="owl-carousel owl-theme">
         @if (Model.Picture1Url != null && Model.Picture1Url != "")
         {
-            <a href="@(Model.Link1)">
-                <div style="width:100%;height:300px;background:url('@(Model.Picture1Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text1)"></div>
-            </a>
+            <div class="item">
+
+                <figure class="dark-theme hidden-xs">
+                    <img src="@(Model.Picture1Url)" alt="">
+                </figure>
+                <div class="slider-section-1 text-left">
+                    <div class="container">
+                        <div class=" col-md-6 slider-box1">
+                            <div class="row">
+                                <div class="main-slider-heading">
+                                    <h1 class="">Designer Jewellery</h1>
+                                </div>
+                                <div class="slider-section-1-text">
+                                    <p>@(Model.Text1) </p>
+                                </div>
+                                <a href="@(Model.Link1)" class="itg-button mar-top25">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
 
         @if (Model.Picture2Url != null && Model.Picture2Url != "")
         {
-            <a href="@(Model.Link2)">
-                <div style="width:100%;height:300px;background:url('@(Model.Picture2Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text2)"></div>
-            </a>
+            <div class="item">
+
+                <figure class="dark-theme hidden-xs">
+                    <img src="@(Model.Picture2Url)" alt="">
+
+                </figure>
+                <figure class="dark-theme hidden-lg hidden-md hidden-sm">
+
+
+                </figure>
+                <div class="slider-section-1 text-left">
+                    <div class="container">
+                        <div class=" col-md-6 slider-box1">
+                            <div class="row">
+                                <div class="main-slider-heading">
+                                    <h1 class="">Designer Jewellery</h1>
+                                </div>
+                                <div class="slider-section-1-text">
+                                    <p>@(Model.Text2)</p>
+                                </div>
+                                <a href="@(Model.Link2)" class="itg-button mar-top20">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
 
         @if (Model.Picture3Url != null && Model.Picture3Url != "")
         {
-            <a href="@(Model.Link3)">
-                <div style="width:100%;height:300px;background:url('@(Model.Picture3Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text3)"></div>
-            </a>
+            <div class="item">
+
+                <figure class="dark-theme hidden-xs">
+                    <img src="@(Model.Picture3Url)" alt="">
+
+                </figure>
+                <figure class="dark-theme hidden-lg hidden-md hidden-sm">
+
+
+                </figure>
+                <div class="slider-section-1 text-left">
+                    <div class="container">
+                        <div class=" col-md-6 slider-box1">
+                            <div class="row">
+                                <div class="main-slider-heading">
+                                    <h1 class="">Designer Jewellery</h1>
+                                </div>
+                                <div class="slider-section-1-text">
+                                    <p>@(Model.Text3)</p>
+                                </div>
+                                <a href="@(Model.Link3)" class="itg-button mar-top20">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         }
 
         @if (Model.Picture4Url != null && Model.Picture4Url != "")
         {
-            <a href="@(Model.Link4)">
-                <div style="width:100%;height:300px;background:url('@(Model.Picture4Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text4)"></div>
-            </a>
+            <div class="item">
+
+                <figure class="dark-theme hidden-xs">
+                    <img src="@(Model.Picture4Url)" alt="">
+
+                </figure>
+                <figure class="dark-theme hidden-lg hidden-md hidden-sm">
+
+
+                </figure>
+                <div class="slider-section-1 text-left">
+                    <div class="container">
+                        <div class=" col-md-6 slider-box1">
+                            <div class="row">
+                                <div class="main-slider-heading">
+                                    <h1 class="">Designer Jewellery</h1>
+                                </div>
+                                <div class="slider-section-1-text">
+                                    <p>@(Model.Text4)</p>
+                                </div>
+                                <a href="@(Model.Link4)" class="itg-button mar-top20">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         }
 
         @if (Model.Picture5Url != null && Model.Picture5Url != "")
         {
-            <a href="@(Model.Link5)">
-                <div style="width:100%;height:300px;background:url('@(Model.Picture5Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text5)"></div>
-            </a>
+            <div class="item">
+                <figure class="dark-theme hidden-xs">
+                    <img src="@(Model.Picture5Url)" alt="">
+
+                </figure>
+                <figure class="dark-theme hidden-lg hidden-md hidden-sm">
+
+
+                </figure>
+                <div class="slider-section-1 text-left">
+                    <div class="container">
+                        <div class=" col-md-6 slider-box1">
+                            <div class="row">
+                                <div class="main-slider-heading">
+                                    <h1 class="">Designer Jewellery</h1>
+                                </div>
+                                <div class="slider-section-1-text">
+                                    <p>@(Model.Text5)</p>
+                                </div>
+                                <a href="@(Model.Link5)" class="itg-button mar-top20">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
+        @*<div class="row col-md-12" style="margin:0;padding:0">
+                <div class="owl-carousel FaraSlider" style="border-radius:5px;padding:0;margin: 0 0 10px 0;overflow:hidden;height: 300px;" dir="ltr">
+                    <div style="width:100%;height:400px;background:url('https://dkstatics-public-2.digikala.com/digikala-adservice-banners/1000002927.jpg') center center no-repeat !important; background-size:cover !important"></div>
+                    <div style="width:100%;height:400px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000002902.jpg') center center no-repeat !important; background-size:cover !important"></div>
+                    <div style="width:100%;height:400px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000003103.jpg') center center no-repeat !important; background-size:cover !important"></div>
+                </div>
+                <button class="homeLikeNextBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);right: 25px;z-index: 3;">
+                    <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
+                </button>
+                <button class="homeLikePrevBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);left: 25px;z-index: 3;">
+                    <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
+                </button>
+            </div>*@
+
     </div>
     <button class="homeLikeNextBtn" style="background: none !important;position: absolute;top: calc(43% - 20px);right: 25px;z-index: 3;">
         <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
@@ -116,8 +244,8 @@
     <button class="homeLikePrevBtn" style="background: none !important;position: absolute;top: calc(43% - 20px);left: 25px;z-index: 3;">
         <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
     </button>
-</div>
-<script asp-location="Footer">
+</section>
+@*<script asp-location="Footer">
     $(document).ready(function () {
 
         var owlFara = $(".FaraSlider");
@@ -170,4 +298,4 @@
             }
         })
     });
-</script>
+</script>*@

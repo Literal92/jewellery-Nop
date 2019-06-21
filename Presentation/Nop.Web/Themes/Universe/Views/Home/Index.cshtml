@@ -8,19 +8,36 @@
     <div class="page-body">
         @*@await Component.InvokeAsync("TopicBlock", new { systemName = "HomePageText" })*@
         <div class="row col-12" style="margin:0">
-            <div class="col-lg-2 col-md-4 col-sm-hidden">
+            @*<div class="col-lg-12 col-md-4 col-sm-hidden">
+
+                </div>*@
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeCategories })
                 @await Component.InvokeAsync("HomepageCategories")
-            </div>
-            <div class="col-lg-10 col-md-8 col-sm-12">
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeProducts })
                 @await Component.InvokeAsync("HomepageProducts")
+                <!--//===banner-section Start==//-->
+                <section>
+                    <div class="banner-section">
+                        <div class="special-style special-style-full special-style-semidark col-md-12 col-md-offset-0 pull-right">
+                            <div class="bg-image" style="background-image:url('/Themes/Universe/Content/assets/img/slider/banner1.jpg');"></div>
+                        </div>
+                        <div class="container pad-top-bottom130">
+                            <div class="banner-text-box">
+                                <h1 class="text-center">The ultimate in luxury and style.</h1>
+                                <p>Flat 15% off on Diamond Jewellery</p>
+                                <a href="#" class="itg-button mar-top20">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--//===banner-section End==//-->
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeBestSellers })
                 @await Component.InvokeAsync("HomepageBestSellers")
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeNews })
-                @await Component.InvokeAsync("HomepageNews")
-                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforePoll })
-                @await Component.InvokeAsync("HomepagePolls")
+                @*@await Component.InvokeAsync("HomepageNews")*@
+                @*@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforePoll })
+                    @await Component.InvokeAsync("HomepagePolls")*@
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBottom })
             </div>
         </div>

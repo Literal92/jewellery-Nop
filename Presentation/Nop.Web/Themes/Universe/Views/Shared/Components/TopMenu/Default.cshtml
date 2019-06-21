@@ -3,60 +3,106 @@
 @{
     var isRtl = this.ShouldUseRtlTheme();
 }
+<!--//==mega menu start==//-->
+<div id="main-menu" class="wa-main-menu">
+    <!-- Menu -->
+    <div class="wathemes-menu relative">
+        <!-- navbar -->
+        <div class="navbar navbar-default navbar-expand-lg navbar-bg-dark" role="navigation">
+            <div class="container" style="display:inline !important">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                       
+                        <div class="navbar-collapse collapse">
+                            <!-- nav -->
+                            <ul class="nav navbar-nav">
+                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
+                                @if (Model.DisplayHomePageMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+                                }
+                                @{
+                                    var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+                                }
+                                @foreach (var category in rootCategories)
+                                {
+                                    var categoryLineModel = new TopMenuModel.CategoryLineModel
+                                    {
+                                        Category = category
+                                    };
+                                    @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
+                                }
+                                @foreach (var topic in Model.Topics)
+                                {
+                                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+                                }
+                                @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+                                }
+                                @if (Model.DisplayProductSearchMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
+                                }
+                                @if (Model.DisplayCustomerInfoMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                                }
+                                @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+                                }
+                                @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+                                }
+                                @if (Model.DisplayContactUsMenuItem)
+                                {
+                                    <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                                }
+                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
+                            </ul>
+                        </div>
+                        <!-- navbar-collapse -->
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-9 hidden-xs">
+                        <div class="icons-section pad-top10 pad-bottom10 pull-right">
+                            <ul>
+                                <li class="search-box1 hidden-xs">
+                                    @await Component.InvokeAsync("SearchBox")
+                                </li>
+                                <li class="hidden-xs login-box-man">
+                                    @await Component.InvokeAsync("HeaderLinks")
+                                </li>
+                                <li class="hidden-xs hover-mini-cart">
+                                    @await Component.InvokeAsync("FlyoutShoppingCart")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- col-md-12 -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- navbar -->
+        
+    </div>
+    <!--  Menu -->
+</div>
+<!--//==mega menu end==//-->
+<div class="close-menu">
+    <span>@*T("SevenSpikes.Themes.Common.CloseMenu")*@   </span>
+</div>
+
 
 <input type="hidden" value="@isRtl.ToString().ToLowerInvariant()" id="isRtlEnabled" />
 
-<ul class="top-menu">
-    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
-    @if (Model.DisplayHomePageMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
-    }
-    @{
-        var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
-    }
-    @foreach (var category in rootCategories)
-    {
-        var categoryLineModel = new TopMenuModel.CategoryLineModel
-        {
-            Category = category
-        };
-        @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
-    }
-    @foreach (var topic in Model.Topics)
-    {
-        <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-    }
-    @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
-    }
-    @if (Model.DisplayProductSearchMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
-    }
-    @if (Model.DisplayCustomerInfoMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
-    }
-    @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
-    }
-    @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
-    }
-    @if (Model.DisplayContactUsMenuItem)
-    {
-        <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-    }
-    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
-</ul>
 
 <script asp-location="Footer">
 
-    (function($, ssCore) {
+    (function ($, ssCore) {
         $(document).ready(function () {
             ssCore.prepareTopMenu();
         });
