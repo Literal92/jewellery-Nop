@@ -755,7 +755,7 @@ tr > td > span.footable-toggle {
 	box-shadow: 0 1px 5px rgba(0,0,0,0.15);
 	border-radius: 2px;
 	background: #fff;
-	padding: 0 0 20px;
+	/*padding: 0 0 20px;*/
 	font-size: 12px;
 }
 .mini-shopping-cart .count {
@@ -789,11 +789,11 @@ tr > td > span.footable-toggle {
 .mini-shopping-cart .picture + .product {
 	margin: 0 0 0 90px;
 }
-.mini-shopping-cart .name {
-	margin: 0 0 10px;
-	font-size: 14px;
-	color: #40b48a;
-}
+    .mini-shopping-cart .name {
+        margin: 0 0 10px;
+        font-size: 14px;
+        color: #ca0f80;
+    }
 .mini-shopping-cart .totals {
 	margin: 20px 0 0;
 	padding: 0 10px;
@@ -1065,7 +1065,7 @@ tr > td > span.footable-toggle {
 .footer-middle {
 	overflow: hidden;
 	background: #333;
-	padding: 20px 0;
+	/*padding: 20px 0;*/
 	font-size: 0;
 }
 .footlist {
@@ -1890,8 +1890,8 @@ div.product-viewmode select {
 	text-decoration: underline;
 }
 .product-review-box {
-	display: inline-block;
-	margin: 0 0 5px;
+    display: inline-block;
+    margin: 5px 33%;
 }
 .product-review-box .rating {
 	width: 86px;

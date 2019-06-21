@@ -8,7 +8,6 @@
   "Payments.WorldpayUS",
   "Payments.OkPay",
   "Payments.PayPalStandard",
-  "Shipping.UPS",
   "Tax.FixedOrByCountryStateZip",
   "Widgets.GoogleAnalytics",
   "Widgets.NivoSlider",
@@ -18,5 +17,6 @@
   "Faradata.IranSansWidget",
   "Widget.FaraSlider",
   "Resanehlab.ZarinPal",
-  "Faradata.AlarmShopping"
+  "Faradata.AlarmShopping",
+  "Payments.CashOnDelivery"
 ]

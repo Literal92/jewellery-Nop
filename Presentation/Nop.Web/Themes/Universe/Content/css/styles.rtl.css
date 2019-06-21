@@ -1066,7 +1066,7 @@ tr > td > span.footable-toggle {
 .footer-middle {
 	overflow: hidden;
 	background: #333;
-	padding: 20px 0;
+	/*padding: 20px 0;*/
 	font-size: 0;
 }
 .footlist {

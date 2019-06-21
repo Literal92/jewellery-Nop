@@ -7,19 +7,42 @@
     Html.AddCssFileParts("~/Plugins/Widget.FaraSlider/Content/owl/assets/owl.theme.default.min.css");
 }
 
-<div class="row col-md-12" style="margin:0;padding:0">
-    <div class="owl-carousel FaraSlider" style="border-radius:5px;padding:0;margin: 0 0 10px 0;overflow:hidden;height: 300px;" dir="ltr">
-        <div style="width:100%;height:300px;background:url('https://dkstatics-public-2.digikala.com/digikala-adservice-banners/1000002927.jpg') center center no-repeat !important; background-size:cover !important"></div>
-        <div style="width:100%;height:300px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000002902.jpg') center center no-repeat !important; background-size:cover !important"></div>
-        <div style="width:100%;height:300px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000003103.jpg') center center no-repeat !important; background-size:cover !important"></div>
+<section class="slider-section">
+    <div id="main-slider" class="owl-carousel owl-theme">
+        <div class="item">
+            <figure class="dark-theme hidden-xs">
+            </figure>
+            <div class="slider-section-1 text-left">
+                <div class="container">
+                    <div class=" col-md-8 slider-box1">
+                        <div class="row">
+                            <div class="main-slider-heading">
+                                <h1 class="">Designer Jewellery</h1>
+                            </div>
+                            <div class="slider-section-1-text">
+                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin,<br>lorem quis bibendum auctor elit </p>
+                            </div>
+                            <a href="collection-list-sidebar.html" class="itg-button mar-top20">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row col-md-12" style="margin:0;padding:0">
+            <div class="owl-carousel FaraSlider" style="border-radius:5px;padding:0;margin: 0 0 10px 0;overflow:hidden;height: 300px;" dir="ltr">
+                <div style="width:100%;height:400px;background:url('https://dkstatics-public-2.digikala.com/digikala-adservice-banners/1000002927.jpg') center center no-repeat !important; background-size:cover !important"></div>
+                <div style="width:100%;height:400px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000002902.jpg') center center no-repeat !important; background-size:cover !important"></div>
+                <div style="width:100%;height:400px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000003103.jpg') center center no-repeat !important; background-size:cover !important"></div>
+            </div>
+            <button class="homeLikeNextBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);right: 25px;z-index: 3;">
+                <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
+            </button>
+            <button class="homeLikePrevBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);left: 25px;z-index: 3;">
+                <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
+            </button>
+        </div>*@
+        </div>
     </div>
-    <button class="homeLikeNextBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);right: 25px;z-index: 3;">
-        <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
-    </button>
-    <button class="homeLikePrevBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);left: 25px;z-index: 3;">
-        <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
-    </button>
-</div>
+</section>
 
 <script>
     $(document).ready(function () {

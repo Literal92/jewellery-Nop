@@ -6,10 +6,9 @@
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton })
     @*<input type="submit" class="button-1 search-box-button" value=" " />*@ @*value="@T("Search.Button")"*@
     <div class="icon search-box store-search-box text-right ">
-        <a class="mini-cart-icon"><i class="fa fa-search" aria-hidden="true"></i>
-                                           <input type="submit" value=" " />
-        </a>
-        
+        <button type="submit" class="mini-cart-icon">
+            <a href="#" ><i class="fa fa-search" aria-hidden="true"></i></a>
+        </button>
     </div>
     @if (Model.SearchTermMinimumLength > 0)
     {
