@@ -38,6 +38,108 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <None Remove="Themes\Universe\Content\assets\css\style.rtl.css" />
+    <None Remove="Themes\Universe\Content\fonts\BJadidBold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\BJadidBold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\BJadidBold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\BKoodakBold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\BKoodakBold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\BKoodakBold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\BNazanin.eot" />
+    <None Remove="Themes\Universe\Content\fonts\BNazanin.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\BNazanin.woff" />
+    <None Remove="Themes\Universe\Content\fonts\BTitrBold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\BTitrBold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\BTitrBold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\BYekan.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\BYekan.woff" />
+    <None Remove="Themes\Universe\Content\fonts\Descr.WD3" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb(FaNum).eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb(FaNum)_Black.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb(FaNum)_Bold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb(FaNum)_Light.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb(FaNum)_Medium.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb(FaNum)_UltraLight.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb_Black.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb_Bold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb_Light.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb_Medium.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\IRANSansWeb_UltraLight.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\iranyekanwebbold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\iranyekanweblight.eot" />
+    <None Remove="Themes\Universe\Content\fonts\eot\iranyekanwebregular.eot" />
+    <None Remove="Themes\Universe\Content\fonts\fontawesome-webfont.eot" />
+    <None Remove="Themes\Universe\Content\fonts\fontawesome-webfont.svg" />
+    <None Remove="Themes\Universe\Content\fonts\fontawesome-webfont.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\fontawesome-webfont.woff" />
+    <None Remove="Themes\Universe\Content\fonts\FontAwesome.otf" />
+    <None Remove="Themes\Universe\Content\fonts\glyphicons-halflings-regular.eot" />
+    <None Remove="Themes\Universe\Content\fonts\glyphicons-halflings-regular.svg" />
+    <None Remove="Themes\Universe\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Remove="Themes\Universe\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\ionicons.eot" />
+    <None Remove="Themes\Universe\Content\fonts\ionicons.svg" />
+    <None Remove="Themes\Universe\Content\fonts\ionicons.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ionicons.woff" />
+    <None Remove="Themes\Universe\Content\fonts\Mj_DinarTwoMedium.eot" />
+    <None Remove="Themes\Universe\Content\fonts\Mj_DinarTwoMedium.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\Mj_DinarTwoMedium.woff" />
+    <None Remove="Themes\Universe\Content\fonts\Samim-Bold.eot" />
+    <None Remove="Themes\Universe\Content\fonts\Samim-Bold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\Samim-Bold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\Samim.eot" />
+    <None Remove="Themes\Universe\Content\fonts\Samim.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\Samim.woff" />
+    <None Remove="Themes\Universe\Content\fonts\svg\iranyekanwebbold.svg" />
+    <None Remove="Themes\Universe\Content\fonts\svg\iranyekanweblight.svg" />
+    <None Remove="Themes\Universe\Content\fonts\svg\iranyekanwebregular.svg" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb(FaNum).ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb(FaNum)_Black.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb(FaNum)_Bold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb(FaNum)_Light.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb(FaNum)_Medium.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb(FaNum)_UltraLight.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Black.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Bold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Light.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Medium.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\IRANSansWeb_UltraLight.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\iranyekanwebbold.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\iranyekanweblight.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\ttf\iranyekanwebregular.ttf" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb(FaNum).woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb(FaNum)_Black.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb(FaNum)_Bold.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb(FaNum)_Light.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb(FaNum)_Medium.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb(FaNum)_UltraLight.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Black.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Bold.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Light.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Medium.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\IRANSansWeb_UltraLight.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\iranyekanwebbold.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\iranyekanweblight.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff2\iranyekanwebregular.woff2" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb(FaNum).woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb(FaNum)_Black.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb(FaNum)_Bold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb(FaNum)_Light.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb(FaNum)_Medium.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb(FaNum)_UltraLight.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb_Black.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb_Bold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb_Light.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb_Medium.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\IRANSansWeb_UltraLight.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\iranyekanwebbold.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\iranyekanweblight.woff" />
+    <None Remove="Themes\Universe\Content\fonts\woff\iranyekanwebregular.woff" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -46,6 +148,312 @@
 
   <ItemGroup>
     <PackageReference Include="Telegram.Bot" Version="14.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Themes\Universe\Content\fonts\BJadidBold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BJadidBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BJadidBold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BKoodakBold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BKoodakBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BKoodakBold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BNazanin.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BNazanin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BNazanin.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BTitrBold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BTitrBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BTitrBold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BYekan.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\BYekan.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Descr.WD3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb%28FaNum%29.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb%28FaNum%29_Black.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb%28FaNum%29_Bold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb%28FaNum%29_Light.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb%28FaNum%29_Medium.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb%28FaNum%29_UltraLight.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb_Black.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb_Bold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb_Light.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb_Medium.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\IRANSansWeb_UltraLight.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\iranyekanwebbold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\iranyekanweblight.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\eot\iranyekanwebregular.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\glyphicons-halflings-regular.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\glyphicons-halflings-regular.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\glyphicons-halflings-regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ionicons.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ionicons.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ionicons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ionicons.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Mj_DinarTwoMedium.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Mj_DinarTwoMedium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Mj_DinarTwoMedium.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Samim-Bold.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Samim-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Samim-Bold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Samim.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Samim.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\Samim.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\svg\iranyekanwebbold.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\svg\iranyekanweblight.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\svg\iranyekanwebregular.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb%28FaNum%29.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb%28FaNum%29_Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb%28FaNum%29_Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb%28FaNum%29_Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb%28FaNum%29_Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb%28FaNum%29_UltraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb_Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\IRANSansWeb_UltraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\iranyekanwebbold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\iranyekanweblight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\ttf\iranyekanwebregular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb%28FaNum%29.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb%28FaNum%29_Black.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb%28FaNum%29_Bold.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb%28FaNum%29_Light.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb%28FaNum%29_Medium.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb%28FaNum%29_UltraLight.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Black.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Bold.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Light.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb_Medium.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\IRANSansWeb_UltraLight.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\iranyekanwebbold.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\iranyekanweblight.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff2\iranyekanwebregular.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb%28FaNum%29.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb%28FaNum%29_Black.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb%28FaNum%29_Bold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb%28FaNum%29_Light.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb%28FaNum%29_Medium.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb%28FaNum%29_UltraLight.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb_Black.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb_Bold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb_Light.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb_Medium.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\IRANSansWeb_UltraLight.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\iranyekanwebbold.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\iranyekanweblight.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Themes\Universe\Content\fonts\woff\iranyekanwebregular.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <!-- This target execute after "Build" target.

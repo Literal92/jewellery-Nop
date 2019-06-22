@@ -18,5 +18,6 @@
   "Widget.FaraSlider",
   "Resanehlab.ZarinPal",
   "Faradata.AlarmShopping",
-  "Payments.CashOnDelivery"
+  "Payments.CashOnDelivery",
+  "Shipping.FixedByWeightByTotal"
 ]

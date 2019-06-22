@@ -382,9 +382,9 @@
 
 	/* CATEGORY PAGE & GRIDS */
 
-	.breadcrumb {
-		margin: -20px 0 20px;
-	}
+    .breadcrumb {
+        margin: 0px 20px;
+    }
 	.breadcrumb a,
 	.breadcrumb strong,
 	.breadcrumb .delimiter {

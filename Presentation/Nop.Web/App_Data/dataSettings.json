@@ -1,5 +1,5 @@
 ﻿{
   "DataProvider": "sqlserver",
-  "DataConnectionString": "Data Source=.;uid=sa;pwd=1;Initial Catalog=NopCommerce;Integrated Security=True;Persist Security Info=False",
+  "DataConnectionString": "Data Source=(localdb)\\AmTavakoli;Initial Catalog=NopCommerce;Integrated Security=True;Persist Security Info=False",
   "RawDataSettings": {}
 }

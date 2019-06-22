@@ -11,7 +11,7 @@
                         <figure class="itg-hover-section">
                             <img src="@(item.PictureModel.ImageUrl)" alt="">
                             <figcaption class="categorie-boxs">
-                                <h3><a href="@Url.RouteUrl("Category", new { SeName = item.SeName })">Women's<br>@item.Name</a></h3>
+                                <h3><a href="@Url.RouteUrl("Category", new { SeName = item.SeName })">@item.Name</a></h3>
                             </figcaption>
                         </figure>
                     </div>

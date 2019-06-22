@@ -180,10 +180,11 @@
                     @await Html.PartialAsync("_ProductTags", Model.ProductTags)
                 </div>
                 @*we do not display "also purchased" for grouped products
-                    @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })*@
+                @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })*@
                 @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
             </div>
         </form>
+        
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
     </div>
 </div>

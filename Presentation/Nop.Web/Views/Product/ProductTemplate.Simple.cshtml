@@ -146,6 +146,8 @@
                 @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
             </div>
         </form>
+        
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
     </div>
+    
 </div>

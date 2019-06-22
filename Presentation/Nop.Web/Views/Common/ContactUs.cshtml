@@ -7,7 +7,109 @@
     //page class
     Html.AppendPageCssClassParts("html-contact-page");
 }
-<div class="page contact-page">
+<div class="breadcrumb-section-box">
+    <div class="special-style special-style-full special-style-semidark col-md-offset-0 ">
+        <div class="bg-image" style="background-image:url('../Themes/Universe/Content/assets/img/all/breadcrumb-img.png');"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 pad-top100 pad-bottom100 heading-box">
+                <h3 class="heading-breadcrumb box-z text-center">@T("PageTitle.ContactUs")</h3>
+                <div class="clear"></div>
+                <div class="headding-icons headding-icons-2">
+                    <ul>
+                        <li><span class="mar-top15"><i class="fa fa-gem" aria-hidden="true"></i></span></li>
+                        <li><span class="style mar-top15"><i class="fa fa-gem" aria-hidden="true"></i></span></li>
+                        <li><span class="mar-top15"><i class="fa fa-gem" aria-hidden="true"></i></span></li>
+                    </ul>
+                </div>
+                <div class="breadcrumb-box">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a class="sab-heading-breadcrumb box-z" href="/">@T("homepage")</a>
+                        </li>
+                        <li class="heading-wa box-z activ">@T("PageTitle.ContactUs")</li>
+                    </ul>
+                </div>
+                @*@await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)*@
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog-griad">
+    <div class="container">
+        <div class="row">
+            <div class="message-sec-boxs pad-top80 pad-bottom80">
+                <div class="col-md-12 col-sm-6 col-xs-12 siad-bar-sec">
+                    <h3 class="theme-headdings">@T("PageTitle.ContactUs")</h3>
+                    <div class="row pad-top25">
+                        <div class="col-md-12 col-sm-12 col-xs-12 Profile setting box">
+                            @await Component.InvokeAsync("TopicBlock", new { systemName = "ContactUs" })
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContactUsTop })
+                            @if (Model.SuccessfullySent)
+                            {
+                                <div class="result">
+                                    @Model.Result
+                                </div>
+                            }
+                            else
+                            {
+                                <form asp-route="ContactUs" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                                    <div class="fieldset">
+                                        <div class="form-fields">
+                                            <p >
+                                                <label asp-for="FullName" asp-postfix=":"></label>
+                                                <input asp-for="FullName" placeholder="@T("ContactUs.FullName.Hint")" class="fullname search_terms" />
+                                                <nop-required />
+                                                <span asp-validation-for="FullName"></span>
+                                            </p>
+                                            <p  >
+                                                <label asp-for="Email" asp-postfix=":"></label>
+                                                <input asp-for="Email" placeholder="@T("ContactUs.Email.Hint")" class="email search_terms" />
+                                                <nop-required />
+                                                <span asp-validation-for="Email"></span>
+                                            </p>
+                                            @if (Model.SubjectEnabled)
+                                            {
+                                                <p  >
+                                                    <label asp-for="Subject" asp-postfix=":"></label>
+                                                    <input asp-for="Subject" placeholder="@T("ContactUs.Subject.Hint")" class="subject search_terms" />
+                                                    <nop-required />
+                                                    <span asp-validation-for="Subject"></span>
+                                                </p>
+                                            }
+                                            <p  >
+                                                <label asp-for="Enquiry" asp-postfix=":"></label>
+                                                <textarea asp-for="Enquiry" placeholder="@T("ContactUs.Enquiry.Hint")" class="enquiry"></textarea>
+                                                <nop-required />
+                                                <span asp-validation-for="Enquiry"></span>
+                                            </p>
+                                            @if (Model.DisplayCaptcha)
+                                            {
+                                                <p class="form-controller search_terms captcha-box">
+                                                    <nop-captcha />
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <input type="submit" name="send-email" class="itg-button mar-top20" value="@T("ContactUs.Button")" />
+                                    </div>
+                                </form>
+                               
+                            }
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContactUsBottom })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//===Partner-section Start==//-->
+</div>
+@*<div class="page contact-page">
     <div class="page-title">
         <h1>@T("PageTitle.ContactUs")</h1>
     </div>
@@ -68,4 +170,4 @@
         }
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContactUsBottom })
     </div>
-</div>
+</div>*@

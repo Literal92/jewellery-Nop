@@ -96,7 +96,7 @@
 	/* CATEGORY PAGE & GRIDS */
 
 	.breadcrumb {
-		text-align: right;
+		/*text-align: right;*/
 	}
 	.breadcrumb li:first-child a {
 		margin-right: 0;

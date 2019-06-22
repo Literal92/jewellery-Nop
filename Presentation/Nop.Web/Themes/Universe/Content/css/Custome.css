@@ -15,7 +15,7 @@ body {
 
 
 .block .list a:hover, .block .list a.active {
-    color: var(--main-bg-color) !important;
+    color: #2b2b2b !important;
     text-decoration: none !important;
 }
 
@@ -42,7 +42,7 @@ body {
     }
 
 .header-menu {
-    background: var(--main-bg-color) !important;
+    background: #2b2b2b !important;
 }
 
     .header-menu .sublist-wrap {
@@ -91,13 +91,13 @@ body {
 
 input[type="button"], input[type="submit"], button, .button-1, .button-2 {
     border-radius: 5px !important;
-    background: var(--main-bg-color) !important;
+    /*background: #2b2b2b !important;*/
     font-size: 14px !important;
 }
 
 .newsletter-email input[type="button"] {
     border-radius: 0 !important;
-    background: var(--main-bg-color) url('../img/subscribe-button.png') center no-repeat !important
+    background: #2b2b2b url('../img/subscribe-button.png') center no-repeat !important
 }
 
 
@@ -139,7 +139,7 @@ input[type="button"], input[type="submit"], button, .button-1, .button-2 {
 }
 
 .item-box .actual-price {
-    color: var(--btn-green) !important;
+    /*color: var(--btn-green) !important;*/
     font-size: 18px !important;
     font-weight: 800;
 }
@@ -191,7 +191,7 @@ input[type="button"], input[type="submit"], button, .button-1, .button-2 {
     position: absolute !important;
     margin-top: -40px !important;
     padding: 10px !important;
-    background: var(--main-bg-color) !important;
+    background: #2b2b2b !important;
     color: #fff;
     height: 20px !important;
 }
@@ -215,7 +215,7 @@ input[type="button"], input[type="submit"], button, .button-1, .button-2 {
     .home-page .product-grid .title strong {
         border: none;
         /* margin: 0; */
-        border-bottom: 1px solid var(--main-bg-color);
+        border-bottom: 1px solid #2b2b2b;
         margin-left: 65px;
         min-width: 10px;
         width: unset;
@@ -270,7 +270,7 @@ input[type="button"], input[type="submit"], button, .button-1, .button-2 {
 }
 
 .administration:hover {
-    color: var(--main-bg-color) !important;
+    color: #2b2b2b !important;
 }
 
 
@@ -295,7 +295,7 @@ select {
 }
 
 .checkout-page .page-title {
-    background: var(--main-bg-color);
+    background: #2b2b2b;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     border-radius: 5px;
     color: #fff;
@@ -327,24 +327,24 @@ select {
     }
 
     .block .list > li {
-        border-bottom: 1px dotted var(--main-bg-color)
+        border-bottom: 1px dotted #2b2b2b
     }
 
     .block > .title {
-        background: var(--main-bg-color-dark) !important;
+        background: #2b2b2b !important;
     }
 
     .block .list > li.active > a {
-        color: var(--main-bg-color) !important
+        color: #2b2b2b !important
     }
 
 .product-selectors {
-    background: #eee;
+    /*background: #eee;*/
 }
 
 .block .tags li, .product-tags-all-page li {
     padding: 0 5px;
-    background: var(--main-bg-color) !important;
+    background: #2b2b2b !important;
     color: #fff;
     border-radius: 20px;
     margin: 2px !important;
@@ -368,7 +368,7 @@ select {
     margin: -10px -10px 0 -10px !important;
     color: #fff;
     padding: 10px 10px 5px 10px;
-    background: var(--main-bg-color)
+    background: #2b2b2b
 }
 
 .post-title:hover {
@@ -377,7 +377,7 @@ select {
 }
 
 .responsive-nav-wrapper {
-    background: var(--main-bg-color) !important
+    background: #2b2b2b !important
 }
 
 .header-menu .close-menu span, .header-menu .back-button span {
@@ -399,7 +399,7 @@ select {
 
 .box-fara .title {
     padding: 15px;
-    background: var(--main-bg-color);
+    background: #2b2b2b;
     color: #fff;
 }
 

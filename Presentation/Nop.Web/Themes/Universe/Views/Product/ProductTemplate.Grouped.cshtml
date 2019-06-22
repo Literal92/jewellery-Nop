@@ -47,14 +47,35 @@
         Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(true) + "\" />");
     }
 }
+<div class="breadcrumb-section-box">
+    <div class="special-style special-style-full special-style-semidark col-md-offset-0 pull-right">
+        <div class="bg-image" style="background-image:url('../Themes/Universe/Content/assets/img/all/breadcrumb-img.png');"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 pad-top100 pad-bottom100 heading-box">
+                <h3 class="heading-breadcrumb box-z text-center">@Model.Name</h3>
+                <div class="clear"></div>
+                <div class="headding-icons headding-icons-2">
+                    <ul>
+                        <li><span class="mar-top15"><i class="fa fa-gem" aria-hidden="true"></i></span></li>
+                        <li><span class="style mar-top15"><i class="fa fa-gem" aria-hidden="true"></i></span></li>
+                        <li><span class="mar-top15"><i class="fa fa-gem" aria-hidden="true"></i></span></li>
+                    </ul>
+                </div>
+                @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
+            </div>
+        </div>
+    </div>
+</div>
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
 <div class="page product-details-page">
-    <div class="page-title product-name">
+    @*<div class="page-title product-name">
         <h1 itemprop="name">
             @Model.Name
         </h1>
         @await Component.InvokeAsync("Widget", new { widgetZone = "productname_bottom", additionalData = Model.Id })
-    </div>
+    </div>*@
     <!--product breadcrumb-->
     @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
     <div class="page-body">
