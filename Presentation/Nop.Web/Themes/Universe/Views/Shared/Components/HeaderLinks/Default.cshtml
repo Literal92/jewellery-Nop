@@ -7,7 +7,7 @@
             <button href="#" class="mini-cart-icon"><i class="fa fa-user " aria-hidden="true"></i></button>
             <div class="login-section">
                 <ul class="pad-10">
-                    <li><a href="/wishlist">My Wishlist</a></li>
+                    <li><a href="/wishlist">@T("admin.configuration.settings.shoppingcart.blocktitle.wishlist")</a></li>
                     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
                     @if (Model.IsAuthenticated)
                     {

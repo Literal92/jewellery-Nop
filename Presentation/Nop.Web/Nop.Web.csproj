@@ -38,7 +38,6 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
-    <None Remove="Themes\Universe\Content\assets\css\style.rtl.css" />
     <None Remove="Themes\Universe\Content\fonts\BJadidBold.eot" />
     <None Remove="Themes\Universe\Content\fonts\BJadidBold.ttf" />
     <None Remove="Themes\Universe\Content\fonts\BJadidBold.woff" />

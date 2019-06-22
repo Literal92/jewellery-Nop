@@ -34,22 +34,76 @@
     <div class="overlayOffCanvas"></div>
     @await Component.InvokeAsync("AdminHeaderLinks")
     @await Html.PartialAsync("_Header")
-    @*<div class="header-menu">*@
-        @*<div class="close-menu">
-            <span>*@@*T("SevenSpikes.Themes.Common.CloseMenu")*@   @*</span>
-        </div>*@
-        @{
-            var menu = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
-        }
-        @if (String.IsNullOrEmpty(menu.ToHtmlString()))
-        {
-            @await Component.InvokeAsync("TopMenu")
-        }
-        else
-        {
-            @menu
-        }
-    @*</div>*@
+
+    <div id="main-menu" class="wa-main-menu">
+        <!-- Menu -->
+        <div class="wathemes-menu relative">
+            <!-- navbar -->
+            <div class="navbar navbar-default navbar-bg-dark" role="navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+                            <div class="navbar-header">
+                                <!-- Button For Responsive toggle -->
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                @*<div class="icons-section boxx pull-right">
+                                    <ul>
+                                        <li class="hidden-xs hover-mini-cart">
+                                            @await Component.InvokeAsync("FlyoutShoppingCart")
+                                        </li>
+                                    </ul>
+                                </div>*@
+                                @*<a class="navbar-brand hidden-sm hidden-md hidden-lg logo-second" href="index.html">
+                                    <img class="site_logo" alt="Site Logo" src="/images/thumbs/0000111.png">
+                                </a>*@
+                            </div>
+                            <!-- Navbar Collapse -->
+                            <div class="navbar-collapse pad-top10  header-menu">
+                                @{
+                                    var menu = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
+                                }
+                                @if (String.IsNullOrEmpty(menu.ToHtmlString()))
+                                {
+                                    @await Component.InvokeAsync("TopMenu")
+                                }
+                                else
+                                {
+                                    @menu
+                                }
+                            </div>
+                            <!-- nkavbar-collapse -->
+                        </div>
+                        <div class="col-md-5 col-sm-4 col-xs-9 hidden-xs">
+                            <div class="icons-section pad-top10  pull-right" style="direction:ltr">
+                                <ul>
+                                    <li class="search-box1 hidden-xs">
+                                        @await Component.InvokeAsync("SearchBox")
+                                    </li>
+                                    <li class="hidden-xs login-box-man">
+                                        @await Component.InvokeAsync("HeaderLinks")
+                                    </li>
+                                    <li class="hidden-xs hover-mini-cart">
+                                        @await Component.InvokeAsync("FlyoutShoppingCart")
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- col-md-12 -->
+                    </div>
+                    <!-- row -->
+                </div>
+                <!-- container -->
+            </div>
+            <!-- navbar -->
+        </div>
+        <!--  Menu -->
+    </div>
+
     @if (isHomePage)
     {
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageTop })
@@ -75,19 +129,19 @@
 
 @await Component.InvokeAsync("EuCookieLaw")
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })
-    <script asp-location="Footer">
-        $(document).ready(function () {
-            $('.header').on('mouseenter', '#topcartlink', function () {
-                $('#flyout-cart').addClass('active');
-            });
-            $('.header').on('mouseleave', '#topcartlink', function () {
-                $('#flyout-cart').removeClass('active');
-            });
-            $('.header').on('mouseenter', '#flyout-cart', function () {
-                $('#flyout-cart').addClass('active');
-            });
-            $('.header').on('mouseleave', '#flyout-cart', function () {
-                $('#flyout-cart').removeClass('active');
-            });
+@*<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.header').on('mouseenter', '#topcartlink', function () {
+            $('#flyout-cart').addClass('active');
         });
-    </script>
+        $('.header').on('mouseleave', '#topcartlink', function () {
+            $('#flyout-cart').removeClass('active');
+        });
+        $('.header').on('mouseenter', '#flyout-cart', function () {
+            $('#flyout-cart').addClass('active');
+        });
+        $('.header').on('mouseleave', '#flyout-cart', function () {
+            $('#flyout-cart').removeClass('active');
+        });
+    });
+</script>*@

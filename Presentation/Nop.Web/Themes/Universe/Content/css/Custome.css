@@ -50,7 +50,7 @@ body {
     }
 
 .top-menu a:hover {
-    color: var(--yellow) !important
+    color: #ca0f80 !important
 }
 
 .header .search-box .search-box-button {
