@@ -3965,13 +3965,13 @@ input[type=email], input[type=number], input[type=password], input[type=search],
 }
 
 .icons-section input[type=search] {
-    float: right;
+    float: inherit;
     height: 34px;
     padding: 12px 14px;
     background-color: #4a4a4a;
     color: #fff;
     margin-right: -20px;
-    border-bottom: 1px solid #fff
+    border-bottom: 1px solid #ca0f80
 }
 
 input.search.expanded::-webkit-input-placeholder {

@@ -63,7 +63,7 @@
                                 </a>*@
                             </div>
                             <!-- Navbar Collapse -->
-                            <div class="navbar-collapse pad-top10  header-menu">
+                            <div class="navbar-collapse collapse  header-menu">
                                 @{
                                     var menu = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
                                 }
@@ -79,7 +79,7 @@
                             <!-- nkavbar-collapse -->
                         </div>
                         <div class="col-md-5 col-sm-4 col-xs-9 hidden-xs">
-                            <div class="icons-section pad-top10  pull-right" style="direction:ltr">
+                            <div class="icons-section   pull-right" style="direction:ltr">
                                 <ul>
                                     <li class="search-box1 hidden-xs">
                                         @await Component.InvokeAsync("SearchBox")

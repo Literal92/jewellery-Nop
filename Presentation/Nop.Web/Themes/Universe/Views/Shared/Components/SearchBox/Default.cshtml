@@ -5,8 +5,8 @@
     <input type="search" class="search" id="small-searchterms" autocomplete="off" name="q" placeholder="@T("Search.SearchBox.Tooltip")" aria-label="@T("Search.SearchBox.Text.Label")" />
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton })
     @*<input type="submit" class="button-1 search-box-button" value=" " />*@ @*value="@T("Search.Button")"*@
-    <div class="icon search-box store-search-box text-right ">
-        <button type="submit" class="mini-cart-icon">
+    <div class="icon search-box store-search-box ">
+        <button type="submit" class="mini-cart-icon" style="margin-left:0px">
             <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
         </button>
     </div>
