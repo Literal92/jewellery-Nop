@@ -812,7 +812,7 @@ tr > td > span.footable-toggle {
 	box-shadow: 0 1px 5px rgba(0,0,0,0.15);
 	border-radius: 2px;
 	background: #fff;
-	padding: 0 0 20px;
+	/*padding: 0 0 20px;*/
 	font-size: 12px;
 }
 .mini-shopping-cart .count {
@@ -866,7 +866,7 @@ tr > td > span.footable-toggle {
 }
 .mini-shopping-cart input[type="button"] {
 	display: inline-block;
-	margin-left: 10px;
+	/*margin-left: 10px;*/
 	padding: 10px 20px;
 	text-transform: uppercase;
 }
