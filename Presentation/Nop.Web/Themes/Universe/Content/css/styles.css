@@ -3927,7 +3927,7 @@ a:focus, a:hover, a:visited {
 em, p {
     text-align: initial;
     font-weight: 500;
-    color: #fff;
+    /*color: #fff;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3942,8 +3942,8 @@ h1, h2, h3, h4, h5, h6 {
 input[type=email], input[type=number], input[type=password], input[type=search], input[type=text], select {
     font-family: Raleway,sans-serif;
     width: 100%;
-    padding: 14px 10px;
-    float: left;
+    /*padding: 14px 10px;*/
+    float: none;
     position: relative;
     outline: 0;
     height: 33px;

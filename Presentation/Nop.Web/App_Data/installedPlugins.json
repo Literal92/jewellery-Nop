@@ -19,5 +19,6 @@
   "Resanehlab.ZarinPal",
   "Faradata.AlarmShopping",
   "Payments.CashOnDelivery",
-  "Shipping.FixedByWeightByTotal"
+  "Shipping.FixedByWeightByTotal",
+  "NopFarsi.Payments.ZarinPal"
 ]

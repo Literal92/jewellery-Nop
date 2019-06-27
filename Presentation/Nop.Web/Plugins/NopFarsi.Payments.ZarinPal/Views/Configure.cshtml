@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "_ConfigurePlugin";
+}
+@model ConfigurationZarinModel
+@using Nop.Web.Framework;
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="IsTomanOverrideForStore" asp-input="IsTomanForStore" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="IsTomanForStore" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="IsTomanForStore" />
+                        <span asp-validation-for="IsTomanForStore"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="MerchantIdOverrideForStore" asp-input="MerchantId" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="MerchantId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="MerchantId" />
+                        <span asp-validation-for="MerchantId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="PayementUrlOverrideForStore" asp-input="PayementUrl" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="PayementUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PayementUrl" />
+                        <span asp-validation-for="PayementUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="WebServiceUrlOverrideForStore" asp-input="WebServiceUrl" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="WebServiceUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="WebServiceUrl" />
+                        <span asp-validation-for="WebServiceUrl"></span>
+                    </div>
+                </div>
+              
+                
+                <div class="form-group">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

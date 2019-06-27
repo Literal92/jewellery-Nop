@@ -1,0 +1,15 @@
+﻿{
+  "Group": "1_NopFarsi",
+  "FriendlyName": "زرین پال ناپ فارسی",
+  "SystemName": "NopFarsi.Payments.ZarinPal",
+  "Version": "4.1",
+  "SupportedVersions": [
+    "4.10"
+  ],
+  "Author": "NopFarsi.ir  -  MJ Vakili",
+  "DisplayOrder": 10,
+  "FileName": "NopFarsi.Payments.ZarinPal.dll",
+  "Description": "این پلاگین امکان پرداخت از طریق سامانه زرین پال را فراهم می کند. تولید شده توسط http://nopfarsi.ir",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": []
+}
