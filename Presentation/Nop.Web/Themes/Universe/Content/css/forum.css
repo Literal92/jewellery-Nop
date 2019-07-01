@@ -44,7 +44,7 @@
 	font-size: 0;
 }
 .forum-search-box .advanced {
-	color: #40b48a;
+	color: #ca0f80;
 }
 .forum-search-box .advanced a:hover {
 	text-decoration: underline;
@@ -73,7 +73,7 @@
 }
 .forums-table-section .view-all a {
 	display: inline-block;
-	background: #40b48a;
+	background: #ca0f80;
 	padding: 10px 20px;
     border-radius: 2px;
 	font-size: 13px;
@@ -115,7 +115,7 @@
 .forums-table-section .topic-title {
 	margin: 0 0 5px;
 	font-size: 15px;
-	color: #40b48a;
+	color: #ca0f80;
 }
 
 .forum-search-page .basic-search {
@@ -267,7 +267,7 @@
 	display: inline-block;
 	margin: auto;
 	border-radius: 2px;
-	background: #40b48a;
+	background: #ca0f80;
 	padding: 8px 16px;
 	text-align: center;
 	font-size: 14px;
@@ -356,7 +356,7 @@
 	text-align: center;
 	line-height: 32px;
 	font-size: 14px;
-    color: #40b48a;
+    color: #ca0f80;
 }
 .profile-info-box .profile-stats {
 	margin: 20px 0;
@@ -437,7 +437,7 @@
 }
 .private-messages-page .pm-unread {
 	display: inline-block;
-    border: 1px solid #40b48a;
+    border: 1px solid #ca0f80;
 	padding: 5px;
 }
 .private-messages-page .pager {
@@ -478,7 +478,7 @@
 }
 .ui-tabs .ui-tabs-nav {
 	margin: 0 0 30px;
-	border-bottom: 1px solid #40b48a;
+	border-bottom: 1px solid #ca0f80;
 	font-size: 0;
 }
 .ui-tabs .ui-tabs-nav li {
@@ -495,7 +495,7 @@
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, 
 .ui-tabs .ui-state-active.ui-tabs-active a {
-	background: #40b48a;
+	background: #ca0f80;
 	color: #fff;
 }
 .ui-tabs .ui-tabs-panel {

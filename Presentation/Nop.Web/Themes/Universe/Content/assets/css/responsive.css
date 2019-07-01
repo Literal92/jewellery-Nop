@@ -72,7 +72,7 @@
         font-size: 13px;
     }
     .logo-box {
-        display: none;
+        display: contents;
     }
     .head-top-sec {
         margin-bottom: -20px;
@@ -99,9 +99,14 @@
         width: 111px!important;
     }
     .icons-section {
-        margin-top: 3px;
+        margin-top: 2px;
         margin-right: 10px;
     }
+
+    .mini-shopping-cart {
+        margin: -35px;
+    }
+
     .quick-vive-popap .icons-section.rispon {
         margin-bottom: 40px;
     }

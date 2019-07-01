@@ -690,7 +690,7 @@ tr > td > span.footable-toggle {
 
 .header {
 	position: relative;
-	z-index: 1010;
+	/*z-index: 1010;*/
 	text-align: center;
 }
 
@@ -3955,6 +3955,10 @@ input[type=email], input[type=number], input[type=password], input[type=search],
     border-bottom: 1px solid #fff
 }
 
+.icons-section{
+    float:right !important;
+}
+
 .icons-section input[type=search], .search-box-1 input {
     font-family: Raleway,sans-serif;
     width: 100%;
@@ -3964,15 +3968,16 @@ input[type=email], input[type=number], input[type=password], input[type=search],
     border: none
 }
 
-.icons-section input[type=search] {
-    float: inherit;
-    height: 34px;
-    padding: 12px 14px;
-    background-color: #4a4a4a;
-    color: #fff;
-    margin-right: -20px;
-    border-bottom: 1px solid #ca0f80
-}
+    .icons-section input[type=search] {
+        float: inherit;
+        height: 34px;
+        top: -14px;
+        padding: 12px 14px;
+        background-color: #4a4a4a;
+        color: #fff;
+        margin-right: -20px;
+        border-bottom: 1px solid #ca0f80
+    }
 
 input.search.expanded::-webkit-input-placeholder {
     color: #fff
@@ -5021,7 +5026,7 @@ a.mini-cart-icon {
     width: 35px;
     height: 35px;
     right: 10px;
-    top: -1px;
+    top: -15px;
     margin-left: 0
 }
 
@@ -5246,7 +5251,7 @@ section.slider-section .owl-theme .owl-nav.disabled + .owl-dots {
 }
 
 .main-slider-heading h1 {
-    font-size: 48px;
+    font-size: 30px;
     color: #FFF;
     font-weight: 300
 }
@@ -7058,4 +7063,8 @@ h1.coming-soon-title {
 .vertical-slider-2 .bx-controls-direction {
     padding-top: 160px;
     margin-bottom: -80px
+}
+
+.logo-box{
+    float:left;
 }

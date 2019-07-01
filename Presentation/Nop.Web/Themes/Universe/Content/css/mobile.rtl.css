@@ -15,7 +15,7 @@
     .responsive-nav-wrapper {
         position: relative;
         width: 100%;
-        background: #40b48a;
+        background: #ca0f80;
         text-align: center;
         font-size: 0;
         color: #fff;
@@ -134,7 +134,7 @@
         .header-menu .back-button {
             position: relative;
             border-bottom: 1px solid #999;
-            background: #40b48a;
+            background: #ca0f80;
             padding: 13px;
             text-align: left;
             cursor: pointer;
@@ -170,7 +170,7 @@
         }
 
             .header-menu > ul li {
-                border-bottom: 1px dotted #40b48a;
+                border-bottom: 1px dotted #ca0f80;
                 background: #fff;
             }
 
@@ -206,14 +206,14 @@
                 }
 
         .header-menu .plus-button {
-            position: relative;
+            position: absolute;
             z-index: 2;
-            float: left;
-            width: 50px;
+            float: right;
+            width: 50rem;
             height: 50px;
             background: url('../img/next.png') center no-repeat;
             cursor: pointer;
-            border-right: 1px dotted #40b48a;
+            border-right: 1px dotted #ca0f80;
         }
 
         .header-menu .sublist-wrap {

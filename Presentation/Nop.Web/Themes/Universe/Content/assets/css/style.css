@@ -3182,3 +3182,7 @@ h1.coming-soon-title {
     padding-top: 160px;
     margin-bottom: -80px
 }
+
+.collapse.in {
+    display: contents;
+}

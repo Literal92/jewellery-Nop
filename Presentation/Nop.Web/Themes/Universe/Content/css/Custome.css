@@ -46,7 +46,7 @@ body {
 }
 
     .header-menu .sublist-wrap {
-        background: var(--menu-sub-header) !important;
+        /*background: var(--menu-sub-header) !important;*/
     }
 
 .top-menu a:hover {

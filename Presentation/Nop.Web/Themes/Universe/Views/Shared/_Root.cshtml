@@ -51,13 +51,14 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                @*<div class="icons-section boxx pull-right">
+                                <div class="icons-section boxx pull-right">
                                     <ul>
-                                        <li class="hidden-xs hover-mini-cart">
+                                        <li class="hidden-lg hidden-md hover-mini-cart">
                                             @await Component.InvokeAsync("FlyoutShoppingCart")
                                         </li>
+                                     
                                     </ul>
-                                </div>*@
+                                </div>
                                 @*<a class="navbar-brand hidden-sm hidden-md hidden-lg logo-second" href="index.html">
                                     <img class="site_logo" alt="Site Logo" src="/images/thumbs/0000111.png">
                                 </a>*@
@@ -78,10 +79,10 @@
                             </div>
                             <!-- nkavbar-collapse -->
                         </div>
-                        <div class="col-md-5 col-sm-4 col-xs-9 hidden-xs">
-                            <div class="icons-section   pull-right" style="direction:ltr">
+                        <div class="col-md-4 col-sm-4 col-xs-9 hidden-xs">
+                            <div class="icons-section" style="direction:ltr">
                                 <ul>
-                                    <li class="search-box1 hidden-xs">
+                                    <li class="hidden-xs search-box1">
                                         @await Component.InvokeAsync("SearchBox")
                                     </li>
                                     <li class="hidden-xs login-box-man">
