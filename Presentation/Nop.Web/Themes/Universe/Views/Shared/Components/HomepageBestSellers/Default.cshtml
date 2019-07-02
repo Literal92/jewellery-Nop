@@ -10,15 +10,15 @@
                         <h3 class="theme-headdings">@T("Bestsellers")</h3>
                         <div class="headding-icons">
                             <ul>
-                                <li><span class="mar-top15"><i class="far fa-gem" aria-hidden="true"></i></span></li>
-                                <li><span class="style mar-top15"><i class="far fa-gem" aria-hidden="true"></i></span></li>
-                                <li><span class="mar-top15"><i class="far fa-gem" aria-hidden="true"></i></span></li>
+                                <li><span class="mar-top15"><img src="~/Themes/Universe/Content/img/all/eye.png" /></span></li>
+                                <li><span class="style mar-top15"><img src="~/Themes/Universe/Content/img/all/eye.png" /></span></li>
+                                <li><span class="mar-top15"><img src="~/Themes/Universe/Content/img/all/eye.png" /></span></li>
                             </ul>
                         </div>
                         <p>
                         <p>
                     </div>
-                    <div id="product-items-slider" class="owl-carousel owl-theme">
+                    <div id="product-sidebar-slider" class="owl-carousel owl-theme">
                         @foreach (var item in Model)
                         {
                                 @await Html.PartialAsync("_ProductBox", item)

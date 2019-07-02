@@ -181,18 +181,19 @@ function owlCarouselInit() {
         loop: true,
         margin: 0,
         nav: true,
+        rtl: true,
         autoplay: true,
-        navText: [prevNav, nextNav],
+        navText: [prevNavp, nextNavp],
         dots: false,
         responsive: {
             0: {
                 items: 1
             },
             600: {
-                items: 1
+                items: 3
             },
             1000: {
-                items: 1
+                items: 4
             }
         }
     });

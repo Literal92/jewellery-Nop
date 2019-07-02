@@ -809,11 +809,12 @@ tr > td > span.footable-toggle {
 }
 
 .mini-shopping-cart {
-	box-shadow: 0 1px 5px rgba(0,0,0,0.15);
-	border-radius: 2px;
-	background: #fff;
-	/*padding: 0 0 20px;*/
-	font-size: 12px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+    border-radius: 2px;
+    background: #fff;
+    /*padding: 0 0 20px;*/
+    font-size: 12px;
+    text-align: right;
 }
 .mini-shopping-cart .count {
 	border-radius: 2px 2px 0 0;
@@ -4004,7 +4005,7 @@ input[type=email], input[type=number], input[type=password], input[type=search],
     height: 33px;
     font-size: 14px;
     color: #777;
-    background-color: #fff;
+    background-color: #f5f5f5;
     border: none;
     font-weight: 500;
     border-bottom: 1px solid #fff
@@ -5170,7 +5171,8 @@ a.mini-cart-icon .icons-section ul li a {
 li.hover-mini-cart:hover .mini-card-section {
     opacity: 1;
     visibility: visible;
-    display: block
+    display: block;
+    text-align: right;
 }
 
 .login-section {
@@ -5462,8 +5464,7 @@ figure.itg-hover-section:hover figcaption.categorie-boxs, figure.itg-hover-secti
         border-radius: 100%;
         margin: 0 5px;
         display: inline-block;
-        padding-top: 1px;
-        padding-left: 1px;
+        padding: 0px 3px 0px 3px;
         color: #ca0f80
     }
 
@@ -6104,7 +6105,8 @@ p.account-icon a {
 .message-sec-boxs {
     width: 100%;
     float: left;
-    position: relative
+    position: relative;
+    background-color: white;
 }
 
 .breadcrumb-section-box .headding-icons ul:after, .breadcrumb-section-box .headding-icons ul:before {
@@ -7121,4 +7123,9 @@ h1.coming-soon-title {
 
 .logo-box {
     float: right !important;
+}
+
+.old-price {
+    font-size: 13px;
+    text-decoration: line-through;
 }
