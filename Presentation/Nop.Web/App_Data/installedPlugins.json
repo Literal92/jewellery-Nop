@@ -20,5 +20,6 @@
   "Faradata.AlarmShopping",
   "Payments.CashOnDelivery",
   "Shipping.FixedByWeightByTotal",
-  "NopFarsi.Payments.ZarinPal"
+  "NopFarsi.Payments.ZarinPal",
+  "Shipping.UPS"
 ]
