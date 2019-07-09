@@ -12,7 +12,7 @@
                     @if (Model.IsAuthenticated)
                     {
                         <li>
-                            <a href="@Url.RouteUrl("CustomerInfo")" @*class="ico-register tagAHover" *@>@*<i class="fas fa-user"></i>*@ @T("Account.MyAccount") @Model.CustomerName</a>
+                            <a href="@Url.RouteUrl("CustomerInfo")" @*class="ico-register tagAHover" *@>@*<i class="fas fa-user"></i>*@ @T("Account.MyAccount")</a>
                         </li>
                         <li>
                             <a href="@Url.RouteUrl("Logout")" @*class="ico-logout tagAHover" *@>@*<i class="fas fa-sign-out-alt"></i>*@  @T("Account.Logout")</a>

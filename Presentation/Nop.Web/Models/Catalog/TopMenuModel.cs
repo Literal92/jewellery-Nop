@@ -15,6 +15,8 @@ namespace Nop.Web.Models.Catalog
         public IList<CategorySimpleModel> Categories { get; set; }
         public IList<TopicModel> Topics { get; set; }
 
+        public bool IsAuthenticated { get; set; }
+
         public bool BlogEnabled { get; set; }
         public bool NewProductsEnabled { get; set; }
         public bool ForumEnabled { get; set; }

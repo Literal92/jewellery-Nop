@@ -87,8 +87,8 @@
                 </figure>
                 <div class="slider-section-1">
                     <div class="container">
-                        <div class=" col-md-6 slider-box1">
-                            <div class="row">
+                        <div class=" col-md-5 slider-box1">
+                            <div class="center">
                                 <div class="main-slider-heading">
                                     <h1 class="">@(Model.Text1)</h1>
                                 </div>
@@ -116,8 +116,8 @@
                 </figure>
                 <div class="slider-section-1  ">
                     <div class="container">
-                        <div class=" col-md-6 slider-box1">
-                            <div class="row">
+                        <div class=" col-md-5 slider-box1">
+                            <div class="center">
                                 <div class="main-slider-heading">
                                     <h1 class="">@(Model.Text2)</h1>
                                 </div>
@@ -145,8 +145,8 @@
                 </figure>
                 <div class="slider-section-1  ">
                     <div class="container">
-                        <div class=" col-md-6 slider-box1">
-                            <div class="row">
+                        <div class=" col-md-5 slider-box1">
+                            <div class="center">
                                 <div class="main-slider-heading">
                                     <h1 class="">@(Model.Text3)</h1>
                                 </div>
@@ -175,8 +175,8 @@
                 </figure>
                 <div class="slider-section-1  ">
                     <div class="container">
-                        <div class=" col-md-6 slider-box1">
-                            <div class="row">
+                        <div class=" col-md-5 slider-box1">
+                            <div class="center">
                                 <div class="main-slider-heading">
                                     <h1 class="">@(Model.Text4)</h1>
                                 </div>
@@ -204,8 +204,8 @@
                 </figure>
                 <div class="slider-section-1  ">
                     <div class="container">
-                        <div class=" col-md-6 slider-box1">
-                            <div class="row">
+                        <div class=" col-md-5 slider-box1">
+                            <div class="center">
                                 <div class="main-slider-heading">
                                     <h1 class="">@(Model.Text5)</h1>
                                 </div>
@@ -241,56 +241,56 @@
     </button>
 </section>
 @*<script asp-location="Footer">
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            var owlFara = $(".FaraSlider");
-            owlFara.owlCarousel({
-                animateOut: 'fadeOut',
-                loop: true,
-                items: 1,
-                margin: 0,
-                //autoplay:true,
-                //nav:true,
-                stagePadding: 0,
-                smartSpeed: 450,
-                rtl:true
-            });
-
-            $('.homeLikeNextBtn').click(function () {
-                owlFara.trigger('next.owl.carousel');
-            })
-            // Go to the previous item
-            $('.homeLikePrevBtn').click(function () {
-                // With optional speed parameter
-                // Parameters has to be in square bracket '[]'
-                owlFara.trigger('prev.owl.carousel', [300]);
-            });
-
-            // زمانی که تغییر میکند
-            owlFara.on('changed.owl.carousel', function (event) {
-                var element = event.target;
-                if (!event.namespace) return;
-                var carousel = event.relatedTarget,
-                    current = carousel.current();
-                if (current === carousel.maximum()) {
-                    $(element).siblings(".slider-left-arrow").fadeOut("slow");
-                } else {
-                    $(element).siblings(".slider-left-arrow").fadeIn("slow");
-                }
-                // Provided by the core
-                // DOM element, in this example .owl-carousel
-                var name = event.type;           // Name of the event, in this example dragged
-                var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
-                var items = event.item.count;     // Number of items
-                var item = event.item.index;     // Position of the current item
-                // Provided by the navigation plugin
-                var pages = event.page.count;     // Number of pages
-                var page = event.page.index;     // Position of the current page
-                if (item <= 0) {
-                    $(element).siblings(".slider-right-arrow").fadeOut("slow");
-                } else {
-                    $(element).siblings(".slider-right-arrow").fadeIn("slow");
-                }
-            })
+        var owlFara = $(".FaraSlider");
+        owlFara.owlCarousel({
+            animateOut: 'fadeOut',
+            loop: true,
+            items: 1,
+            margin: 0,
+            //autoplay:true,
+            //nav:true,
+            stagePadding: 0,
+            smartSpeed: 450,
+            rtl:true
         });
-    </script>*@
+
+        $('.homeLikeNextBtn').click(function () {
+            owlFara.trigger('next.owl.carousel');
+        })
+        // Go to the previous item
+        $('.homeLikePrevBtn').click(function () {
+            // With optional speed parameter
+            // Parameters has to be in square bracket '[]'
+            owlFara.trigger('prev.owl.carousel', [300]);
+        });
+
+        // زمانی که تغییر میکند
+        owlFara.on('changed.owl.carousel', function (event) {
+            var element = event.target;
+            if (!event.namespace) return;
+            var carousel = event.relatedTarget,
+                current = carousel.current();
+            if (current === carousel.maximum()) {
+                $(element).siblings(".slider-left-arrow").fadeOut("slow");
+            } else {
+                $(element).siblings(".slider-left-arrow").fadeIn("slow");
+            }
+            // Provided by the core
+            // DOM element, in this example .owl-carousel
+            var name = event.type;           // Name of the event, in this example dragged
+            var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
+            var items = event.item.count;     // Number of items
+            var item = event.item.index;     // Position of the current item
+            // Provided by the navigation plugin
+            var pages = event.page.count;     // Number of pages
+            var page = event.page.index;     // Position of the current page
+            if (item <= 0) {
+                $(element).siblings(".slider-right-arrow").fadeOut("slow");
+            } else {
+                $(element).siblings(".slider-right-arrow").fadeIn("slow");
+            }
+        })
+    });
+</script>*@

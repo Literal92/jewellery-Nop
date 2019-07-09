@@ -6,8 +6,28 @@
 <input type="hidden" value="@isRtl.ToString().ToLowerInvariant()" id="isRtlEnabled" />
 
 <ul class="top-menu">
-            
+
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
+    <li class="hidden-lg hidden-md hidden-sm"><a href="/search">@T("Search.SearchBox.Tooltip")</a></li>
+    <li class="hidden-lg hidden-md hidden-sm"><a href="@Url.RouteUrl("ShoppingCart")">@T("account.shoppingcart")</a></li>
+    @if (Model.IsAuthenticated)
+    {
+        <li class="hidden-lg hidden-md hidden-sm">
+            <a href="@Url.RouteUrl("CustomerInfo")" @*class="ico-register tagAHover" *@>@*<i class="fas fa-user"></i>*@ @T("Account.MyAccount") </a>
+        </li>
+        <li class="hidden-lg hidden-md hidden-sm">
+            <a href="@Url.RouteUrl("Logout")" @*class="ico-logout tagAHover" *@>@*<i class="fas fa-sign-out-alt"></i>*@  @T("Account.Logout")</a>
+        </li>
+    }
+    else
+    {
+        <li class="hidden-lg hidden-md hidden-sm">
+            <a href="@Url.RouteUrl("Register")" @*class="ico-register tagAHover" *@>@T("Account.Register")</a>
+        </li>
+        <li class="hidden-lg hidden-md hidden-sm">
+            <a href="@Url.RouteUrl("Login")" @*class="ico-login tagAHover" *@>@T("Account.Login")</a>
+        </li>
+    }
     @if (Model.DisplayHomePageMenuItem)
     {
         <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
@@ -54,16 +74,16 @@
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
 </ul>
 @*<ul>
-    <li class="search-box1 hidden-xs">
-        @await Component.InvokeAsync("SearchBox")
-    </li>
-    <li class="hidden-xs login-box-man">
-        @await Component.InvokeAsync("HeaderLinks")
-    </li>
-    <li class="hidden-xs hover-mini-cart">
-        @await Component.InvokeAsync("FlyoutShoppingCart")
-    </li>
-</ul>*@
+        <li class="search-box1 hidden-xs">
+            @await Component.InvokeAsync("SearchBox")
+        </li>
+        <li class="hidden-xs login-box-man">
+            @await Component.InvokeAsync("HeaderLinks")
+        </li>
+        <li class="hidden-xs hover-mini-cart">
+            @await Component.InvokeAsync("FlyoutShoppingCart")
+        </li>
+    </ul>*@
 
 
 <script asp-location="Footer">

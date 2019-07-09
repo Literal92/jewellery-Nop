@@ -542,6 +542,8 @@ namespace Nop.Web.Factories
         /// <returns>Top menu model</returns>
         public virtual TopMenuModel PrepareTopMenuModel()
         {
+            var customer = _workContext.CurrentCustomer;
+
             //categories
             var cachedCategoriesModel = PrepareCategorySimpleModels();
 
@@ -563,6 +565,7 @@ namespace Nop.Web.Factories
             );
             var model = new TopMenuModel
             {
+                IsAuthenticated = customer.IsRegistered(),
                 Categories = cachedCategoriesModel,
                 Topics = cachedTopicModel,
                 NewProductsEnabled = _catalogSettings.NewProductsEnabled,

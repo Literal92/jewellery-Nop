@@ -167,14 +167,15 @@
 		border: none;
 		text-align: right;
 	}
-	.order-details-area td {
-		float: none;
-		width: 50%;
-		border: 1px solid #ccc;
-		border-radius: 2px;
-		padding: 20px;
-		text-align: right;
-	}
+    .order-details-area td {
+        float: none;
+        width: 50%;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        padding: 20px;
+        text-align: right;
+        background-color: white;
+    }
 	.order-details-page .order-overview {
 		margin: 0 0 -1px;
 	}

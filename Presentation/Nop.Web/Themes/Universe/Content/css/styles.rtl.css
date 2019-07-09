@@ -5021,6 +5021,10 @@ header#main-header {
     margin-top: 2px
 }
 
+.navbar > .container {
+    display: initial;
+}
+
 a.mini-cart-icon {
     width: 35px;
     height: 35px;
@@ -5049,7 +5053,7 @@ a.mini-cart-icon {
 
 .icons-section ul {
     padding-left: 0;
-    margin-bottom: 0
+    /*margin-bottom: 0*/
 }
 
 .search-box1 {
@@ -5178,7 +5182,7 @@ li.hover-mini-cart:hover .mini-card-section {
 .login-section {
     width: 40%;
     float: left;
-    right: 210px !important;
+    /*right: 210px !important;*/
     background: #2b2b2b;
     opacity: 0;
     -webkit-transition: all .45s ease-in-out;
@@ -5306,7 +5310,7 @@ section.slider-section .owl-theme .owl-nav.disabled + .owl-dots {
 }
 
 .main-slider-heading h1 {
-    font-size: 48px;
+    font-size: 35px;
     color: #FFF;
     font-weight: 300
 }
