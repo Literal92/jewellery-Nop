@@ -21,5 +21,6 @@
   "Payments.CashOnDelivery",
   "Shipping.FixedByWeightByTotal",
   "NopFarsi.Payments.ZarinPal",
-  "Shipping.UPS"
+  "Shipping.UPS",
+  "Shipping.Director"
 ]

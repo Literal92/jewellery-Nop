@@ -3253,6 +3253,7 @@ a.ui-state-active {
 	border-radius: 2px 0 0 2px;
 	background: #aaa;
 	font-size: 13px;
+    padding:0px;
 }
 .cart-collaterals .message {
 	margin: 5px 0 0;
@@ -4023,6 +4024,7 @@ input[type=email], input[type=number], input[type=password], input[type=search],
 .icons-section input[type=search] {
     float: inherit;
     height: 34px;
+    right: -10px;
     padding: 12px 14px;
     background-color: #4a4a4a;
     color: #fff;
@@ -5083,7 +5085,7 @@ a.mini-cart-icon {
 .icon {
     width: 35px;
     height: 35px;
-    right: 10px;
+    left: 10px;
     top: -1px;
     margin-left: 0
 }
@@ -7126,9 +7128,22 @@ h1.coming-soon-title {
 }
 
 .logo-box {
-    float: right !important;
+    /*float: right !important;*/
+    text-align: left;
 }
 
+.logo-text {
+    float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: IRANSans;
+    color: #ca0f80;
+    text-align: center;
+}
+.logo-size {
+    height: auto;
+    width: 100px;
+}
 .old-price {
     font-size: 13px;
     text-decoration: line-through;

@@ -3198,6 +3198,7 @@ a.ui-state-active {
 	border-radius: 0 2px 2px 0;
 	background: #aaa;
 	font-size: 13px;
+    padding:0px;
 }
 .cart-collaterals .message {
 	margin: 5px 0 0;
@@ -7072,8 +7073,18 @@ h1.coming-soon-title {
     margin-bottom: -80px
 }
 
-.logo-box{
-    float:left;
+.logo-box {
+    /*float: left;*/
+    text-align: right;
+}
+
+.logo-text {
+    float: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Raleway,sans-serif;
+    color: #ca0f80;
+    text-align: center;
 }
 
 .old-price {

@@ -1,0 +1,578 @@
+﻿@{
+    Layout = "_ConfigurePlugin";
+}
+@model ShippingDirectorListModel
+@using Nop.Plugin.Shipping.Director.Models;
+@using Nop.Web.Framework;
+
+<div style="font-weight:bold;float:left;margin-bottom:4px;@if (!Model.IsLicensed) { Html.Raw("color:red"); }">
+    <a class="fa fa-question-circle" title="Contact nopTools for support" href="http://www.noptools.com/contactus" target="_blank"></a>
+    @Model.Identification
+    <div style="color:red">@(Model.OtherShippingRateMethodsAreActive ? "Warning: Other rate calc methods are active" : "") </div>
+</div>
+
+<div class="options" style="float:right;margin-bottom:4px;">
+    @if (Model.ShippingDirectorIsActive)
+    {
+        <input type="button" id="testrules" name="testrules" class="btn bg-blue" value="@T("Plugins.Shipping.Director.Test")" />
+    }
+    else
+    {
+        <span style="color:red">SD is not active</span>
+    }
+    <a href="@Url.Action("ExportTabDelimited")" class="btn bg-blue">@T("Plugins.Shipping.Director.Export")</a>
+    <input type="button" id="import" name="import" class="btn bg-blue" value="@T("Plugins.Shipping.Director.Import")" />
+</div>
+
+<table class="adminContent">
+    <tr>
+        <td>
+            <div id="shipping-rate-grid"></div>
+            <script>
+                $(document).ready(function () {
+                    $("#shipping-rate-grid").kendoGrid({
+                        dataSource: {
+                            type: "json",
+                            transport: {
+                                read: {
+                                    url: "@Html.Raw(Url.Action("RatesList", "ShippingDirector"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: addAntiForgeryToken
+                                },
+                                update: {
+                                    url: "@Html.Raw(Url.Action("RateUpdate", "ShippingDirector"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: addAntiForgeryToken
+                                },
+                                destroy: {
+                                    url: "@Html.Raw(Url.Action("RateDelete", "ShippingDirector"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: addAntiForgeryToken
+                                }
+                            },
+                            schema: {
+                                data: "Data",
+                                total: "Total",
+                                errors: "Errors",
+                                model: {
+                                    id: "Id",
+                                    fields: {
+                                        Active: { editable: true, type: "boolean" },
+                                        EvalType: { editable: false }
+                                    }
+                                }
+                            },
+                            requestEnd: function (e) {
+                                if (e.type == "update") {
+                                    this.read();
+                                }
+                            },
+                            error: function (e) {
+                                display_kendoui_grid_error(e);
+                                // Cancel the changes
+                                this.cancelChanges();
+                            },
+                            serverPaging: true,
+                            serverFiltering: true,
+                            serverSorting: true
+                        },
+                        pageable: {
+                            refresh: true,
+                            numeric: false,
+                            previousNext: false,
+                            info: false
+                        },
+                        editable: {
+                                confirmation: "@T("Admin.Common.DeleteConfirmation")",
+                                mode: "inline"
+                        },
+                        scrollable: false,
+                        columns: [{
+                            field: "EvalOrder",
+                            title: "@T("Plugins.Shipping.Director.Fields.EvalOrder")",
+                            width: 20
+                        }, {
+                            field: "Active",
+                            title: "@T("Plugins.Shipping.Director.Fields.Active")",
+                            attributes: { style: "text-align:center" },
+                            template: "<input name='Active' type='checkbox' disabled='disabled' class='checkboxGroups' # if(Active) {# checked='checked' #} # />",
+                            width: 30
+                        }, {
+                            field: "EvalType",
+                            title: "@T("Plugins.Shipping.Director.Fields.EvalType")",
+                            width: 30
+                        }, {
+                            field: "Name",
+                            title: "@T("Plugins.Shipping.Director.Fields.Name")",
+                            width: 100
+                        }, {
+                            field: "Expression",
+                            title: "@T("Plugins.Shipping.Director.Fields.Expression")",
+                            width: 100
+                        }, {
+                            field: "RateExpression",
+                            title: "@T("Plugins.Shipping.Director.Fields.RateExpression")",
+                            width: 100
+                        }, {
+                            field: "SurchargeExpression",
+                            title: "@T("Plugins.Shipping.Director.Fields.SurchargeExpression")",
+                            width: 100
+                        }, {
+                            field: "NameExpression",
+                            title: "@T("Plugins.Shipping.Director.Fields.NameExpression")",
+                            width: 100
+                        }, {
+                            field: "DescriptionExpression",
+                            title: "@T("Plugins.Shipping.Director.Fields.DescriptionExpression")",
+                            width: 100
+                        }, {
+                            command: { name: "edit", text: "@T("Admin.Common.Edit")" },
+                            title: "@T("Admin.Common.Edit")",
+                            width: 100,
+                        }, {
+                            command: { name: "destroy", text: "@T("Admin.Common.Delete")" },
+                            title: "@T("Admin.Common.Delete")",
+                            width: 100
+                        }]
+                    });
+                });
+            </script>
+        </td>
+    </tr>
+</table>
+<p>
+</p>
+<form asp-controller="ShippingDirector" asp-action="Configure" method="post" id="shipping-director-form">
+
+    <script>
+    $(document).ready(function () {
+        $("#@Html.IdFor(model => model.AddEvalType)").change(toggleOption);
+        toggleOption();
+    });
+
+    function toggleOption() {
+        var typ = $('#@Html.IdFor(model => model.AddEvalType)').val().substring(0, 3);
+
+        switch (typ) {
+            case "Opt":
+                $('#pnlOptionRate').show();
+                $('#pnlOptionSurcharge').show();
+                $('#pnlOptionName').show();
+                $('#pnlOptionDescription').show();
+                break;
+            case "Pac":
+                $('#pnlOptionRate').hide();
+                $('#pnlOptionSurcharge').hide();
+                $('#pnlOptionName').hide();
+                $('#pnlOptionDescription').hide();
+                break;
+            case "Err":
+                $('#pnlOptionRate').hide();
+                $('#pnlOptionSurcharge').hide();
+                $('#pnlOptionName').hide();
+                $('#pnlOptionDescription').show();
+                break;
+            default:
+                $('#pnlOptionRate').hide();
+                $('#pnlOptionSurcharge').hide();
+                $('#pnlOptionName').hide();
+                $('#pnlOptionDescription').hide();
+        }
+
+        if (typ == "Pac") {
+            $('#pnlPackingMethod').show();
+            $('#pnlPackingRequiresOwnPackage').show();
+            $('#pnlPackingSender').show();
+            $('#pnlPackingExcludeItem').show();
+        }
+        else {
+            $('#pnlPackingMethod').hide();
+            $('#pnlPackingRequiresOwnPackage').hide();
+            $('#pnlPackingSender').hide();
+            $('#pnlPackingExcludeItem').hide();
+        }
+    }
+
+    function clearFields() {
+        $('#AddName').val('');
+        $('#AddExpression').val('');
+        $('#AddRateExpression').val('');
+        $('#AddSurchargeExpression').val('');
+        $('#AddNameExpression').val('');
+        $('#AddDescriptionExpression').val('');
+        $('#AddPackingMethod').val('');
+        $('#AddPackingRequiresOwnPackageExpression').val('');
+        $('#AddPackingSenderExpression').val('');
+        toggleOption();
+    }
+
+    </script>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel-heading">
+                    @T("Plugins.Shipping.Director.AddNewRecordTitle")
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddEvalOrder" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddEvalOrder" />
+                        <span asp-validation-for="AddEvalOrder"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddActive" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddActive" />
+                        <span asp-validation-for="AddActive"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddEvalType" />
+                    </div>
+                    <div class="col-md-3">
+                        <nop-select asp-for="AddEvalType" asp-items="Model.AvailableEvaluationTypes" />
+                        <span asp-validation-for="AddEvalType"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddName" />
+                    </div>
+                    <div class="col-md-3">
+                        <nop-editor asp-for="AddName" asp-required="true" />
+                        <span asp-validation-for="AddName"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddExpression" asp-required="true" />
+                        <span asp-validation-for="AddExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlOptionRate">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddRateExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddRateExpression" />
+                        <span asp-validation-for="AddRateExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlPackingMethod">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddPackingMethod" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddPackingMethod" />
+                        <span asp-validation-for="AddPackingMethod"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlOptionSurcharge">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddSurchargeExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddSurchargeExpression" />
+                        <span asp-validation-for="AddSurchargeExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlPackingRequiresOwnPackage">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddPackingRequiresOwnPackageExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddPackingRequiresOwnPackageExpression" />
+                        <span asp-validation-for="AddPackingRequiresOwnPackageExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlOptionName">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddNameExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddNameExpression" />
+                        <span asp-validation-for="AddNameExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlPackingSender">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddPackingSenderExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddPackingSenderExpression" />
+                        <span asp-validation-for="AddPackingSenderExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlPackingExcludeItem">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddPackingExcludeItemExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddPackingExcludeItemExpression" />
+                        <span asp-validation-for="AddPackingExcludeItemExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="pnlOptionDescription">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddDescriptionExpression" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddDescriptionExpression" />
+                        <span asp-validation-for="AddDescriptionExpression"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="button" id="addshippingDirectorrecord" class="btn btn-primary" value="@T("Admin.Common.AddNew")" />
+                        <button type="button" class="k-button" onclick="javascript:clearFields();">@T("Admin.Common.Clear")</button>
+
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#addshippingDirectorrecord').click(function () {
+
+                                    var postData = $(this.form).serialize();
+                                    addAntiForgeryToken(postData);
+
+                                    $.ajax({
+                                        cache: false,
+                                        type: 'POST',
+                                        url: '@Url.Action("AddShippingDirectorRecord", "ShippingDirector")',
+                                        data: postData,
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            $('#shipping-rate-grid').data('kendoGrid').dataSource.read();
+                                            $('#shipping-rate-grid').data('kendoGrid').refresh();
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            alert('Failed to add record.');
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="panel-heading">
+                @T("admin.configuration.settings")
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="AllowFixedShippingRate" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="AllowFixedShippingRate" />
+                    <span asp-validation-for="AllowFixedShippingRate"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="UseWarehouseLocation" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="UseWarehouseLocation" />
+                    <span asp-validation-for="UseWarehouseLocation"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="EvaluationMatchType" />
+                </div>
+                <div class="col-md-3">
+                    <nop-select asp-for="EvaluationMatchType" asp-items="Model.AvailableEvaluationMatchTypes" />
+                    <span asp-validation-for="EvaluationMatchType"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="Surcharge" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Surcharge" />
+                    <span asp-validation-for="Surcharge"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="SortExpression" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="SortExpression" />
+                    <span asp-validation-for="SortExpression"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    &nbsp;
+                </div>
+                <div class="col-md-9">
+                    <input type="button" id="savegeneralsettings" class="btn btn-primary" value="@T("Admin.Common.Save")" />
+
+                    <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#savegeneralsettings').click(function () {
+
+                                    var postData = $(this.form).serialize();
+                                    addAntiForgeryToken(postData);
+
+                                    $.ajax({
+                                        cache: false,
+                                        type: 'POST',
+                                        url: '@Url.Action("SaveGeneralSettings", "ShippingDirector")',
+                                        data: postData,
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            alert('Saved');
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            alert('Error while saving.');
+                                        }
+                                    });
+                                    return false;
+                                });
+                            });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@*import form*@
+<div id="import-window" style="display:none;">
+    @* @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {*@
+    <form action="@Url.Action("Configure", "ShippingDirector")" enctype="multipart/form-data" method="post">
+        @Html.AntiForgeryToken()
+
+        <table style="text-align: left;">
+            <tr>
+                <td>
+                    @T("Plugins.Shipping.Director.DeleteAll"):
+                </td>
+                <td>
+                    <input type="checkbox" class="check-box" id="deleteall" name="deleteall" value="yes">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @T("Plugins.Shipping.Director.ImportFile"):
+                </td>
+                <td>
+                    <input type="file" id="importfile" name="importfile" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn bg-blue" name="import" value="import">@T("Plugins.Shipping.Director.Import")</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    @*}*@
+</div>
+
+
+@*test form*@
+<div id="test-window" style="display:none;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <table style="text-align: left;">
+            @*!!! determine how to programmatically change store context
+                <tr>
+                    <td class="adminTitle">
+                        <img alt="@T("Plugins.Shipping.Director.Test.StoreInput.Hint")" src="/Administration/Content/images/ico-help.gif" title="@T("Plugins.Shipping.Director.Test.StoreInput.Hint")"/>
+                        <label for="storeinput" title="@T("Plugins.Shipping.Director.Test.StoreInput")">@T("Plugins.Shipping.Director.Test.StoreInput")</label>:
+                    </td>
+                    <td class="adminData">
+                        <input id="storeinput" name="storeinput" type="text" style="width:200px" value="0"/>
+                    </td>
+                </tr>
+            *@
+            <tr>
+                <td class="adminTitle" colspan="2">
+                    @T("Plugins.Shipping.Director.Test.StoreInput.Hint")<br />
+                    @T("Plugins.Shipping.Director.Test.CustomerInput.Hint")
+                </td>
+            </tr>
+
+            <tr>
+                <td class="adminTitle">
+                    <div class="fa fa-question-circle" title="@T("Plugins.Shipping.Director.Test.CustomerInput.Hint")"></div>
+                    <label for="customerinput" title="@T("Plugins.Shipping.Director.Test.CustomerInput")">@T("Plugins.Shipping.Director.Test.CustomerInput")</label>:
+                </td>
+                <td class="adminData">
+                    <input id="customerinput" name="customerinput" type="text" style="width:200px" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn bg-blue" name="testrules" value="testrules">@T("Plugins.Shipping.Director.Test.Run")</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br />
+                    <div style="color:red">@T("Plugins.Shipping.Director.Test.TestResultsDisclaimer")</div>
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#import").click(function (e) {
+            e.preventDefault();
+            var window = $("#import-window");
+            if (!window.data("kendoWindow")) {
+                window.kendoWindow({
+                    modal: true,
+                    width: "430px",
+                    title: "@T("Plugins.Shipping.Director.Import")",
+                    actions: ["Close"]
+                });
+            }
+            window.data('kendoWindow').center().open();
+        });
+
+        $("#testrules").click(function (e) {
+            e.preventDefault();
+            var window = $("#test-window");
+            if (!window.data("kendoWindow")) {
+                window.kendoWindow({
+                    modal: true,
+                    width: "470px",
+                    title: "@T("Plugins.Shipping.Director.Test")",
+                    actions: ["Close"]
+                });
+            }
+            window.data('kendoWindow').center().open();
+        });
+    });
+</script>

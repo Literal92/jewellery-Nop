@@ -20,7 +20,9 @@ body {
 .bg-image-body {
     background-image: url("../img/BackGround-(7).png") !important;
     background-position: center;
-    background-size: cover;
+    /*background-size: cover;*/
+    /*background-repeat: repeat-y;*/
+    background-attachment: fixed;
 }
 
 

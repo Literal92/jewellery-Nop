@@ -21,16 +21,17 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row pad-top-bottom25 head-top-sec">
-                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                        <div class="col-md-7 col-sm-6 col-xs-12 ">
+                            <p class="logo-text">PLATA</br>پلاتا</p>
                             <figure class="logo-box">
                                 @await Component.InvokeAsync("Logo")
                             </figure>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-5 col-sm-6 col-xs-12">
                             <div class="select-box">
-                                <div class="language-box2 top ">
+                                @*<div class="language-box2 top ">
                                     <p><a href="/wishlist"><i style="margin: 0px 7px;font-size: 13px;" class="fa fa-heart" aria-hidden="true"></i>@T("admin.configuration.settings.shoppingcart.blocktitle.wishlist") </a></p>
-                                </div>
+                                </div>*@
                                 @if (!String.IsNullOrEmpty(taxTypeSelectorHtml.ToHtmlString()) ||
                             !String.IsNullOrEmpty(currencySelectorHtml.ToHtmlString()) ||
                             !String.IsNullOrEmpty(languageSelectorHtml.ToHtmlString()))

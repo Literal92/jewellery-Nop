@@ -60,7 +60,7 @@
         }
 
         .responsive-nav-wrapper .menu-title {
-            float: left !important;
+            /*float: left !important;*/
             /*margin: 0 20px !important;*/
             display: inline-block;
             /*background: url('../img/mobile-icon-menu.png') no-repeat right center;*/
