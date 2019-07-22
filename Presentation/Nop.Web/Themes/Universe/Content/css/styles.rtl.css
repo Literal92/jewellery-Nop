@@ -2727,6 +2727,7 @@ a.ui-state-active {
 .email-a-friend-page .form-fields,
 .apply-vendor-page .form-fields {
 	margin: 0 0 15px;
+    background: #fff;
 }
 .contact-page .message-error,
 .email-a-friend-page .message-error,
@@ -4070,7 +4071,7 @@ input.search.expanded::-webkit-input-placeholder {
 
 textarea {
     padding: 12px 20px;
-    float: left;
+    /*float: left;*/
     border: 1px solid #f1f1f1
 }
 

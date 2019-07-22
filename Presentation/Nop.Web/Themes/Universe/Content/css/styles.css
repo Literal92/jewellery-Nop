@@ -2671,7 +2671,8 @@ a.ui-state-active {
 .contact-page .form-fields,
 .email-a-friend-page .form-fields,
 .apply-vendor-page .form-fields {
-	margin: 0 0 15px;
+    margin: 0 0 15px;
+    background: white;
 }
 .contact-page .message-error,
 .email-a-friend-page .message-error,
@@ -4018,7 +4019,7 @@ input.search.expanded::-webkit-input-placeholder {
 
 textarea {
     padding: 12px 20px;
-    float: left;
+    /*float: left;*/
     border: 1px solid #f1f1f1
 }
 
@@ -7086,7 +7087,10 @@ h1.coming-soon-title {
     color: #ca0f80;
     text-align: center;
 }
-
+.logo-size {
+    height: auto;
+    width: 100px;
+}
 .old-price {
     font-size: 13px;
     text-decoration: line-through;
