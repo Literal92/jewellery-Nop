@@ -156,7 +156,8 @@ button:hover, .button-1:hover, .button-2:hover {
 	margin: 0 0 60px;
 }
 .page {
-	text-align: center;
+    text-align: center;
+    background: white;
 }
 .page-title {
 	margin: 0 0 20px;
@@ -3664,10 +3665,12 @@ a.ui-state-active {
 }
 .blog-page .post,
 .news-items .news-item {
-	position: relative;
-	margin: 0 0 30px;
-	border-bottom: 1px dashed #ccc;
-	padding: 0 0 15px;
+    position: relative;
+    margin: 0 0 30px;
+    border-bottom: 1px dashed #ccc;
+    padding: 0 0 15px;
+    background: white;
+}
 }
 .post-title,
 .news-title {
@@ -5348,7 +5351,8 @@ figure.itg-hover-section:hover figcaption.categorie-boxs, figure.itg-hover-secti
 }
 
 .headding-box h3 {
-    text-align: center
+    text-align: center;
+    text-shadow: 0 1px 0 hsl(0, 0%, 100%), 0 1px 0 hsl(0, 0%, 100%), 0 3px 0 hsl(0, 0%, 100%), 0 4px 0 hsl(0, 0%, 100%), 0 5px 0 hsl(0, 0%, 100%), 0 6px 1px hsl(0, 0%, 100%), 0 0 5px hsl(0, 0%, 90%), 0 1px 3px hsl(0, 0%, 100%), 0 3px 5px hsl(0, 0%, 100%), 0 5px 10px hsl(0, 0%, 100%), 0 10px 10px hsl(0, 0%, 100%), 0 15px 15px hsl(0, 0%, 0%);
 }
 
 .theme-headdings {

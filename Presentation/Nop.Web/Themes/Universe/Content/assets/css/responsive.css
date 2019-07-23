@@ -219,7 +219,7 @@
         width: 100%;
     }
     .banner-text-box h1 {
-        font-size: 21px;
+        font-size: 21px !important;
     }
     .banner-text-box p {
         font-size: 15px;
