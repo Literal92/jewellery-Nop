@@ -1,7 +1,7 @@
 ﻿{
   "DataProvider": "sqlserver",
   //"DataConnectionString": "Data Source=.\\MSSQLSERVER2017;Initial Catalog=platair_DB;Integrated Security=False;Persist Security Info=False;User ID=plataDB;Password=e32#Qol1",
-  "DataConnectionString": "Data Source=(localdb)\\AmTavakoli;Initial Catalog=NopCommerce;Integrated Security=False;Persist Security Info=False",
-  //"DataConnectionString": "Data Source=.;Initial Catalog=NopCommerce;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=1",
+  //"DataConnectionString": "Data Source=(localdb)\\AmTavakoli;Initial Catalog=NopCommerce;Integrated Security=False;Persist Security Info=False",
+  "DataConnectionString": "Data Source=.;Initial Catalog=NopCommerce;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=1",
   "RawDataSettings": {}
 }
