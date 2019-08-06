@@ -17,11 +17,11 @@
   "Faradata.IranSansWidget",
   "Widget.FaraSlider",
   "Resanehlab.ZarinPal",
-  "Faradata.AlarmShopping",
   "Payments.CashOnDelivery",
   "Shipping.FixedByWeightByTotal",
   "NopFarsi.Payments.ZarinPal",
   "Shipping.UPS",
   "Shipping.Director",
-  "Nop.Plugin.XcellenceIt.Sms"
+  "Nop.Plugin.XcellenceIt.Sms",
+  "Faradata.AlarmShopping"
 ]

@@ -16,6 +16,7 @@ using Telegram.Bot.Types;
 using Nop.Plugin.Faradata.AlarmShopping;
 using Nop.Services.Customers;
 using Nop.Core.Domain.Customers;
+using Nop.Plugin.Faradata.AlarmShopping.Services.Services;
 
 namespace Nop.Plugin.Faradata.AlarmShopping.Controllers
 {
@@ -148,6 +149,9 @@ namespace Nop.Plugin.Faradata.AlarmShopping.Controllers
         {
             try
             {
+                var msg = string.Format("فاکتور جدیدی با شماره {0}، ثبت شده است لطفا بررسی نمایید.", id);
+                var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09384117217&TEXT="+msg+"&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
+                Console.WriteLine(result);
                 var bot = await Models.Bot.GetBotClientAsync();
 
                 var List = _BotUserService.Get(3);
@@ -155,8 +159,6 @@ namespace Nop.Plugin.Faradata.AlarmShopping.Controllers
                 {
                     if (item.ChatId > 0)
                     {
-                        var msg = string.Format("فاکتور جدیدی با شماره {0}، ثبت شده است لطفا بررسی نمایید.", id);
-
                         bot.SendTextMessageAsync(item.ChatId, msg);
                     }
                 }
