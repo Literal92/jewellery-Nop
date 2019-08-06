@@ -1,0 +1,1537 @@
+﻿@*
+    // *************************************************************************
+    // *                                                                       *
+    // * Universal SMS plugin for nopCommerce                                  *
+    // * Copyright (c) Xcellence-IT. All Rights Reserved.                      *
+    // *                                                                       *
+    // *************************************************************************
+    // *                                                                       *
+    // * Email: info@nopaccelerate.com                                         *
+    // * Website: http://www.nopaccelerate.com                                 *
+    // *                                                                       *
+    // *************************************************************************
+    // *                                                                       *
+    // * This  software is furnished  under a license  and  may  be  used  and *
+    // * modified  only in  accordance with the terms of such license and with *
+    // * the  inclusion of the above  copyright notice.  This software or  any *
+    // * other copies thereof may not be provided or  otherwise made available *
+    // * to any  other  person.   No title to and ownership of the software is *
+    // * hereby transferred.                                                   *
+    // *                                                                       *
+    // * You may not reverse  engineer, decompile, defeat  license  encryption *
+    // * mechanisms  or  disassemble this software product or software product *
+    // * license.  Xcellence-IT may terminate this license if you don't comply *
+    // * with  any  of  the  terms and conditions set forth in  our  end  user *
+    // * license agreement (EULA).  In such event,  licensee  agrees to return *
+    // * licensor  or destroy  all copies of software  upon termination of the *
+    // * license.                                                              *
+    // *                                                                       *
+    // * Please see the  License file for the full End User License Agreement. *
+    // * The  complete license agreement is also available on  our  website at *
+    // * http://www.nopaccelerate.com/enterprise-license                       *
+    // *                                                                       *
+    // *************************************************************************
+*@
+
+@model Nop.Plugin.XcellenceIt.Sms.Models.NopSmsModel
+@using Nop.Web.Framework.UI;
+
+@{
+    Layout = "_AdminLayout";
+    Html.SetActiveMenuItemSystemName("Nop.Plugin.XcellenceIt.Sms.Configure");
+}
+
+@{
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Plugins.XcellenceIt.Sms.Title.UniversalSMS")
+        </h1>
+    </div>
+    @Html.AntiForgeryToken()
+
+    if (!@Model.IsLicenseActive)
+    {
+        <div>
+            @Html.Raw(@Model.RegistrationForm)
+        </div>
+    }
+    else
+    {
+        <div class="content">
+            <div class="form-horizontal">
+                <div>
+                    @Html.Raw(@Model.LicenseInformation)
+                </div>
+                <div style="clear:both;"></div>
+                <form asp-controller="NopSms" asp-action="Configure" method="post">
+                    <div style="clear:both;"></div>
+                    <div class="content-header clearfix">
+                        <div class="pull-right">
+                            <button type="submit" name="save" class="btn bg-blue">
+                                <i class="fa fa-floppy-o"></i>
+                                @T("Admin.Common.Save")
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        @await Component.InvokeAsync("StoreScopeConfiguration")
+                    </div>
+
+                    <nop-tabs id="NopSms-configure">
+                        <nop-tab asp-name="tab-general" asp-title="@T(" Plugins.XcellenceIt.Sms.Tabs.General")" asp-default="true">
+                            <div class="raw clearfix">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <nop-override-store-checkbox asp-for="Enabled_OverrideForStore" asp-input="Enabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                                <nop-label asp-for="Enabled" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <nop-editor asp-for="Enabled" />
+                                                <span asp-validation-for="Enabled"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <h4>
+                                                    @T("Plugins.XcellenceIt.Sms.Fields.AdvancedSettings")
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <nop-override-store-checkbox asp-for="AdminPhoneCountry_OverrideForStore" asp-input="AdminPhoneCountry" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                                <nop-label asp-for="AdminPhoneCountry" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <nop-select asp-for-name="AdminPhoneCountry" asp-items="@Model.AvailableCountries" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <nop-override-store-checkbox asp-for="AdminPhoneNumber_OverrideForStore" asp-input="AdminPhoneNumber" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                                <nop-label asp-for="AdminPhoneNumber" />
+                                            </div>
+                                            <div class="col-md-9 ">
+                                                <nop-editor asp-for="AdminPhoneNumber" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <nop-override-store-checkbox asp-for="IndividualMessages_OverrideForStore" asp-input="IndividualMessages" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                                <nop-label asp-for="IndividualMessages" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <nop-editor asp-for="IndividualMessages" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nop-tab>
+                        <nop-tab asp-name="TabSettings" asp-title="@T(" Plugins.XcellenceIt.Sms.Tabs.Settings")">
+                            <style>
+                                .error {
+                                    color: red;
+                                }
+                            </style>
+
+                            <script type="text/javascript">
+                        $(document).ready(function () {
+
+                            $("#@Html.IdFor(model => model.ProviderInterfaceType)").change(toggleFields);
+                            toggleFields();
+                        });
+
+                        function hideErrors() {
+                            $("#errProviderApiGateway").value = "";
+                            $("#errProviderApiGateway").hide();
+                            $("#errTwilioSettingSID").value = "";
+                            $("#errTwilioSettingSID").hide();
+                            $("#errTwilioSettingAuthToken").value = "";
+                            $("#errTwilioSettingAuthToken").hide();
+                            $("#errTwilioSettingSMSNumber").value = "";
+                            $("#errTwilioSettingSMSNumber").hide();
+                        }
+
+                        function toggleFields() {
+                            hideErrors();
+
+                            var value = $("#@Html.IdFor(model => model.ProviderInterfaceType)").find(":selected").val();
+                            switch (value) {
+                                case '1'://SmsEmailGateway
+                                    $('#pnlProviderApiGateway').show();
+                                    $('#pnlTwilioSettingSID').hide();
+                                    $('#pnlTwilioSettingAuthToken').hide();
+                                    $('#pnlTwilioSettingSMSNumber').hide();
+                                    break;
+                                case '2'://SmsHttpApi
+                                    $('#pnlProviderApiGateway').show();
+                                    $('#pnlTwilioSettingSID').hide();
+                                    $('#pnlTwilioSettingAuthToken').hide();
+                                    $('#pnlTwilioSettingSMSNumber').hide();
+                                    break;
+                                case '3'://TwilioVoiceApi
+                                    $('#pnlProviderApiGateway').hide();
+                                    $('#pnlTwilioSettingSID').show();
+                                    $('#pnlTwilioSettingAuthToken').show();
+                                    $('#pnlTwilioSettingSMSNumber').hide();
+                                    break;
+                                case '4'://TwilioSmsApi
+                                    $('#pnlProviderApiGateway').hide();
+                                    $('#pnlTwilioSettingSID').show();
+                                    $('#pnlTwilioSettingAuthToken').show();
+                                    $('#pnlTwilioSettingSMSNumber').show();
+                                    break;
+                            }
+                        }
+
+                            </script>
+
+                            <table class="adminContent">
+                                <tr>
+                                    <td colspan="2">
+                                        <ul>
+                                            <li>You can add country specific message setting or same setting for all countries.</li>
+                                            <li>Specify at least one setting to start sending messages.</li>
+                                            <li>You can allow only one setting per country. However you can still add multiple settings for each country.</li>
+                                            <li>Settings added below will be automatically saved as per selected store in multi-store configuration.</li>
+                                            <li>Default store email will be used to send email sms messages.</li>
+                                            <li>For HTTP API, Replace country code field with #COUNTRYCODE#, mobile number field with #MOBILENUMBER# and message field with #MESSAGE# respectively.</li>
+                                            <li>For Email API, Replace mobile number field with #MOBILENUMBER#.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr class="adminSeparator">
+                                    <td colspan="2">
+                                        <hr />
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div class="content-header clearfix">
+                                <div class="pull-right">
+                                    <input type="button" id="addNewInterfaceSettings" name="add" class="btn bg-blue" value="@T(" Admin.Common.AddNew")" />
+                                    <input type="button" id="deleteSelectedInterfaceSettings" name="delete" class="btn bg-red" value="@T(" Admin.Common.Delete.Selected")" />
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="ProviderCountry" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-select asp-for-name="ProviderCountry" asp-items="@Model.AvailableCountries" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="ProviderInterfaceType" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-select asp-for="ProviderInterfaceType" asp-items="Html.GetEnumSelectList<Nop.Plugin.XcellenceIt.Sms.Utilities.ProviderInterfaceType>()" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlProviderApiGateway">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="ProviderApiGateway" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-editor asp-for="ProviderApiGateway" />
+                                            <label for="model.ProviderApiGateway" id="errProviderApiGateway" class="error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlTwilioSettingSID">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="TwilioSettingSID" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-editor asp-for="TwilioSettingSID" />
+                                            <label for="model.TwilioSettingSID" id="errTwilioSettingSID" class="error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlTwilioSettingAuthToken">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="TwilioSettingAuthToken" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-editor asp-for="TwilioSettingAuthToken" />
+                                            <label for="model.TwilioSettingAuthToken" id="errTwilioSettingAuthToken" class="error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlTwilioSettingSMSNumber">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="TwilioSettingSMSNumber" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-editor asp-for="TwilioSettingSMSNumber" />
+                                            <label for="model.TwilioSettingSMSNumber" id="errTwilioSettingSMSNumber" class="error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="ActiveInterfaceSetting" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="ActiveInterfaceSetting" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="interface-grid">
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                        function resetControls() {
+                            $("#@Html.IdFor(model => model.ProviderApiGateway)").val('');
+                            $("#@Html.IdFor(model => model.TwilioSettingSID)").val('');
+                            $("#@Html.IdFor(model => model.TwilioSettingAuthToken)").val('');
+                            $("#@Html.IdFor(model => model.TwilioSettingSMSNumber)").val('');
+                        }
+                        $(document).ready(function () {
+                            $('#addNewInterfaceSettings').click(function () {
+                                hideErrors();
+
+                                var providerCountry = $("#@Html.IdFor(model => model.ProviderCountry)").val();
+                                var providerInterfaceType = $("#@Html.IdFor(model => model.ProviderInterfaceType)").val();
+                                var providerApiGateway = $("#@Html.IdFor(model => model.ProviderApiGateway)").val();
+                                var twilioSettingSID = $("#@Html.IdFor(model => model.TwilioSettingSID)").val();
+                                var twilioSettingAuthToken = $("#@Html.IdFor(model => model.TwilioSettingAuthToken)").val();
+                                var twilioSettingSMSNumber = $("#@Html.IdFor(model => model.TwilioSettingSMSNumber)").val();
+                                var activeInterfaceSetting = $("#@Html.IdFor(model => model.ActiveInterfaceSetting)").val();
+
+                                var validationStatus = true;
+
+                                var value = $("#@Html.IdFor(model => model.ProviderInterfaceType)").find(":selected").val();
+                                if (value == "1") {//SmsEmailGateway
+                                    if (providerApiGateway == "" || providerApiGateway == null) {
+                                        validationStatus = false;
+                                        $("#errProviderApiGateway").html("Please provide a valid email sms api gateway.");
+                                        $("#errProviderApiGateway").show();
+                                    }
+                                }
+                                if (value == "2") {//SmsHttpApi
+                                    if (providerApiGateway == "" || providerApiGateway == null) {
+                                        validationStatus = false;
+                                        $("#errProviderApiGateway").html("Please provide a valid sms http api gateway.");
+                                        $("#errProviderApiGateway").show();
+                                    }
+                                }
+                                if (value == "4") {//TwilioSmsApi
+                                    if (twilioSettingSID == "" || twilioSettingSID == null) {
+                                        validationStatus = false;
+                                        $("#errTwilioSettingSID").html("Please provide a valid twilio sid.");
+                                        $("#errTwilioSettingSID").show();
+                                    }
+                                    if (twilioSettingAuthToken == "" || twilioSettingAuthToken == null) {
+                                        validationStatus = false;
+                                        $("#errTwilioSettingAuthToken").html("Please provide a valid twilio authentication token.");
+                                        $("#errTwilioSettingAuthToken").show();
+                                    }
+                                    if (twilioSettingSMSNumber == "" || twilioSettingSMSNumber == null) {
+                                        validationStatus = false;
+                                        $("#errTwilioSettingSMSNumber").html("Please provide a valid twilio sms number.");
+                                        $("#errTwilioSettingSMSNumber").show();
+                                    }
+                                }
+
+                                if (validationStatus == false)
+                                    return validationStatus;
+
+                                $('#addNewInterfaceSettings').attr('disabled', true);
+
+                                var postData = {
+                                    providerCountry: providerCountry,
+                                    providerInterfaceType: providerInterfaceType,
+                                    providerApiGateway: providerApiGateway,
+                                    twilioSettingSID: twilioSettingSID,
+                                    twilioSettingAuthToken: twilioSettingAuthToken,
+                                    twilioSettingSMSNumber: twilioSettingSMSNumber,
+                                    activeInterfaceSetting: activeInterfaceSetting
+                                };
+                                addAntiForgeryToken(postData);
+
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: "@(Url.Action("AddInterfaceSettings", "NopSms"))",
+                                    data: postData,
+                                    success: function (data) {
+                                        alert('Successfully added interface provider setting.');
+                                        $('#addNewInterfaceSettings').attr('disabled', false);
+                                        var grid = $("#interface-grid");
+                                        grid.data('kendoGrid').dataSource.read();
+                                        resetControls();
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        alert('Failed to add interface provider setting.');
+                                        $('#addNewInterfaceSettings').attr('disabled', false);
+                                    }
+                                });
+                            });
+
+                            $('#deleteSelectedInterfaceSettings').click(function () {
+                                var settingIds = [];
+
+                                var grid = $("#interface-grid").data("kendoGrid");
+                                var ds = grid.dataSource.view();
+                                for (var i = 0; i < ds.length; i++) {
+                                    var row = grid.table.find("tr[data-uid='" + ds[i].uid + "']");
+                                    //checkbox
+                                    var checkbox = $(row).find(".checkboxGroups");
+                                    if (checkbox.is(":checked")) {
+                                        settingIds.push(ds[i].Id);
+                                    }
+                                }
+
+                                if (settingIds.length <= 0) {
+                                    alert("No records selected. Please select a record by clicking on checkbox at starting of record.");
+                                    return;
+                                }
+
+                                var confirmation = confirm("Are you sure you want to delete selected record(s)?");
+                                if (!confirmation) {
+                                    return false;
+                                }
+
+                                var postData = {
+                                    ids: settingIds
+                                };
+                                $.ajax({
+                                    dataType: "json",
+                                    type: "POST",
+                                    url: "@(Url.Action("DeleteInterfaceSettings", "NopSms"))",
+                                    data: postData,
+                                    complete: function (data) {
+                                        var grid = $("#interface-grid");
+                                        grid.data('kendoGrid').dataSource.read();
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        alert(thrownError);
+                                    },
+                                    traditional: true
+                                });
+                            });
+
+                            $("#interface-grid").kendoGrid({
+                                dataSource: {
+                                    type: "json",
+                                    transport: {
+                                        read: {
+                                            url: "@Html.Raw(Url.Action("InterfaceSettingList", "NopSms"))",
+                                            type: "POST",
+                                            dataType: "json"
+                                        },
+                                        update: {
+                                            url: "@Html.Raw(Url.Action("InterfaceSettingUpdate", "NopSms"))",
+                                            type: "POST",
+                                            dataType: "json",
+                                            complete: function (e) {
+                                                var grid = $("#interface-grid");
+                                                grid.data('kendoGrid').dataSource.read();
+                                            },
+                                            error: function (e) {
+                                                console.log(e);
+                                            }
+                                        }
+                                    },
+                                    schema: {
+                                        data: "Data",
+                                        total: "Total",
+                                        errors: "Errors",
+                                        model: {
+                                            id: "Id",
+                                            fields: {
+                                                Id: { editable: false, type: "number" },
+                                                ProviderCountryName: { editable: false, type: "string" },
+                                                InterfaceTypeName: { editable: false, type: "string" },
+                                                ProviderApiGateway: { editable: false, type: "string" },
+                                                TwilioSettingSID: { editable: false, type: "string" },
+                                                TwilioSettingAuthToken: { editable: false, type: "string" },
+                                                TwilioSettingSMSNumber: { editable: false, type: "string" },
+                                                ActiveInterfaceSetting: { editable: true, type: "boolean" }
+                                            }
+                                        }
+                                    },
+                                    error: function (e) {
+                                        display_kendoui_grid_error(e);
+                                        // Cancel the changes
+                                        this.cancelChanges();
+                                    },
+                                    pageSize: 5,
+                                    serverPaging: true,
+                                    serverFiltering: true,
+                                    serverSorting: true
+                                },
+                                pageable: {
+                                    refresh: true,
+                                    pageSizes: [5, 10]
+                                },
+                                editable: {
+                                    confirmation: false,
+                                    mode: "inline"
+                                },
+                                scrollable: false,
+                                columns: [{
+                                    field: "Id", headerTemplate: "<input id='mastercheckbox' type='checkbox'/>",
+                                    headerAttributes: { style: "text-align:center" }, attributes: { style: "text-align:center" }, template: "<input type='checkbox' value='#=Id#' class='checkboxGroups'/>"
+                                },
+                                {
+                                    field: "ProviderCountryName",
+                                    title: "Provider Country"
+                                },
+                                {
+                                    field: "Id",
+                                    title: "Interface Id"
+                                },
+                                {
+                                    field: "InterfaceTypeName",
+                                    title: "Interface Type"
+                                },
+                                {
+                                    field: "ProviderApiGateway",
+                                    title: "Provider Api/Gateway"
+                                },
+                                {
+                                    field: "TwilioSettingSID",
+                                    title: "Twilio SID"
+                                },
+                                {
+                                    field: "TwilioSettingAuthToken",
+                                    title: "Twilio Auth Token"
+                                },
+                                {
+                                    field: "TwilioSettingSMSNumber",
+                                    title: "Twilio SMS Number"
+                                },
+                                {
+                                    field: "ActiveInterfaceSetting",
+                                    title: "Active",
+                                    headerAttributes: { style: "text-align:center" },
+                                    attributes: { style: "text-align:center" },
+                                    template: '# if(ActiveInterfaceSetting) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                },
+                                {
+                                    command: {
+                                        name: "edit",
+                                        text: {
+                                            edit: "@T("Admin.Common.Edit")",
+                                            update: "@T("Admin.Common.Update")",
+                                            cancel: "@T("Admin.Common.Cancel")"
+                                        }
+                                    },
+                                    title: "@T("Admin.Common.Edit")",
+                                    width: 50
+                                }]
+                            });
+
+                            $('#interface-grid #mastercheckbox').click(function () {
+                                if ($('#interface-grid #mastercheckbox').prop("checked") == true) {
+                                    $('#interface-grid .checkboxGroups').prop("checked", true);
+                                }
+                                else if ($('#interface-grid #mastercheckbox').prop("checked") == false) {
+                                    $('#interface-grid .checkboxGroups').prop("checked", false);
+                                }
+                            });
+                        });
+                            </script>
+
+                            <style>
+                                .k-grid td {
+                                    max-width: 120px;
+                                }
+                            </style>
+
+                        </nop-tab>
+
+                        <nop-tab asp-name="TabCustomerEvents" asp-title=@T("Plugins.XcellenceIt.Sms.Tabs.CustomerEvents")>
+
+                            <script type="text/javascript">
+                        $(document).ready(function () {
+
+                            $("#@Html.IdFor(model => model.MobileNumberVerification)").click(toggleShowMobileNumberVerificationText);
+                            $("#@Html.IdFor(model => model.OrderPlaced)").click(toggleOrderPlacedText);
+                            $("#@Html.IdFor(model => model.ShipmentInitiated)").click(toggleShipmentInitiatedText);
+                            $("#@Html.IdFor(model => model.OrderDelivered)").click(toggleOrderDeliveredText);
+                            $("#@Html.IdFor(model => model.OrderCancelled)").click(toggleOrderCancelledText);
+                            $("#@Html.IdFor(model => model.OrderNoteUpdated)").click(toggleOrderNoteUpdatedText);
+                            $("#@Html.IdFor(model => model.OrderProcessing)").click(toggleOrderProcessingText);
+                            $("#@Html.IdFor(model => model.PaymentRefundInitiated)").click(togglePaymentRefundInitiatedText);
+                            $("#@Html.IdFor(model => model.OrderPaid)").click(toggleOrderPaidText);
+                            $("#@Html.IdFor(model => model.OrderComplete)").click(toggleOrderCompleteText);
+                            $("#@Html.IdFor(model => model.OrderReturn)").click(toggleOrderReturnText);
+                            $("#@Html.IdFor(model => model.ReturnRequestInitiated)").click(toggleReturnRequestInitiatedText);
+
+                            toggleShowMobileNumberVerificationText();
+                            toggleOrderPlacedText();
+                            toggleShipmentInitiatedText();
+                            toggleOrderDeliveredText();
+                            toggleOrderCancelledText();
+                            toggleOrderNoteUpdatedText();
+                            toggleOrderProcessingText();
+                            togglePaymentRefundInitiatedText();
+                            toggleOrderPaidText();
+                            toggleOrderCompleteText();
+                            toggleOrderReturnText();
+                            toggleReturnRequestInitiatedText();
+                        });
+
+                        function toggleShowMobileNumberVerificationText() {
+                            if ($('#@Html.IdFor(model => model.MobileNumberVerification)').is(':checked')) {
+                                $('#pnlMobileNumberVerificationText').show();
+                            }
+                            else {
+                                $('#pnlMobileNumberVerificationText').hide();
+                            }
+                        }
+
+                        function toggleOrderPlacedText() {
+                            if ($('#@Html.IdFor(model => model.OrderPlaced)').is(':checked')) {
+                                $('#pnlOrderPlacedText').show();
+                            }
+                            else {
+                                $('#pnlOrderPlacedText').hide();
+                            }
+                        }
+
+                        function toggleShipmentInitiatedText() {
+                            if ($('#@Html.IdFor(model => model.ShipmentInitiated)').is(':checked')) {
+                                $('#pnlShipmentInitiatedText').show();
+                            }
+                            else {
+                                $('#pnlShipmentInitiatedText').hide();
+                            }
+                        }
+
+                        function toggleOrderDeliveredText() {
+                            if ($('#@Html.IdFor(model => model.OrderDelivered)').is(':checked')) {
+                                $('#pnlOrderDeliveredText').show();
+                            }
+                            else {
+                                $('#pnlOrderDeliveredText').hide();
+                            }
+                        }
+
+                        function toggleOrderCancelledText() {
+                            if ($('#@Html.IdFor(model => model.OrderCancelled)').is(':checked')) {
+                                $('#pnlOrderCancelledText').show();
+                            }
+                            else {
+                                $('#pnlOrderCancelledText').hide();
+                            }
+                        }
+
+                        function toggleOrderNoteUpdatedText() {
+                            if ($('#@Html.IdFor(model => model.OrderNoteUpdated)').is(':checked')) {
+                                $('#pnlOrderNoteUpdatedText').show();
+                            }
+                            else {
+                                $('#pnlOrderNoteUpdatedText').hide();
+                            }
+                        }
+
+                        function toggleOrderProcessingText() {
+                            if ($('#@Html.IdFor(model => model.OrderProcessing)').is(':checked')) {
+                                $('#pnlOrderProcessingText').show();
+                            }
+                            else {
+                                $('#pnlOrderProcessingText').hide();
+                            }
+                        }
+
+                        function togglePaymentRefundInitiatedText() {
+                            if ($('#@Html.IdFor(model => model.PaymentRefundInitiated)').is(':checked')) {
+                                $('#pnlPaymentRefundInitiatedText').show();
+                            }
+                            else {
+                                $('#pnlPaymentRefundInitiatedText').hide();
+                            }
+                        }
+
+                        function toggleOrderPaidText() {
+                            if ($('#@Html.IdFor(model => model.OrderPaid)').is(':checked')) {
+                                $('#pnlOrderPaidText').show();
+                            }
+                            else {
+                                $('#pnlOrderPaidText').hide();
+                            }
+                        }
+
+                        function toggleOrderCompleteText() {
+                            if ($('#@Html.IdFor(model => model.OrderComplete)').is(':checked')) {
+                                $('#pnlOrderCompleteText').show();
+                            }
+                            else {
+                                $('#pnlOrderCompleteText').hide();
+                            }
+                        }
+
+                        function toggleOrderReturnText() {
+                            if ($('#@Html.IdFor(model => model.OrderReturn)').is(':checked')) {
+                                $('#pnlOrderReturnText').show();
+                            }
+                            else {
+                                $('#pnlOrderReturnText').hide();
+                            }
+                        }
+
+                        function toggleReturnRequestInitiatedText() {
+                            if ($('#@Html.IdFor(model => model.ReturnRequestInitiated)').is(':checked')) {
+                                $('#pnlReturnRequestInitiatedText').show();
+                            }
+                            else {
+                                $('#pnlReturnRequestInitiatedText').hide();
+                            }
+                        }
+
+                            </script>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="AllowedTokens" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Model.AllowedTokens
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="CustomTokens" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Model.CustomTokens
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <hr />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3" style="width:100%;">
+                                            <br />
+                                            <h4>
+                                                @T("Plugins.XcellenceIt.Sms.Fields.CustomerEnabled")
+                                            </h4>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="MobileNumberVerification_OverrideForStore" asp-input="MobileNumberVerification" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="MobileNumberVerification" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="MobileNumberVerification" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlMobileNumberVerificationText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="MobileNumberVerificationText_OverrideForStore" asp-input="MobileNumberVerificationText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="MobileNumberVerificationText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="MobileNumberVerificationText" />
+                                            @*@Html.ValidationMessageFor(model => model.NewCustomerRegistrationText)*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPlaced_OverrideForStore" asp-input="OrderPlaced" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPlaced" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderPlaced" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlOrderPlacedText" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPlacedText_OverrideForStore" asp-input="OrderPlacedText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPlacedText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderPlacedText" />
+                                            @* @Html.ValidationMessageFor(model => model.OrderPlacedText)*@
+                                            <span asp-validation-for="OrderPlacedText"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="ShipmentInitiated_OverrideForStore" asp-input="ShipmentInitiated" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="ShipmentInitiated" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="ShipmentInitiated" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlShipmentInitiatedText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="ShipmentInitiatedText_OverrideForStore" asp-input="ShipmentInitiatedText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="ShipmentInitiatedText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="ShipmentInitiatedText" />
+                                            <span asp-validation-for="ShipmentInitiatedText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewOrderPaidInStoreText*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderDelivered_OverrideForStore" asp-input="OrderDelivered" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderDelivered" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderDelivered" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlOrderDeliveredText" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderDeliveredText_OverrideForStore" asp-input="OrderDeliveredText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderDeliveredText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderDeliveredText" />
+                                            <span asp-validation-for="OrderDeliveredText"></span>
+                                            @*@Html.ValidationMessageFor(model => model.NewOrderCompletedInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCancelled_OverrideForStore" asp-input="OrderCancelled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCancelled" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderCancelled" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderCancelledText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCancelledText_OverrideForStore" asp-input="OrderCancelledText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCancelledText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderCancelledText" />
+                                            <span asp-validation-for="OrderCancelledText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderNoteUpdated_OverrideForStore" asp-input="OrderNoteUpdated" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderNoteUpdated" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderNoteUpdated" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderNoteUpdatedText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderNoteUpdatedText_OverrideForStore" asp-input="OrderNoteUpdatedText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderNoteUpdatedText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderNoteUpdatedText" />
+                                            <span asp-validation-for="OrderNoteUpdatedText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderProcessing_OverrideForStore" asp-input="OrderProcessing" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderProcessing" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderProcessing" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderProcessingText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderProcessingText_OverrideForStore" asp-input="OrderProcessingText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderProcessingText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderProcessingText" />
+                                            <span asp-validation-for="OrderProcessingText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="PaymentRefundInitiated_OverrideForStore" asp-input="PaymentRefundInitiated" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="PaymentRefundInitiated" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="PaymentRefundInitiated" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlPaymentRefundInitiatedText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="PaymentRefundInitiatedText_OverrideForStore" asp-input="PaymentRefundInitiatedText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="PaymentRefundInitiatedText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="PaymentRefundInitiatedText" />
+                                            <span asp-validation-for="PaymentRefundInitiatedText"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPaid_OverrideForStore" asp-input="OrderPaid" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPaid" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderPaid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderPaidText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPaidText_OverrideForStore" asp-input="OrderPaidText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPaidText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderPaidText" />
+                                            <span asp-validation-for="OrderPaidText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderComplete_OverrideForStore" asp-input="OrderComplete" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderComplete" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderComplete" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderCompleteText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCompleteText_OverrideForStore" asp-input="OrderCompleteText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCompleteText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderCompleteText" />
+                                            <span asp-validation-for="OrderCompleteText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderReturn_OverrideForStore" asp-input="OrderReturn" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderReturn" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderReturn" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderReturnText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderReturnText_OverrideForStore" asp-input="OrderReturnText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderReturnText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderReturnText" />
+                                            <span asp-validation-for="OrderReturnText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="ReturnRequestInitiated_OverrideForStore" asp-input="ReturnRequestInitiated" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="ReturnRequestInitiated" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="ReturnRequestInitiated" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlReturnRequestInitiatedText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="ReturnRequestInitiatedText_OverrideForStore" asp-input="ReturnRequestInitiatedText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="ReturnRequestInitiatedText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="ReturnRequestInitiatedText" />
+                                            <span asp-validation-for="ReturnRequestInitiatedText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </nop-tab>
+
+                        <nop-tab asp-name="TabAdminEvents" asp-title=@T("Plugins.XcellenceIt.Sms.Tabs.AdminEvents")>
+                            <script type="text/javascript">
+                        $(document).ready(function () {
+
+                            $("#@Html.IdFor(model => model.NewCustomerRegistration)").click(toggleNewCustomerRegistrationText);
+                            $("#@Html.IdFor(model => model.NewOrderPlacedInStore)").click(toggleNewOrderPlacedInStoreText);
+                            $("#@Html.IdFor(model => model.NewOrderPaidInStore)").click(toggleNewOrderPaidInStoreText);
+                            $("#@Html.IdFor(model => model.NewOrderCompletedInStore)").click(toggleNewOrderCompletedInStoreText);
+                            $("#@Html.IdFor(model => model.NewReturnRequestInStore)").click(toggleNewReturnRequestText);
+
+                            toggleNewCustomerRegistrationText();
+                            toggleNewOrderPlacedInStoreText();
+                            toggleNewOrderPaidInStoreText();
+                            toggleNewOrderCompletedInStoreText();
+                            toggleNewReturnRequestText();
+                        });
+
+                        function toggleNewCustomerRegistrationText() {
+                            if ($('#@Html.IdFor(model => model.NewCustomerRegistration)').is(':checked')) {
+                                $('#pnlNewCustomerRegistrationText').show();
+                            }
+                            else {
+                                $('#pnlNewCustomerRegistrationText').hide();
+                            }
+                        }
+
+                        function toggleNewOrderPlacedInStoreText() {
+                            if ($('#@Html.IdFor(model => model.NewOrderPlacedInStore)').is(':checked')) {
+                                $('#pnlNewOrderPlacedInStoreText').show();
+                            }
+                            else {
+                                $('#pnlNewOrderPlacedInStoreText').hide();
+                            }
+                        }
+
+                        function toggleNewOrderPaidInStoreText() {
+                            if ($('#@Html.IdFor(model => model.NewOrderPaidInStore)').is(':checked')) {
+                                $('#pnlNewOrderPaidInStoreText').show();
+                            }
+                            else {
+                                $('#pnlNewOrderPaidInStoreText').hide();
+                            }
+                        }
+
+                        function toggleNewOrderCompletedInStoreText() {
+                            if ($('#@Html.IdFor(model => model.NewOrderCompletedInStore)').is(':checked')) {
+                                $('#pnlNewOrderCompletedInStoreText').show();
+                            }
+                            else {
+                                $('#pnlNewOrderCompletedInStoreText').hide();
+                            }
+                        }
+
+                        function toggleNewReturnRequestText() {
+                            if ($('#@Html.IdFor(model => model.NewReturnRequestInStore)').is(':checked')) {
+                                $('#pnlReturnRequestText').show();
+                            }
+                            else {
+                                $('#pnlReturnRequestText').hide();
+                            }
+                        }
+                            </script>
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="AllowedTokens" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Model.AllowedTokens
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="CustomTokens" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Model.CustomTokens
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <hr />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3" style="width:100%;">
+                                            <br />
+                                            <h4>
+                                                @T("Plugins.XcellenceIt.Sms.Fields.AdminGetEnabled")
+                                            </h4>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewCustomerRegistration_OverrideForStore" asp-input="NewCustomerRegistration" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewCustomerRegistration" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="NewCustomerRegistration" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlNewCustomerRegistrationText" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewCustomerRegistrationText_OverrideForStore" asp-input="NewCustomerRegistrationText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewCustomerRegistrationText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="NewCustomerRegistrationText" />
+                                            <span asp-validation-for="NewCustomerRegistrationText"></span>
+                                            @*@Html.ValidationMessageFor(model => model.NewCustomerRegistrationText)*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewOrderPlacedInStore_OverrideForStore" asp-input="NewOrderPlacedInStore" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewOrderPlacedInStore" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="NewOrderPlacedInStore" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlNewOrderPlacedInStoreText" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewOrderPlacedInStoreText_OverrideForStore" asp-input="NewOrderPlacedInStoreText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewOrderPlacedInStoreText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="NewOrderPlacedInStoreText" />
+                                            <span asp-validation-for="NewOrderPlacedInStoreText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewOrderPlacedInStoreText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewOrderPaidInStore_OverrideForStore" asp-input="NewOrderPaidInStore" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewOrderPaidInStore" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="NewOrderPaidInStore" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlNewOrderPaidInStoreText" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewOrderPaidInStoreText_OverrideForStore" asp-input="NewOrderPaidInStoreText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewOrderPaidInStoreText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="NewOrderPaidInStoreText" />
+                                            <span asp-validation-for="NewOrderPaidInStoreText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewOrderPaidInStoreText*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewOrderCompletedInStore_OverrideForStore" asp-input="NewOrderCompletedInStore" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewOrderCompletedInStore" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="NewOrderCompletedInStore" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="pnlNewOrderCompletedInStoreText" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewOrderCompletedInStoreText_OverrideForStore" asp-input="NewOrderCompletedInStoreText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewOrderCompletedInStoreText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="NewOrderCompletedInStoreText" />
+                                            <span asp-validation-for="NewOrderCompletedInStoreText"></span>
+                                            @*@Html.ValidationMessageFor(model => model.NewOrderCompletedInStoreText)*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewReturnRequestInStore_OverrideForStore" asp-input="NewReturnRequestInStore" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewReturnRequestInStore" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="NewReturnRequestInStore" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlReturnRequestText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="NewReturnRequestInStoreText_OverrideForStore" asp-input="NewReturnRequestInStoreText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="NewReturnRequestInStoreText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="NewReturnRequestInStoreText" />
+                                            <span asp-validation-for="NewReturnRequestInStoreText"></span>
+                                            @* @Html.ValidationMessageFor(model => model.NewReturnRequestInStoreText)*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nop-tab>
+
+                        <nop-tab asp-name="TabVendorEvents" asp-title=@T("Plugins.XcellenceIt.Sms.Tabs.VendorEvents")>
+
+                            <script type="text/javascript">
+                        $(document).ready(function () {
+
+                            $("#@Html.IdFor(model => model.OrderPlacedforVendor)").click(toggleOrderPlacedforVendorText);
+                            $("#@Html.IdFor(model => model.OrderDeliveredforVendor)").click(toggleOrderDeliveredforVendorText);
+                            $("#@Html.IdFor(model => model.OrderCancelforVendor)").click(toggleOrderCancelforVendorText);
+                            $("#@Html.IdFor(model => model.OrderCompletedforVendor)").click(toggleOrderCompletedforVendorText);
+                            $("#@Html.IdFor(model => model.RefundCompletedforVendor)").click(toggleRefundCompletedforVendorText);
+                            $("#@Html.IdFor(model => model.OrderPaidforVendor)").click(toggleOrderPaidforVendorText);
+
+                            toggleOrderPlacedforVendorText();
+                            toggleOrderDeliveredforVendorText();
+                            toggleOrderCancelforVendorText();
+                            toggleOrderCompletedforVendorText();
+                            toggleRefundCompletedforVendorText();
+                            toggleOrderPaidforVendorText();
+                        });
+
+                        function toggleOrderPlacedforVendorText() {
+                            if ($('#@Html.IdFor(model => model.OrderPlacedforVendor)').is(':checked')) {
+                                $('#pnlOrderPlacedforVendorText').show();
+                            }
+                            else {
+                                $('#pnlOrderPlacedforVendorText').hide();
+                            }
+                        }
+
+                        function toggleOrderDeliveredforVendorText() {
+                            if ($('#@Html.IdFor(model => model.OrderDeliveredforVendor)').is(':checked')) {
+                                $('#pnlOrderDeliveredforVendorText').show();
+                            }
+                            else {
+                                $('#pnlOrderDeliveredforVendorText').hide();
+                            }
+                        }
+
+                        function toggleOrderCancelforVendorText() {
+                            if ($('#@Html.IdFor(model => model.OrderCancelforVendor)').is(':checked')) {
+                                $('#pnlOrderCancelforVendorText').show();
+                            }
+                            else {
+                                $('#pnlOrderCancelforVendorText').hide();
+                            }
+                        }
+                        function toggleOrderCompletedforVendorText() {
+                            if ($('#@Html.IdFor(model => model.OrderCompletedforVendor)').is(':checked')) {
+                                $('#pnlOrderCompletedforVendorText').show();
+                            }
+                            else {
+                                $('#pnlOrderCompletedforVendorText').hide();
+                            }
+                        }
+
+                        function toggleRefundCompletedforVendorText() {
+                            if ($('#@Html.IdFor(model => model.RefundCompletedforVendor)').is(':checked')) {
+                                $('#pnlRefundCompletedforVendorText').show();
+                            }
+                            else {
+                                $('#pnlRefundCompletedforVendorText').hide();
+                            }
+                        }
+
+                        function toggleOrderPaidforVendorText() {
+                            if ($('#@Html.IdFor(model => model.OrderPaidforVendor)').is(':checked')) {
+                                $('#pnlOrderPaidforVendorText').show();
+                            }
+                            else {
+                                $('#pnlOrderPaidforVendorText').hide();
+                            }
+                        }
+
+                            </script>
+
+                            <table class="adminContent">
+                                <tr>
+                                    <td colspan="2">
+                                        <ul>
+                                            <li>@T("Plugins.XcellenceIt.Sms.Fields.Vendor.Note")</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="AllowedTokens" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Model.AllowedTokens
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="CustomTokens" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            @Model.CustomTokens
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3" style="width:100%;">
+                                            <br />
+                                            <h4>
+                                                @T("Plugins.XcellenceIt.Sms.Fields.Vendor.Enabled")
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPlacedforVendor_OverrideForStore" asp-input="OrderPlacedforVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPlacedforVendor" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderPlacedforVendor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderPlacedforVendorText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPlacedforVendorText_OverrideForStore" asp-input="OrderPlacedforVendorText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPlacedforVendorText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderPlacedforVendorText" />
+                                            <span asp-validation-for="OrderPlacedforVendorText"></span>
+                                            @*@Html.ValidationMessageFor(model => model.OrderPlacedforVendorText)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderDeliveredforVendor_OverrideForStore" asp-input="OrderDeliveredforVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderDeliveredforVendor" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderDeliveredforVendor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderDeliveredforVendorText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderDeliveredforVendorText_OverrideForStore" asp-input="OrderDeliveredforVendorText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderDeliveredforVendorText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderDeliveredforVendorText" />
+                                            <span asp-validation-for="OrderDeliveredforVendorText"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCancelforVendor_OverrideForStore" asp-input="OrderCancelforVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCancelforVendor" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderCancelforVendor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderCancelforVendorText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCancelforVendorText_OverrideForStore" asp-input="OrderCancelforVendorText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCancelforVendorText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderCancelforVendorText" />
+                                            <span asp-validation-for="OrderCancelforVendorText"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCompletedforVendor_OverrideForStore" asp-input="OrderCompletedforVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCompletedforVendor" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderCompletedforVendor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderCompletedforVendorText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderCompletedforVendorText_OverrideForStore" asp-input="OrderCompletedforVendorText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderCompletedforVendorText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderCompletedforVendorText" />
+                                            <span asp-validation-for="OrderCompletedforVendorText"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="RefundCompletedforVendor_OverrideForStore" asp-input="RefundCompletedforVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="RefundCompletedforVendor" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="RefundCompletedforVendor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlRefundCompletedforVendorText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="RefundCompletedforVendorText_OverrideForStore" asp-input="RefundCompletedforVendorText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="RefundCompletedforVendorText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="RefundCompletedforVendorText" />
+                                            <span asp-validation-for="RefundCompletedforVendorText"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" style="width:200%;">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPaidforVendor_OverrideForStore" asp-input="OrderPaidforVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPaidforVendor" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-editor asp-for="OrderPaidforVendor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="width:200%;" id="pnlOrderPaidforVendorText">
+                                        <div class="col-md-3">
+                                            <nop-override-store-checkbox asp-for="OrderPaidforVendorText_OverrideForStore" asp-input="OrderPaidforVendorText" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                            <nop-label asp-for="OrderPaidforVendorText" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <nop-textarea asp-for="OrderPaidforVendorText" />
+                                            <span asp-validation-for="OrderPaidforVendorText"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </nop-tab>
+
+                        <nop-tab asp-name="TabTestMessage" asp-title=@T("Plugins.XcellenceIt.Sms.Tabs.testmessage")>
+                            @Html.HiddenFor(model => model.CustomerId)
+
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <strong>@T("Plugins.XcellenceIt.Sms.Fields.SendTestMessage")</strong>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="CountryIsd" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-editor asp-for="CountryIsd" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="MobileNumber" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-editor asp-for="MobileNumber" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="AvailableRoute" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-select asp-for-name="AvailableRoute" asp-items="@Model.AvailableRoutes" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <nop-label asp-for="MessageText" />
+                                        </div>
+                                        <div class="col-md-9">
+                                            <nop-textarea asp-for="MessageText" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="button" id="sendMessage" class="btn bg-blue" name="sendMessage" value="@T(" Plugins.XcellenceIt.Sms.Fields.SendMessage")" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                        $("#sendMessage").click(function () {
+
+                            var countryIsd = $("#@Html.IdFor(model => model.CountryIsd)").val();
+                            var mobileNumber = $("#@Html.IdFor(model => model.MobileNumber)").val();
+                            var interfaceId = $("#@Html.IdFor(model => model.AvailableRoute)").val();
+                            var messageText = $("#@Html.IdFor(model => model.MessageText)").val();
+                            var customerId = $("#@Html.IdFor(model => model.CustomerId)").val();
+
+                            if (mobileNumber == null || mobileNumber == '') {
+                                alert("Mobile number must be required.");
+                                return false;
+                            }
+                            else if (countryIsd == "" || countryIsd == null) {
+                                alert("country ISD code must be required.");
+                                return false;
+                            }
+                            else if (messageText == "" || messageText == null) {
+                                alert("Message cannot be blank. Please write a message to send before pressing send button.");
+                                return false;
+                            }
+
+                            var postData = {
+                                countryIsd: countryIsd,
+                                mobileNumber: mobileNumber,
+                                interfaceId: interfaceId,
+                                messageText: messageText,
+                                sendAsPM: false,
+                                customerId: customerId
+                            };
+
+                            addAntiForgeryToken(postData);
+
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: "@(Url.Action("SendIndividualMessge", "NopSms"))",
+                                data: postData,
+                                success: function (data) {
+                                    alert(data.Result);
+                                    $('#sendMessage').attr('disabled', false);
+                                },
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    alert(thrownError);
+                                    $('#sendMessage').attr('disabled', false);
+                                }
+                            });
+                        });
+                            </script>
+
+                        </nop-tab>
+                    </nop-tabs>
+                </form>
+            </div>
+        </div>
+
+    }
+}
+
+

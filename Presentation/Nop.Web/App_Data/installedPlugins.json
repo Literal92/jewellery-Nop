@@ -22,5 +22,6 @@
   "Shipping.FixedByWeightByTotal",
   "NopFarsi.Payments.ZarinPal",
   "Shipping.UPS",
-  "Shipping.Director"
+  "Shipping.Director",
+  "Nop.Plugin.XcellenceIt.Sms"
 ]

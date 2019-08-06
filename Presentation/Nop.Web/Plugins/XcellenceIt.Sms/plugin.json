@@ -1,0 +1,12 @@
+﻿{
+  "Group": "SMS providers",
+  "FriendlyName": "Universal Sms Plugin",
+  "SystemName": "Nop.Plugin.XcellenceIt.Sms",
+  "Version": "1.7.0",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "Xcellence-It",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.XcellenceIt.Sms.dll",
+  "Description": "Universal SMS Plugin provides extensive ways of sending text notification messages to all over world. "
+}
+

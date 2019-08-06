@@ -1,0 +1,616 @@
+﻿<!--
+// *************************************************************************
+// *                                                                       *
+// * Universal SMS plugin for nopCommerce                                  *
+// * Copyright (c) Xcellence-IT. All Rights Reserved.                      *
+// *                                                                       *
+// *************************************************************************
+// *                                                                       *
+// * Email: info@nopaccelerate.com                                         *
+// * Website: http://www.nopaccelerate.com                                 *
+// *                                                                       *
+// *************************************************************************
+// *                                                                       *
+// * This  software is furnished  under a license  and  may  be  used  and *
+// * modified  only in  accordance with the terms of such license and with *
+// * the  inclusion of the above  copyright notice.  This software or  any *
+// * other copies thereof may not be provided or  otherwise made available *
+// * to any  other  person.   No title to and ownership of the software is *
+// * hereby transferred.                                                   *
+// *                                                                       *
+// * You may not reverse  engineer, decompile, defeat  license  encryption *
+// * mechanisms  or  disassemble this software product or software product *
+// * license.  Xcellence-IT may terminate this license if you don't comply *
+// * with  any  of  the  terms and conditions set forth in  our  end  user *
+// * license agreement (EULA).  In such event,  licensee  agrees to return *
+// * licensor  or destroy  all copies of software  upon termination of the *
+// * license.                                                              *
+// *                                                                       *
+// * Please see the  License file for the full End User License Agreement. *
+// * The  complete license agreement is also available on  our  website at * 
+// * http://www.nopaccelerate.com/enterprise-license                       *
+// *                                                                       *
+// *************************************************************************
+-->
+
+<Language Name="English" IsDefault="true" IsRightToLeft="false">
+	<!--Message Templates-->
+  <LocaleResource Name="Nop.Plugin.XcellenceIt.Sms.Title.HelpnDocument">
+    <Value>Help Document</Value>
+  </LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.MobileNumberVerification">
+		<Value>Hello %Customer.FullName%,Thank you for registering with %Store.Name%. Your phone verification code is %NopSmsCustomAttributes.OneTimePassword%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderPlaced">
+		<Value>Hello %Order.CustomerFullName%, Your order number %Order.OrderNumber% has been placed successfully on %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.ShipmentInitiated">
+		<Value>Hi,Your order number %Order.OrderNumber% is on the way. Shipment number %Shipment.ShipmentNumber% via %Order.ShippingMethod%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderDelivered">
+		<Value>Hi, Your order number %Order.OrderNumber% has been delivered successfully. Keep shopping %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderCancelled">
+		<Value>Hello, Your order number %Order.OrderNumber% has been cancelled. In case of any issues you can write us at %Store.Email% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderNoteUpdated">
+		<Value>%Store.Name%: Hello %Customer.FullName%, %Order.NewNoteText%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderProcessing">
+		<Value>Hello %Customer.FullName%, Your order number %Order.OrderNumber% has been approved and processing has been started. Thank you, %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.PaymentRefundInitiated">
+		<Value>Hello %Customer.FullName%, Payment refund has been initiated for your order number %Order.OrderNumber%. Thank you, %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderReturnStatusChanged">
+		<Value>Hello %Customer.FullName%, Your return request: %ReturnRequest.CustomNumber% status has been changed to %ReturnRequest.Status%. Thank you, %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderComplete">
+		<Value>Hi, Your order number %Order.OrderNumber% has been completed successfully. Keep shopping %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.OrderPaid">
+		<Value>Hi, Your order number %Order.OrderNumber% has been paid successfully. Keep shopping %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Customer.ReturnRequestReceived">
+    <Value>A new return request has been received for order number %Order.OrderNumber% in %Store.Name%.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Admin.NewCustomerRegistration">
+		<Value>A new customer %Customer.FullName% has registered on store %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Admin.NewOrderPlacedInStore">
+		<Value>A new order placed on %Store.Name%. Order number: %Order.OrderNumber%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Admin.NewOrderCompletedInStore">
+		<Value>Order number %Order.OrderNumber% has been completed successfully on %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Admin.NewOrderPaidInStore">
+		<Value>A new order %Order.OrderNumber% has been paid in %Store.Name%.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Admin.ReturnRequestReceived">
+		<Value>A new return request has been received for order number %Order.OrderNumber% in %Store.Name%.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Vendor.OrderPlacedforVendorTemplate">
+		<Value>A new order placed on %Store.Name%. Order number: %Order.OrderNumber%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Vendor.OrderDeliveredforVendorTemplate">
+		<Value>Hello, Order number %Order.OrderNumber% has been delivered successfully to customer.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Vendor.OrderCancelforVendorTemplate">
+		<Value>Hello, Order number %Order.OrderNumber% has been cancelled. In case of any issues you can write us at %Store.Email% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Vendor.OrderCompletedforVendorTemplate">
+		<Value>Order number %Order.OrderNumber% has been completed successfully on %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Vendor.RefundCompletedforVendorTemplate">
+		<Value>Hello, Refund for order number %Order.OrderNumber% has been completed on %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.MessageTemplate.Vendor.OrderPaidforVendorTemplate">
+		<Value>Order number %Order.OrderNumber% for your product has been paid successfully on %Store.URL% - %Store.Name%</Value>
+	</LocaleResource>
+	<!--General Tab-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Tabs.General">
+		<Value>General</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Enabled">
+		<Value>Enabled</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Enabled.Hint">
+		<Value>Check to enable plug-in</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdvancedSettings">
+		<Value>Advanced settings:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.IndividualMessages">
+		<Value>Individual messages (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.IndividualMessages.Hint">
+		<Value>Check to enable sending individual messages to customers</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdminPhoneCountry">
+		<Value>Admin mobile number country:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdminPhoneCountry.Hint">
+		<Value>Provide administrator mobile number country</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdminPhoneNumber">
+		<Value>Admin mobile number(without country code or +):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdminPhoneNumber.Hint">
+		<Value>Provide administrator mobile number</Value>
+	</LocaleResource>
+	<!--Interface Settings Tab-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Tabs.Settings">
+		<Value>Interface settings</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ProviderCountry">
+		<Value>Country:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ProviderCountry.Hint">
+		<Value>Select country for which you want to configure provider interface</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ProviderInterfaceType">
+		<Value>Provider interface type:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ProviderInterfaceType.Hint">
+		<Value>Select best suitable provider interface type which matches your requirement</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ProviderApiGateway">
+		<Value>API / Gateway:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ProviderApiGateway.Hint">
+		<Value>HTTP API or email gateway you want to configure based on selected interface type</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TwilioSettingSID">
+		<Value>Twilio SID:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TwilioSettingSID.Hint">
+		<Value>Twilio account SID</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TwilioSettingAuthToken">
+		<Value>Twilio Auth Token:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TwilioSettingAuthToken.Hint">
+		<Value>Authentication token for twilio account</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TwilioSettingSMSNumber">
+		<Value>Twilio SMS Number:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TwilioSettingSMSNumber.Hint">
+		<Value>SMS number provided by twilio account</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ActiveInterfaceSetting">
+		<Value>Active:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ActiveInterfaceSetting.Hint">
+		<Value>Check this to activate current setting for selected country. If another setting is already active for same country then current setting will not be active unless you manually deactive previous one</Value>
+	</LocaleResource>
+	<!--Customer Events Tab-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Tabs.CustomerEvents">
+		<Value>Customer event settings</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.CustomerEnabled">
+		<Value>Customer can automatically get messages at following events:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.CustomerEnabled.Hint">
+		<Value>Customer can automatically get messages at following events</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MobileNumberVerification">
+		<Value>New customer registration/change of mobile number verification (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MobileNumberVerification.Hint">
+		<Value>Check to enable mobile number verification</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MobileNumberVerificationText">
+		<Value>Mobile number verification template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MobileNumberVerificationText.Hint">
+		<Value>Message template for customer mobile number verification</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPlaced">
+		<Value>Order placed (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPlaced.Hint">
+		<Value>Check to enable sending notification to customer on order placed</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPlacedText">
+		<Value>Order placed template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPlacedText.Hint">
+		<Value>Message template for sending notification to customer on order placed</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ShipmentInitiated">
+		<Value>Shipment initiated (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ShipmentInitiated.Hint">
+		<Value>Check to enable sending notification to customer on order shipment added</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ShipmentInitiatedText">
+		<Value>Shipment initiated template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ShipmentInitiatedText.Hint">
+		<Value>Message template for sending notification to customer on order shipment added</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderDelivered">
+		<Value>Order delivered (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderDelivered.Hint">
+		<Value>Check to enable sending notification to customer on order delivered</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderDeliveredText">
+		<Value>Order delivered template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderDeliveredText.Hint">
+		<Value>Message template for sending notification to customer on order delivered</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderCancelled">
+		<Value>Order cancelled (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderCancelled.Hint">
+		<Value>Check to enable sending notification to customer on order cancelled</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderCancelledText">
+		<Value>Order cancelled template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderCancelledText.Hint">
+		<Value>Message template for sending notification to customer on order cancelled</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderNoteUpdated">
+		<Value>Order note (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderNoteUpdated.Hint">
+		<Value>Check to enable sending notification to customer on order note added</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderNoteUpdatedText">
+		<Value>Order note template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderNoteUpdatedText.Hint">
+		<Value>Message template for sending notification to customer on order note added</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderProcessing">
+		<Value>Order processing (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderProcessing.Hint">
+		<Value>Check to enable sending notification to customer for order processing status</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderProcessingText">
+		<Value>Order processing template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderProcessingText.Hint">
+		<Value>Message template for sending notification to customer for order processing</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.PaymentRefundInitiated">
+		<Value>Payment refund initiated (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.PaymentRefundInitiated.Hint">
+		<Value>Check to enable sending notification to customer on payment refund initiated</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.PaymentRefundInitiatedText">
+		<Value>Payment refund initiated template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.PaymentRefundInitiatedText.Hint">
+		<Value>Message template for sending notification to customer on payment refund initiated</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPaid">
+		<Value>Order paid (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPaid.Hint">
+		<Value>Enable to send message to customer on order paid event</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPaidText">
+		<Value>Order paid template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderPaidText.Hint">
+		<Value>Message template for sending notification to customer on order paid event</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderComplete">
+		<Value>Order complete (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderComplete.Hint">
+		<Value>Enable to send message to customer on order completed event</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderCompleteText">
+		<Value>Order complete template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderCompleteText.Hint">
+		<Value>Message template for sending notification to customer on order completed event</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderReturn">
+		<Value>Order return status changed (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderReturn.Hint">
+		<Value>Enable to send message to customer on order return status changed</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderReturnText">
+		<Value>Order return status changed template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OrderReturnText.Hint">
+		<Value>Message template for sending notification to customer on order return status change</Value>
+	</LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ReturnRequestInitiated">
+    <Value>Order return request initiated (enabled):</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ReturnRequestInitiated.Hint">
+    <Value>Enable to send message to customer on order return request initiated</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ReturnRequestInitiatedText">
+    <Value>Order return request initiated template:</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ReturnRequestInitiatedText.Hint">
+    <Value>Message template for sending notification to customer on order return request initiated</Value>
+  </LocaleResource>
+	<!--Vendor Events Tab-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Tabs.VendorEvents">
+		<Value>Vendor event settings</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.Enabled">
+		<Value>Vendor can automatically get messages at following events:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPlacedforVendor">
+		<Value>Order placed (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPlacedforVendor.Hint">
+		<Value>Enable to send message to vendor on order placed event:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPlacedforVendorText">
+		<Value>Order placed template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPlacedforVendorText.Hint">
+		<Value>Message template for sending notification to vendor on order placed event.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderDeliveredforVendor">
+		<Value>Order delivered (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderDeliveredforVendor.Hint">
+		<Value>Enable the settings for send message to vendor at order delivered:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderDeliveredforVendorText">
+		<Value>Order delivered  template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderDeliveredforVendorText.Hint">
+		<Value>Message template for sending notification to vendor on order delivered.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCancelforVendor">
+		<Value>Order cancel (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCancelforVendor.Hint">
+		<Value>Enable the settings for send message to vendor on order cancel:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCancelforVendorText">
+		<Value>Order cancel template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCancelforVendorText.Hint">
+		<Value>Message template for sending notification to vendor on order cancel event.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCompletedforVendor">
+		<Value>Order completed (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCompletedforVendor.Hint">
+		<Value>Enable the settings for send message to vendor on order completed:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCompletedforVendorText">
+		<Value>Order completed template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderCompletedforVendorText.Hint">
+		<Value>Message template for sending notification to vendor on order completed event.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.RefundCompletedforVendor">
+		<Value>Refund completed (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.RefundCompletedforVendor.Hint">
+		<Value>Enable the settings for send message to vendor on refund completed:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.RefundCompletedforVendorText">
+		<Value> Refund completed  template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.RefundCompletedforVendorText.Hint">
+		<Value>Message template for sending notification to vendor on refund request completed</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPaidforVendor">
+		<Value>Order paid (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPaidforVendor.Hint">
+		<Value>Enable the settings for send message to vendor on order paid:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPaidforVendorText">
+		<Value>Order paid template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.OrderPaidforVendorText.Hint">
+		<Value>Message template for sending notification to vendor on order paid event.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.Vendor.Note">
+		<Value>If Vendor is not a customer then plug-in will not send SMS to vendor.</Value>
+	</LocaleResource>
+	<!--Admin Events Tab-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Tabs.AdminEvents">
+		<Value>Admin event settings</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdminGetEnabled">
+		<Value>Admin can automatically get messages at following events:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AdminGetEnabled.Hint">
+		<Value>Admin can automatically get messages at following events</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewCustomerRegistration">
+		<Value>New customer registration (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewCustomerRegistration.Hint">
+		<Value>Check to enable get messages on new customer registration</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewCustomerRegistrationText">
+		<Value>New customer registration template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewCustomerRegistrationText.Hint">
+		<Value>Message template for get messages on new customer registration</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPlacedInStore">
+		<Value>New order placed in store (enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPlacedInStore.Hint">
+		<Value>Enable the settings for send message to admin on order placed</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPlacedInStoreText">
+		<Value>New order placed in store template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPlacedInStoreText.Hint">
+		<Value>Message template for get messages on new order placed in store</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPaidInStore">
+		<Value>New order paid in store (enabled):</Value>
+	</LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPaidInStore.Hint">
+    <Value>Enable the settings for send message to vendor on order paid</Value>
+  </LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPaidInStoreText">
+		<Value>New order paid in store template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderPaidInStoreText.Hint">
+		<Value>Message template for sending notification to admin on order paid event.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderCompletedInStore">
+		<Value>New order complete in store (enabled):</Value>
+	</LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderCompletedInStore.Hint">
+    <Value>Enable the settings for send message to admin on order completed</Value>
+  </LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderCompletedInStoreText">
+		<Value>New order complete in store template:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewOrderCompletedInStoreText.Hint">
+		<Value>Message template for sending notification to admin on order Completed event</Value>
+	</LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewReturnRequestInStore">
+    <Value>New return request in store (enabled):</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewReturnRequestInStore.Hint">
+    <Value>Enable the settings for send message to admin on return request initiated</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewReturnRequestInStoreText">
+    <Value>New return request in store template:</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.NewReturnRequestInStoreText.Hint">
+    <Value>Message template for sending notification to admin on return request initiated event.</Value>
+  </LocaleResource>
+	<!--OTP-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OneTimePassword">
+		<Value>Enter OTP:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OneTimePassword.Hint">
+		<Value>We have sent a message to your registered mobile number with 5 digit one time password. Please enter that 5 digit OTP in box below to verify your account.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.VerifyOTP">
+		<Value>Verify OTP</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.VerifyOTP.Hint">
+		<Value>Verify one time password sent to you</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.ResendOTP">
+		<Value>Resend one time password</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OTPHeading">
+		<Value>Verify one time password</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OTPRequired">
+		<Value>One time password required.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.OTPFailed">
+		<Value>Failed to verify one time password</Value>
+	</LocaleResource>
+	<!--Message Tokens-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AllowedTokens">
+		<Value>Allowed message tokens</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AllowedTokens.Hint">
+		<Value>This is a list of the message tokens you can use in your message templates.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.CustomTokens">
+		<Value>Custom message tokens</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.CustomTokens.Hint">
+		<Value>This is a list of the custom message tokens you can use in your message templates.</Value>
+	</LocaleResource>
+	<!--Individual Message-->
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.IndividualMessage">
+		<Value>Send personal message via - Universal SMS</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.CountryIsd">
+		<Value>Country ISD:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.CountryIsd.Hint">
+		<Value>Country ISD code</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MobileNumber">
+		<Value>Mobile phone number:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MobileNumber.Hint">
+		<Value>Receiver mobile phone number</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.IsVerified">
+		<Value>Verified:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.IsVerified.Hint">
+		<Value>Yes if mobile number has been verified else No</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AvailableRoute">
+		<Value>Available routes:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.AvailableRoute.Hint">
+		<Value>Available interface routes to send message</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MessageText">
+		<Value>Message text:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.MessageText.Hint">
+		<Value>Message to send to receiver</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.SendAsPM">
+		<Value>Also send private message (if enabled):</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.SendAsPM.Hint">
+		<Value>Send also as private message (If private message is enabled)</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.SendMessage">
+		<Value>Send message</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TabName">
+		<Value>Send message</Value>
+	</LocaleResource>
+  
+  <!--Test message tab-->
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.SendTestMessage">
+    <Value>Send test message</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Tabs.testmessage">
+    <Value>Send Test Message</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.CountryIsd">
+    <Value>Country ISD code</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.CountryIsd.hint">
+    <Value>Enter two latter country ISD code</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.MobileNumber">
+    <Value>Mobile number</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.MobileNumber.hint">
+    <Value>Enter mobile number on which you need to send message.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.AvailableRoute">
+    <Value>Available routes</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.AvailableRoute.hint">
+    <Value>Available interface routes to send message.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.MessageText">
+    <Value>Message text</Value>
+  </LocaleResource>
+  <LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.TestMessage.MessageText.hint">
+    <Value>write message to send to receiver</Value>
+  </LocaleResource>
+
+<LocaleResource Name="Plugins.XcellenceIt.Sms.Fields.VerifyOTPSkip">
+		<Value>Skip OTP</Value>
+	</LocaleResource>
+<LocaleResource Name="Plugins.XcellenceIt.Sms.Title.UniversalSMS">
+		<Value>Universal SMS</Value>
+	</LocaleResource>
+</Language>

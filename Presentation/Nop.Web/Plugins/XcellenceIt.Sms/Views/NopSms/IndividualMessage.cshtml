@@ -1,0 +1,155 @@
+@*
+    // *************************************************************************
+    // *                                                                       *
+    // * Universal SMS plugin for nopCommerce                                  *
+    // * Copyright (c) Xcellence-IT. All Rights Reserved.                      *
+    // *                                                                       *
+    // *************************************************************************
+    // *                                                                       *
+    // * Email: info@nopaccelerate.com                                         *
+    // * Website: http://www.nopaccelerate.com                                 *
+    // *                                                                       *
+    // *************************************************************************
+    // *                                                                       *
+    // * This  software is furnished  under a license  and  may  be  used  and *
+    // * modified  only in  accordance with the terms of such license and with *
+    // * the  inclusion of the above  copyright notice.  This software or  any *
+    // * other copies thereof may not be provided or  otherwise made available *
+    // * to any  other  person.   No title to and ownership of the software is *
+    // * hereby transferred.                                                   *
+    // *                                                                       *
+    // * You may not reverse  engineer, decompile, defeat  license  encryption *
+    // * mechanisms  or  disassemble this software product or software product *
+    // * license.  Xcellence-IT may terminate this license if you don't comply *
+    // * with  any  of  the  terms and conditions set forth in  our  end  user *
+    // * license agreement (EULA).  In such event,  licensee  agrees to return *
+    // * licensor  or destroy  all copies of software  upon termination of the *
+    // * license.                                                              *
+    // *                                                                       *
+    // * Please see the  License file for the full End User License Agreement. *
+    // * The  complete license agreement is also available on  our  website at *
+    // * http://www.nopaccelerate.com/enterprise-license                       *
+    // *                                                                       *
+    // *************************************************************************
+*@
+
+@model Nop.Plugin.XcellenceIt.Sms.Models.IndividualMessageModel
+<form asp-controller="NopSms" asp-action="SendIndividualMessge" method="post">
+  
+    @Html.HiddenFor(model => model.CustomerId)
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <span>@T("Plugins.XcellenceIt.Sms.Fields.IndividualMessage")</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="CountryIsd" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="CountryIsd" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="MobileNumber" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="MobileNumber" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="IsVerified" />
+                </div>
+                <div class="col-md-9">
+                    @if (Model.IsVerified)
+                    {
+                        <label>Yes</label>
+                    }
+                    else
+                    {
+                        <label>No</label>
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="AvailableRoute" />
+                </div>
+                <div class="col-md-9">
+                    <nop-select asp-for-name="AvailableRoute" asp-items="@Model.AvailableRoutes" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="MessageText" />
+                </div>
+                <div class="col-md-9">
+                    <nop-textarea asp-for="MessageText" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="SendAsPM" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="SendAsPM" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="button" id="sendMessage" class="btn bg-blue" name="sendMessage" value="@T("Plugins.XcellenceIt.Sms.Fields.SendMessage")" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#sendMessage").click(function () {
+            var countryIsd = $("#@Html.IdFor(model => model.CountryIsd)").val();
+            var mobileNumber = $("#@Html.IdFor(model => model.MobileNumber)").val();
+            var interfaceId = $("#@Html.IdFor(model => model.AvailableRoute)").val();
+            var messageText = $("#@Html.IdFor(model => model.MessageText)").val();
+            var sendAsPM = $("#@Html.IdFor(model => model.SendAsPM)").val();
+            var customerId = $("#@Html.IdFor(model => model.CustomerId)").val();
+
+            if (messageText == " ") {
+                alert("Message cannot be blank. Please write a message to send before pressing send button.");
+                return false;
+            }
+
+            $('#sendMessage').attr('disabled', true);
+
+            var postData = {
+                countryIsd: countryIsd,
+                mobileNumber: mobileNumber,
+                interfaceId: interfaceId,
+                messageText: messageText,
+                sendAsPM: sendAsPM,
+                customerId: customerId
+            };
+
+            addAntiForgeryToken(postData);
+
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("SendIndividualMessge", "NopSms"))",
+                data: postData,
+                success: function (data) {
+                    alert(data.Result);
+                    $('#sendMessage').attr('disabled', false);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(thrownError);
+                    $('#sendMessage').attr('disabled', false);
+                }
+            });
+        });
+    </script>
+
+    </form>

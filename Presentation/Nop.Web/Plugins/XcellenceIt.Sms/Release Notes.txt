@@ -1,0 +1,117 @@
+﻿Release Date: October 6, 2018
+Universal SMS Version: 1.7.0
+
+Features:
+1. Added support for nopCommerce 4.10
+2. Remove twilio voice support for nopCommerce 4.10
+3. Update Core dll
+
+Bug Fix:
+SMS was not sending when customer added mobile number with 0 or country id
+  
+------------------------------------------------------------------------------------------
+Release Date: April 12, 2018
+Universal SMS Version: 1.6.1
+
+1. Added Widget and give option to verify number later from MyAccount page.
+2. Skip this step option in OTP Verification in Registration verifcation.
+3. OTP Verification code Display when phone number change from My Account Detail.
+4. Add link for user manual on plug-in configuration.
+  
+------------------------------------------------------------------------------------------
+Release Date: March 24, 2017
+Universal SMS Version: 1.5.0
+
+1. Added support for send test message to customer.
+2. Upgraded to nopCommerce 3.90.
+3. Add link for user manual on plug-in configuration.
+  
+------------------------------------------------------------------------------------------
+
+Release Date: December 12, 2016
+Universal SMS Version: 1.4.0
+
+1. Upgrade License.
+2. Fixed bug
+3. Added support for send message to guest customer on all events. 
+4. Added custom token for order total, numbers of items, product names for order.
+5. Added support for Concat message.
+ 
+------------------------------------------------------------------------------------------
+
+Release Date: September 22, 2016
+Universal SMS Version: 1.3.0
+
+Features:
+1. Vendor get automatically message at following events
+	1.1 Order Placed for Vendor's Product
+	1.2 Order Delivered 
+	1.3 Order Paid
+	1.4 Order Refund
+	1.5 Order Canceled 
+	1.6 Order Completed
+2. Admin get automatically Message at following events
+	2.1 Order Paid
+	2.2 Order Completed
+	2.3 Return Request initiated by customer
+3. Customer get automatically Message at following events
+	3.1 Order Paid
+	3.2 Order Completed
+	3.3 Return Request initiated 
+	3.4 change status of return request by admin/ vendor
+
+--------------------------------------------------------------------------------------------
+
+Release Date: September 02, 2016
+Universal SMS Version: 1.2.0
+
+Features:
+1. Upgraded to nopCommerce 3.80
+
+--------------------------------------------------------------------------------------------
+
+Release Date: July 22, 2016
+Universal Sms Plugin Version: 1.1.1
+
+Features:
+1. Fixed Bugs
+	1.1 License check issue resolved.
+	1.2 Message sent logs moved to customer activity logs.
+
+-------------------------------------------------------------------------------
+
+Release Date: June 30, 2016
+Universal Sms Plugin Version: 1.1.0
+
+Features:
+1. Moved external assemblies as embedded resources in plugin.
+2. Fixed Bugs
+	2.1 Individual message tab load on customer edit and order details page.
+	2.2 OTP Re-verification on mobile number change.
+	2.3 Different OTP for new mobile number for same customer.
+4. Added support for multiple countries with same data (Duplicate records).
+5. SSL support for OTP verification page.
+
+-------------------------------------------------------------------------------
+
+Release Date: April 18, 2016
+Universal Sms Plugin Version: 1.0
+
+Features:
+1. Admin mobile number configuration
+2. Individual messages to customer from customer edit and order edit pages
+3. Multiple provider settings and country wise provider settings
+4. Email Sms Api, Http Sms Api, Twilio Voice & Sms Api Configurations
+5. Template based messages
+6. Customer events
+6.1 Mobile number verification
+6.2 Order placed
+6.3 Shipment initiated
+6.4 Order delivered
+6.5 Order cancelled
+6.6 Order note added
+6.7 Order processing
+6.8 Payment refund
+7. Admin events
+7.1 New customer registration
+7.2 New order placed in store

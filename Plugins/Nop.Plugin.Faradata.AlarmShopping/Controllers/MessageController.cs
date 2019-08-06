@@ -156,6 +156,7 @@ namespace Nop.Plugin.Faradata.AlarmShopping.Controllers
                     if (item.ChatId > 0)
                     {
                         var msg = string.Format("فاکتور جدیدی با شماره {0}، ثبت شده است لطفا بررسی نمایید.", id);
+
                         bot.SendTextMessageAsync(item.ChatId, msg);
                     }
                 }

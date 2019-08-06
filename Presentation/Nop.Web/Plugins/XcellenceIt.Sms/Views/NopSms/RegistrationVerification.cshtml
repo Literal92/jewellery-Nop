@@ -1,0 +1,96 @@
+﻿@*
+    // *************************************************************************
+    // *                                                                       *
+    // * Universal SMS plugin for nopCommerce                                  *
+    // * Copyright (c) Xcellence-IT. All Rights Reserved.                      *
+    // *                                                                       *
+    // *************************************************************************
+    // *                                                                       *
+    // * Email: info@nopaccelerate.com                                         *
+    // * Website: http://www.nopaccelerate.com                                 *
+    // *                                                                       *
+    // *************************************************************************
+    // *                                                                       *
+    // * This  software is furnished  under a license  and  may  be  used  and *
+    // * modified  only in  accordance with the terms of such license and with *
+    // * the  inclusion of the above  copyright notice.  This software or  any *
+    // * other copies thereof may not be provided or  otherwise made available *
+    // * to any  other  person.   No title to and ownership of the software is *
+    // * hereby transferred.                                                   *
+    // *                                                                       *
+    // * You may not reverse  engineer, decompile, defeat  license  encryption *
+    // * mechanisms  or  disassemble this software product or software product *
+    // * license.  Xcellence-IT may terminate this license if you don't comply *
+    // * with  any  of  the  terms and conditions set forth in  our  end  user *
+    // * license agreement (EULA).  In such event,  licensee  agrees to return *
+    // * licensor  or destroy  all copies of software  upon termination of the *
+    // * license.                                                              *
+    // *                                                                       *
+    // * Please see the  License file for the full End User License Agreement. *
+    // * The  complete license agreement is also available on  our  website at *
+    // * http://www.nopaccelerate.com/enterprise-license                       *
+    // *                                                                       *
+    // *************************************************************************
+*@
+
+@model Nop.Plugin.XcellenceIt.Sms.Models.NopSmsModel
+@{
+    Layout = "~/Views/Shared/_ColumnsTwo.cshtml";
+}
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Framework;
+
+<form asp-controller="NopSms" asp-action="RegistrationVerification" method="post">
+    <div class="page registration-page">
+        <div class="page-title">
+            <h1>@T("Plugins.XcellenceIt.Sms.Fields.OTPHeading")</h1>
+        </div>
+        <div class="page-body">
+            @T("Plugins.XcellenceIt.Sms.Fields.OneTimePassword.Hint")
+            <div class="fieldset">
+                <div class="form-fields">
+                    <div class="inputs">
+                        <nop-label asp-for="OneTimePassword" />
+                        <nop-editor asp-for="OneTimePassword" />
+                        <span asp-validation-for="OneTimePassword"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="accept-privacy-policy">
+                <a href="#" style="text-decoration:underline;" onclick="resendOtp()">@T("Plugins.XcellenceIt.Sms.Fields.ResendOTP")</a>
+            </div>
+            <div class="buttons">
+                <input type="submit" id="verify-button" class="button-1 register-next-step-button" value="@T("Plugins.XcellenceIt.Sms.Fields.VerifyOTP")" name="verify-button" />
+                <input type="button" id="skip-button" class="button-2 skip-button" value="@T("Plugins.XcellenceIt.Sms.Fields.VerifyOTPSkip")" name="skip-button" onclick="setLocation('@Url.RouteUrl("HomePage")')" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function resendOtp() {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("SendVerificationCode", "NopSms"))",
+                success: function () {
+                    alert('One time password sent successfully to registered mobile number.');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to send message to customer.');
+                }
+            });
+        }
+    </script>
+   </form>
+<style type="text/css">
+    .skip-button {
+        float: right;
+        background-color: #eaeaea;
+        padding: 10px 15px;
+        text-align: left;
+        font-size: 14px;
+        color: #666;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+</style>
