@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Nop.Core;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
@@ -1634,6 +1638,8 @@ namespace Nop.Web.Controllers
         {
             try
             {
+                var msg = string.Format("فاکتور جدیدی ثبت شده است لطفا بررسی نمایید.");
+                var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09384117217&TEXT=" + msg + "&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
                 //validation
                 if (_orderSettings.CheckoutDisabled)
                     throw new Exception(_localizationService.GetResource("Checkout.Disabled"));
@@ -1726,12 +1732,94 @@ namespace Nop.Web.Controllers
             }
         }
 
+        public class CallBackUrl
+        {
+            public static T Post<T, T2>(string url, T2 model)
+            {
+                try
+                {
+                    #region ارسال پیام و دریافت نتیجه ارسال
+
+                    ASCIIEncoding encoder = new ASCIIEncoding();
+                    String postData = JsonConvert.SerializeObject(model);
+                    byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+
+                    HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                    request.Method = "POST";
+                    request.KeepAlive = false;
+                    request.ContentType = "application/json";
+                    //Request.Headers.Add(string.Format("Authorization: key={0}", serverkey));
+                    request.ContentLength = byteArray.Length;
+
+                    Stream dataStream = request.GetRequestStream();
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    dataStream.Close();
+
+                    HttpWebResponse Response = request.GetResponse() as HttpWebResponse;
+
+                    Stream receiveStream = Response.GetResponseStream();
+
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+
+                    StreamReader Reader = new StreamReader(Response.GetResponseStream());
+
+                    var responseLine = Reader.ReadToEnd();
+
+                    var rec = JsonConvert.DeserializeObject<T>(responseLine);
+
+                    return rec;
+                    #endregion
+
+                }
+                catch (Exception ee)
+                {
+                    return default(T);
+                }
+            }
+
+            public static T Get<T>(string url)
+            {
+                try
+                {
+                    #region ارسال پیام و دریافت نتیجه ارسال
+                    ASCIIEncoding encoder = new ASCIIEncoding();
+
+                    HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                    request.Method = "GET";
+
+                    HttpWebResponse Response = request.GetResponse() as HttpWebResponse;
+                    Stream receiveStream = Response.GetResponseStream();
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
+
+                    StreamReader Reader = new StreamReader(Response.GetResponseStream());
+
+                    var responseLine = Reader.ReadToEnd();
+
+                    var rec = JsonConvert.DeserializeObject<T>(responseLine);
+
+                    return rec;
+                    #endregion
+
+                }
+                catch (Exception ee)
+                {
+                    return default(T);
+                }
+            }
+        }
+
+
         public virtual IActionResult OpcCompleteRedirectionPayment()
         {
             try
             {
+                
                 //validation
-                if (!_orderSettings.OnePageCheckoutEnabled)
+                    if (!_orderSettings.OnePageCheckoutEnabled)
                     return RedirectToRoute("HomePage");
 
                 if (_workContext.CurrentCustomer.IsGuest() && !_orderSettings.AnonymousCheckoutAllowed)
@@ -1743,6 +1831,8 @@ namespace Nop.Web.Controllers
                     .FirstOrDefault();
                 if (order == null)
                     return RedirectToRoute("HomePage");
+                var msg = string.Format("فاکتور جدیدی با شماره {0}، ثبت شده است لطفا بررسی نمایید.", order.Id);
+                var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09384117217&TEXT=" + msg + "&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
 
                 var paymentMethod = _paymentService.LoadPaymentMethodBySystemName(order.PaymentMethodSystemName);
                 if (paymentMethod == null)
