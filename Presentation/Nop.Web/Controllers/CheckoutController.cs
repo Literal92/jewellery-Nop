@@ -1638,8 +1638,8 @@ namespace Nop.Web.Controllers
         {
             try
             {
-                var msg = string.Format("فاکتور جدیدی ثبت شده است لطفا بررسی نمایید.");
-                var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09384117217&TEXT=" + msg + "&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
+                //var msg = string.Format("فاکتور جدیدی ثبت شده است لطفا بررسی نمایید https://plata.ir/admin/order/list.");
+                //var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09384117217&TEXT=" + msg + "&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
                 //validation
                 if (_orderSettings.CheckoutDisabled)
                     throw new Exception(_localizationService.GetResource("Checkout.Disabled"));
@@ -1831,8 +1831,8 @@ namespace Nop.Web.Controllers
                     .FirstOrDefault();
                 if (order == null)
                     return RedirectToRoute("HomePage");
-                var msg = string.Format("فاکتور جدیدی با شماره {0}، ثبت شده است لطفا بررسی نمایید.", order.Id);
-                var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09384117217&TEXT=" + msg + "&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
+                var msg = string.Format("فاکتور جدیدی با شماره {0}، ثبت شده است لطفا بررسی نمایید https://plata.ir/Admin/Order/Edit/{0}.", order.Id);
+                var result = CallBackUrl.Get<int>("http://www.0098sms.com/sendsmslink.aspx?FROM=30002659262310&TO=09122074073&TEXT=" + msg + "&USERNAME=xsms6427&PASSWORD=92245373&DOMAIN=0098");
 
                 var paymentMethod = _paymentService.LoadPaymentMethodBySystemName(order.PaymentMethodSystemName);
                 if (paymentMethod == null)
